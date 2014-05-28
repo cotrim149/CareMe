@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D8D4DE2E193667D500BBAFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2D193667D500BBAFEE /* Foundation.framework */; };
+		D8D4DE30193667D500BBAFEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */; };
+		D8D4DE32193667D500BBAFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE31193667D500BBAFEE /* UIKit.framework */; };
+		D8D4DE38193667D500BBAFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE36193667D500BBAFEE /* InfoPlist.strings */; };
+		D8D4DE3A193667D500BBAFEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE39193667D500BBAFEE /* main.m */; };
+		D8D4DE3E193667D500BBAFEE /* AMVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */; };
+		D8D4DE40193667D500BBAFEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE3F193667D500BBAFEE /* Images.xcassets */; };
+		D8D4DE47193667D500BBAFEE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE46193667D500BBAFEE /* XCTest.framework */; };
+		D8D4DE48193667D500BBAFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2D193667D500BBAFEE /* Foundation.framework */; };
+		D8D4DE49193667D500BBAFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE31193667D500BBAFEE /* UIKit.framework */; };
+		D8D4DE51193667D500BBAFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */; };
+		D8D4DE53193667D500BBAFEE /* CareMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE52193667D500BBAFEE /* CareMeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D8D4DE4A193667D500BBAFEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D8D4DE22193667D500BBAFEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8D4DE29193667D500BBAFEE;
+			remoteInfo = CareMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D8D4DE2A193667D500BBAFEE /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8D4DE2D193667D500BBAFEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D8D4DE31193667D500BBAFEE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D8D4DE35193667D500BBAFEE /* CareMe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMe-Info.plist"; sourceTree = "<group>"; };
+		D8D4DE37193667D500BBAFEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8D4DE39193667D500BBAFEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D8D4DE3B193667D500BBAFEE /* CareMe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CareMe-Prefix.pch"; sourceTree = "<group>"; };
+		D8D4DE3C193667D500BBAFEE /* AMVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVAppDelegate.h; sourceTree = "<group>"; };
+		D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMVAppDelegate.m; sourceTree = "<group>"; };
+		D8D4DE3F193667D500BBAFEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8D4DE46193667D500BBAFEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		D8D4DE4E193667D500BBAFEE /* CareMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMeTests-Info.plist"; sourceTree = "<group>"; };
+		D8D4DE50193667D500BBAFEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D8D4DE52193667D500BBAFEE /* CareMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareMeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D8D4DE27193667D500BBAFEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE30193667D500BBAFEE /* CoreGraphics.framework in Frameworks */,
+				D8D4DE32193667D500BBAFEE /* UIKit.framework in Frameworks */,
+				D8D4DE2E193667D500BBAFEE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D4DE42193667D500BBAFEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE47193667D500BBAFEE /* XCTest.framework in Frameworks */,
+				D8D4DE49193667D500BBAFEE /* UIKit.framework in Frameworks */,
+				D8D4DE48193667D500BBAFEE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D8D4DE21193667D500BBAFEE = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE33193667D500BBAFEE /* CareMe */,
+				D8D4DE4C193667D500BBAFEE /* CareMeTests */,
+				D8D4DE2C193667D500BBAFEE /* Frameworks */,
+				D8D4DE2B193667D500BBAFEE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D8D4DE2B193667D500BBAFEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE2A193667D500BBAFEE /* CareMe.app */,
+				D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D8D4DE2C193667D500BBAFEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE2D193667D500BBAFEE /* Foundation.framework */,
+				D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */,
+				D8D4DE31193667D500BBAFEE /* UIKit.framework */,
+				D8D4DE46193667D500BBAFEE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D8D4DE33193667D500BBAFEE /* CareMe */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE3C193667D500BBAFEE /* AMVAppDelegate.h */,
+				D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */,
+				D8D4DE3F193667D500BBAFEE /* Images.xcassets */,
+				D8D4DE34193667D500BBAFEE /* Supporting Files */,
+			);
+			path = CareMe;
+			sourceTree = "<group>";
+		};
+		D8D4DE34193667D500BBAFEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE35193667D500BBAFEE /* CareMe-Info.plist */,
+				D8D4DE36193667D500BBAFEE /* InfoPlist.strings */,
+				D8D4DE39193667D500BBAFEE /* main.m */,
+				D8D4DE3B193667D500BBAFEE /* CareMe-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D8D4DE4C193667D500BBAFEE /* CareMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE52193667D500BBAFEE /* CareMeTests.m */,
+				D8D4DE4D193667D500BBAFEE /* Supporting Files */,
+			);
+			path = CareMeTests;
+			sourceTree = "<group>";
+		};
+		D8D4DE4D193667D500BBAFEE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D8D4DE4E193667D500BBAFEE /* CareMeTests-Info.plist */,
+				D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D8D4DE29193667D500BBAFEE /* CareMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8D4DE56193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMe" */;
+			buildPhases = (
+				D8D4DE26193667D500BBAFEE /* Sources */,
+				D8D4DE27193667D500BBAFEE /* Frameworks */,
+				D8D4DE28193667D500BBAFEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CareMe;
+			productName = CareMe;
+			productReference = D8D4DE2A193667D500BBAFEE /* CareMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D8D4DE44193667D500BBAFEE /* CareMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8D4DE59193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMeTests" */;
+			buildPhases = (
+				D8D4DE41193667D500BBAFEE /* Sources */,
+				D8D4DE42193667D500BBAFEE /* Frameworks */,
+				D8D4DE43193667D500BBAFEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8D4DE4B193667D500BBAFEE /* PBXTargetDependency */,
+			);
+			name = CareMeTests;
+			productName = CareMeTests;
+			productReference = D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D8D4DE22193667D500BBAFEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AMV;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = AMV;
+				TargetAttributes = {
+					D8D4DE44193667D500BBAFEE = {
+						TestTargetID = D8D4DE29193667D500BBAFEE;
+					};
+				};
+			};
+			buildConfigurationList = D8D4DE25193667D500BBAFEE /* Build configuration list for PBXProject "CareMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D8D4DE21193667D500BBAFEE;
+			productRefGroup = D8D4DE2B193667D500BBAFEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D8D4DE29193667D500BBAFEE /* CareMe */,
+				D8D4DE44193667D500BBAFEE /* CareMeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D8D4DE28193667D500BBAFEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE38193667D500BBAFEE /* InfoPlist.strings in Resources */,
+				D8D4DE40193667D500BBAFEE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D4DE43193667D500BBAFEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE51193667D500BBAFEE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D8D4DE26193667D500BBAFEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE3A193667D500BBAFEE /* main.m in Sources */,
+				D8D4DE3E193667D500BBAFEE /* AMVAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8D4DE41193667D500BBAFEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8D4DE53193667D500BBAFEE /* CareMeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D8D4DE4B193667D500BBAFEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8D4DE29193667D500BBAFEE /* CareMe */;
+			targetProxy = D8D4DE4A193667D500BBAFEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D8D4DE36193667D500BBAFEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8D4DE37193667D500BBAFEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8D4DE50193667D500BBAFEE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D8D4DE54193667D500BBAFEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D8D4DE55193667D500BBAFEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8D4DE57193667D500BBAFEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
+				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D8D4DE58193667D500BBAFEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
+				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		D8D4DE5A193667D500BBAFEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "CareMeTests/CareMeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		D8D4DE5B193667D500BBAFEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
+				INFOPLIST_FILE = "CareMeTests/CareMeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D8D4DE25193667D500BBAFEE /* Build configuration list for PBXProject "CareMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D4DE54193667D500BBAFEE /* Debug */,
+				D8D4DE55193667D500BBAFEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D8D4DE56193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D4DE57193667D500BBAFEE /* Debug */,
+				D8D4DE58193667D500BBAFEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D8D4DE59193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8D4DE5A193667D500BBAFEE /* Debug */,
+				D8D4DE5B193667D500BBAFEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D8D4DE22193667D500BBAFEE /* Project object */;
+}
