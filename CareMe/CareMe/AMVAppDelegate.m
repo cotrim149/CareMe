@@ -2,20 +2,37 @@
 //  AMVAppDelegate.m
 //  CareMe
 //
-//  Created by Alysson Lopes on 5/28/14.
-//  Copyright (c) 2014 AMV. All rights reserved.
+//  Created by Matheus Fonseca on 29/05/14.
+//  Copyright (c) 2014 Alysson Matheus Victor. All rights reserved.
 //
 
 #import "AMVAppDelegate.h"
+#import "AMVHomeConsultController.h"
 
-@implementation AMVAppDelegate
+@implementation AMVAppDelegate {
+    UITabBarController *_tabController;
+    UINavigationController *_consultNavController;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    _tabController = [[UITabBarController alloc] init];
+    
+    AMVHomeConsultController *homeConsultController;
+    
+    homeConsultController = [[AMVHomeConsultController alloc] init];
+    _consultNavController = [[UINavigationController alloc] initWithRootViewController:homeConsultController];
+    
+    [_tabController addChildViewController:_consultNavController];
+    
+    self.window.rootViewController = _tabController;
+    
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

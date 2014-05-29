@@ -7,153 +7,229 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D8D4DE2E193667D500BBAFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2D193667D500BBAFEE /* Foundation.framework */; };
-		D8D4DE30193667D500BBAFEE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */; };
-		D8D4DE32193667D500BBAFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE31193667D500BBAFEE /* UIKit.framework */; };
-		D8D4DE38193667D500BBAFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE36193667D500BBAFEE /* InfoPlist.strings */; };
-		D8D4DE3A193667D500BBAFEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE39193667D500BBAFEE /* main.m */; };
-		D8D4DE3E193667D500BBAFEE /* AMVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */; };
-		D8D4DE40193667D500BBAFEE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE3F193667D500BBAFEE /* Images.xcassets */; };
-		D8D4DE47193667D500BBAFEE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE46193667D500BBAFEE /* XCTest.framework */; };
-		D8D4DE48193667D500BBAFEE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE2D193667D500BBAFEE /* Foundation.framework */; };
-		D8D4DE49193667D500BBAFEE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D4DE31193667D500BBAFEE /* UIKit.framework */; };
-		D8D4DE51193667D500BBAFEE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */; };
-		D8D4DE53193667D500BBAFEE /* CareMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D4DE52193667D500BBAFEE /* CareMeTests.m */; };
+		2F2527681937BCFE00D62E4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2527671937BCFE00D62E4B /* Foundation.framework */; };
+		2F25276A1937BCFE00D62E4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2527691937BCFE00D62E4B /* CoreGraphics.framework */; };
+		2F25276C1937BCFE00D62E4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F25276B1937BCFE00D62E4B /* UIKit.framework */; };
+		2F2527721937BCFE00D62E4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527701937BCFE00D62E4B /* InfoPlist.strings */; };
+		2F2527741937BCFE00D62E4B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2527731937BCFE00D62E4B /* main.m */; };
+		2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2527771937BCFE00D62E4B /* AMVAppDelegate.m */; };
+		2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527791937BCFE00D62E4B /* Images.xcassets */; };
+		2F2527811937BCFF00D62E4B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2527801937BCFF00D62E4B /* XCTest.framework */; };
+		2F2527821937BCFF00D62E4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F2527671937BCFE00D62E4B /* Foundation.framework */; };
+		2F2527831937BCFF00D62E4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F25276B1937BCFE00D62E4B /* UIKit.framework */; };
+		2F25278B1937BCFF00D62E4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527891937BCFF00D62E4B /* InfoPlist.strings */; };
+		2F25278D1937BCFF00D62E4B /* CareMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25278C1937BCFF00D62E4B /* CareMeTests.m */; };
+		2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */; };
+		2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */; };
+		2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B61937D23200D62E4B /* Calendar-Month.png */; };
+		2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B71937D23200D62E4B /* Calendar-Week.png */; };
+		2F2527BC1937D3E900D62E4B /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BA1937D3E900D62E4B /* Folder.png */; };
+		2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BB1937D3E900D62E4B /* Open-Mail.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D8D4DE4A193667D500BBAFEE /* PBXContainerItemProxy */ = {
+		2F2527841937BCFF00D62E4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D8D4DE22193667D500BBAFEE /* Project object */;
+			containerPortal = 2F25275C1937BCFE00D62E4B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D8D4DE29193667D500BBAFEE;
+			remoteGlobalIDString = 2F2527631937BCFE00D62E4B;
 			remoteInfo = CareMe;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D8D4DE2A193667D500BBAFEE /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8D4DE2D193667D500BBAFEE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D8D4DE31193667D500BBAFEE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D8D4DE35193667D500BBAFEE /* CareMe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMe-Info.plist"; sourceTree = "<group>"; };
-		D8D4DE37193667D500BBAFEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D8D4DE39193667D500BBAFEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D8D4DE3B193667D500BBAFEE /* CareMe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CareMe-Prefix.pch"; sourceTree = "<group>"; };
-		D8D4DE3C193667D500BBAFEE /* AMVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVAppDelegate.h; sourceTree = "<group>"; };
-		D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMVAppDelegate.m; sourceTree = "<group>"; };
-		D8D4DE3F193667D500BBAFEE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8D4DE46193667D500BBAFEE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		D8D4DE4E193667D500BBAFEE /* CareMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMeTests-Info.plist"; sourceTree = "<group>"; };
-		D8D4DE50193667D500BBAFEE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D8D4DE52193667D500BBAFEE /* CareMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareMeTests.m; sourceTree = "<group>"; };
+		2F2527641937BCFE00D62E4B /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F2527671937BCFE00D62E4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2F2527691937BCFE00D62E4B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2F25276B1937BCFE00D62E4B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2F25276F1937BCFE00D62E4B /* CareMe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMe-Info.plist"; sourceTree = "<group>"; };
+		2F2527711937BCFE00D62E4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F2527731937BCFE00D62E4B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2F2527751937BCFE00D62E4B /* CareMe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CareMe-Prefix.pch"; sourceTree = "<group>"; };
+		2F2527761937BCFE00D62E4B /* AMVAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVAppDelegate.h; sourceTree = "<group>"; };
+		2F2527771937BCFE00D62E4B /* AMVAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMVAppDelegate.m; sourceTree = "<group>"; };
+		2F2527791937BCFE00D62E4B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2F25277F1937BCFF00D62E4B /* CareMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F2527801937BCFF00D62E4B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		2F2527881937BCFF00D62E4B /* CareMeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareMeTests-Info.plist"; sourceTree = "<group>"; };
+		2F25278A1937BCFF00D62E4B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2F25278C1937BCFF00D62E4B /* CareMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareMeTests.m; sourceTree = "<group>"; };
+		2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVHomeConsultController.h; sourceTree = "<group>"; };
+		2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVHomeConsultController.m; sourceTree = "<group>"; };
+		2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVHomeConsultController.xib; sourceTree = "<group>"; };
+		2F2527B61937D23200D62E4B /* Calendar-Month.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Month.png"; sourceTree = "<group>"; };
+		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
+		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
+		2F2527BB1937D3E900D62E4B /* Open-Mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Open-Mail.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D8D4DE27193667D500BBAFEE /* Frameworks */ = {
+		2F2527611937BCFE00D62E4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE30193667D500BBAFEE /* CoreGraphics.framework in Frameworks */,
-				D8D4DE32193667D500BBAFEE /* UIKit.framework in Frameworks */,
-				D8D4DE2E193667D500BBAFEE /* Foundation.framework in Frameworks */,
+				2F25276A1937BCFE00D62E4B /* CoreGraphics.framework in Frameworks */,
+				2F25276C1937BCFE00D62E4B /* UIKit.framework in Frameworks */,
+				2F2527681937BCFE00D62E4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8D4DE42193667D500BBAFEE /* Frameworks */ = {
+		2F25277C1937BCFF00D62E4B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE47193667D500BBAFEE /* XCTest.framework in Frameworks */,
-				D8D4DE49193667D500BBAFEE /* UIKit.framework in Frameworks */,
-				D8D4DE48193667D500BBAFEE /* Foundation.framework in Frameworks */,
+				2F2527811937BCFF00D62E4B /* XCTest.framework in Frameworks */,
+				2F2527831937BCFF00D62E4B /* UIKit.framework in Frameworks */,
+				2F2527821937BCFF00D62E4B /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D8D4DE21193667D500BBAFEE = {
+		2F25275B1937BCFE00D62E4B = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE33193667D500BBAFEE /* CareMe */,
-				D8D4DE4C193667D500BBAFEE /* CareMeTests */,
-				D8D4DE2C193667D500BBAFEE /* Frameworks */,
-				D8D4DE2B193667D500BBAFEE /* Products */,
+				2F25276D1937BCFE00D62E4B /* CareMe */,
+				2F2527861937BCFF00D62E4B /* CareMeTests */,
+				2F2527661937BCFE00D62E4B /* Frameworks */,
+				2F2527651937BCFE00D62E4B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D8D4DE2B193667D500BBAFEE /* Products */ = {
+		2F2527651937BCFE00D62E4B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE2A193667D500BBAFEE /* CareMe.app */,
-				D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */,
+				2F2527641937BCFE00D62E4B /* CareMe.app */,
+				2F25277F1937BCFF00D62E4B /* CareMeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D8D4DE2C193667D500BBAFEE /* Frameworks */ = {
+		2F2527661937BCFE00D62E4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE2D193667D500BBAFEE /* Foundation.framework */,
-				D8D4DE2F193667D500BBAFEE /* CoreGraphics.framework */,
-				D8D4DE31193667D500BBAFEE /* UIKit.framework */,
-				D8D4DE46193667D500BBAFEE /* XCTest.framework */,
+				2F2527671937BCFE00D62E4B /* Foundation.framework */,
+				2F2527691937BCFE00D62E4B /* CoreGraphics.framework */,
+				2F25276B1937BCFE00D62E4B /* UIKit.framework */,
+				2F2527801937BCFF00D62E4B /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D8D4DE33193667D500BBAFEE /* CareMe */ = {
+		2F25276D1937BCFE00D62E4B /* CareMe */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE3C193667D500BBAFEE /* AMVAppDelegate.h */,
-				D8D4DE3D193667D500BBAFEE /* AMVAppDelegate.m */,
-				D8D4DE3F193667D500BBAFEE /* Images.xcassets */,
-				D8D4DE34193667D500BBAFEE /* Supporting Files */,
+				2F2527B51937D23200D62E4B /* Images */,
+				2F25279B1937BE2500D62E4B /* Util */,
+				2F25279A1937BE1500D62E4B /* View */,
+				2F2527991937BE0F00D62E4B /* XIB */,
+				2F2527981937BE0900D62E4B /* DAO */,
+				2F2527971937BDFE00D62E4B /* Entity */,
+				2F2527961937BDF800D62E4B /* Controller */,
+				2F2527761937BCFE00D62E4B /* AMVAppDelegate.h */,
+				2F2527771937BCFE00D62E4B /* AMVAppDelegate.m */,
+				2F2527791937BCFE00D62E4B /* Images.xcassets */,
+				2F25276E1937BCFE00D62E4B /* Supporting Files */,
 			);
 			path = CareMe;
 			sourceTree = "<group>";
 		};
-		D8D4DE34193667D500BBAFEE /* Supporting Files */ = {
+		2F25276E1937BCFE00D62E4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE35193667D500BBAFEE /* CareMe-Info.plist */,
-				D8D4DE36193667D500BBAFEE /* InfoPlist.strings */,
-				D8D4DE39193667D500BBAFEE /* main.m */,
-				D8D4DE3B193667D500BBAFEE /* CareMe-Prefix.pch */,
+				2F25276F1937BCFE00D62E4B /* CareMe-Info.plist */,
+				2F2527701937BCFE00D62E4B /* InfoPlist.strings */,
+				2F2527731937BCFE00D62E4B /* main.m */,
+				2F2527751937BCFE00D62E4B /* CareMe-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D8D4DE4C193667D500BBAFEE /* CareMeTests */ = {
+		2F2527861937BCFF00D62E4B /* CareMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE52193667D500BBAFEE /* CareMeTests.m */,
-				D8D4DE4D193667D500BBAFEE /* Supporting Files */,
+				2F25278C1937BCFF00D62E4B /* CareMeTests.m */,
+				2F2527871937BCFF00D62E4B /* Supporting Files */,
 			);
 			path = CareMeTests;
 			sourceTree = "<group>";
 		};
-		D8D4DE4D193667D500BBAFEE /* Supporting Files */ = {
+		2F2527871937BCFF00D62E4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D8D4DE4E193667D500BBAFEE /* CareMeTests-Info.plist */,
-				D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */,
+				2F2527881937BCFF00D62E4B /* CareMeTests-Info.plist */,
+				2F2527891937BCFF00D62E4B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2F2527961937BDF800D62E4B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */,
+				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2F2527971937BDFE00D62E4B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		2F2527981937BE0900D62E4B /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
+		2F2527991937BE0F00D62E4B /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
+		2F25279A1937BE1500D62E4B /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2F25279B1937BE2500D62E4B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		2F2527B51937D23200D62E4B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2F2527BA1937D3E900D62E4B /* Folder.png */,
+				2F2527BB1937D3E900D62E4B /* Open-Mail.png */,
+				2F2527B61937D23200D62E4B /* Calendar-Month.png */,
+				2F2527B71937D23200D62E4B /* Calendar-Week.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D8D4DE29193667D500BBAFEE /* CareMe */ = {
+		2F2527631937BCFE00D62E4B /* CareMe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8D4DE56193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMe" */;
+			buildConfigurationList = 2F2527901937BCFF00D62E4B /* Build configuration list for PBXNativeTarget "CareMe" */;
 			buildPhases = (
-				D8D4DE26193667D500BBAFEE /* Sources */,
-				D8D4DE27193667D500BBAFEE /* Frameworks */,
-				D8D4DE28193667D500BBAFEE /* Resources */,
+				2F2527601937BCFE00D62E4B /* Sources */,
+				2F2527611937BCFE00D62E4B /* Frameworks */,
+				2F2527621937BCFE00D62E4B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -161,121 +237,127 @@
 			);
 			name = CareMe;
 			productName = CareMe;
-			productReference = D8D4DE2A193667D500BBAFEE /* CareMe.app */;
+			productReference = 2F2527641937BCFE00D62E4B /* CareMe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D8D4DE44193667D500BBAFEE /* CareMeTests */ = {
+		2F25277E1937BCFF00D62E4B /* CareMeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D8D4DE59193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMeTests" */;
+			buildConfigurationList = 2F2527931937BCFF00D62E4B /* Build configuration list for PBXNativeTarget "CareMeTests" */;
 			buildPhases = (
-				D8D4DE41193667D500BBAFEE /* Sources */,
-				D8D4DE42193667D500BBAFEE /* Frameworks */,
-				D8D4DE43193667D500BBAFEE /* Resources */,
+				2F25277B1937BCFF00D62E4B /* Sources */,
+				2F25277C1937BCFF00D62E4B /* Frameworks */,
+				2F25277D1937BCFF00D62E4B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D8D4DE4B193667D500BBAFEE /* PBXTargetDependency */,
+				2F2527851937BCFF00D62E4B /* PBXTargetDependency */,
 			);
 			name = CareMeTests;
 			productName = CareMeTests;
-			productReference = D8D4DE45193667D500BBAFEE /* CareMeTests.xctest */;
+			productReference = 2F25277F1937BCFF00D62E4B /* CareMeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D8D4DE22193667D500BBAFEE /* Project object */ = {
+		2F25275C1937BCFE00D62E4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = AMV;
 				LastUpgradeCheck = 0510;
-				ORGANIZATIONNAME = AMV;
+				ORGANIZATIONNAME = "Alysson Matheus Victor";
 				TargetAttributes = {
-					D8D4DE44193667D500BBAFEE = {
-						TestTargetID = D8D4DE29193667D500BBAFEE;
+					2F25277E1937BCFF00D62E4B = {
+						TestTargetID = 2F2527631937BCFE00D62E4B;
 					};
 				};
 			};
-			buildConfigurationList = D8D4DE25193667D500BBAFEE /* Build configuration list for PBXProject "CareMe" */;
+			buildConfigurationList = 2F25275F1937BCFE00D62E4B /* Build configuration list for PBXProject "CareMe" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = D8D4DE21193667D500BBAFEE;
-			productRefGroup = D8D4DE2B193667D500BBAFEE /* Products */;
+			mainGroup = 2F25275B1937BCFE00D62E4B;
+			productRefGroup = 2F2527651937BCFE00D62E4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D8D4DE29193667D500BBAFEE /* CareMe */,
-				D8D4DE44193667D500BBAFEE /* CareMeTests */,
+				2F2527631937BCFE00D62E4B /* CareMe */,
+				2F25277E1937BCFF00D62E4B /* CareMeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D8D4DE28193667D500BBAFEE /* Resources */ = {
+		2F2527621937BCFE00D62E4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE38193667D500BBAFEE /* InfoPlist.strings in Resources */,
-				D8D4DE40193667D500BBAFEE /* Images.xcassets in Resources */,
+				2F2527721937BCFE00D62E4B /* InfoPlist.strings in Resources */,
+				2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */,
+				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
+				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
+				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
+				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
+				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8D4DE43193667D500BBAFEE /* Resources */ = {
+		2F25277D1937BCFF00D62E4B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE51193667D500BBAFEE /* InfoPlist.strings in Resources */,
+				2F25278B1937BCFF00D62E4B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D8D4DE26193667D500BBAFEE /* Sources */ = {
+		2F2527601937BCFE00D62E4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE3A193667D500BBAFEE /* main.m in Sources */,
-				D8D4DE3E193667D500BBAFEE /* AMVAppDelegate.m in Sources */,
+				2F2527741937BCFE00D62E4B /* main.m in Sources */,
+				2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */,
+				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D8D4DE41193667D500BBAFEE /* Sources */ = {
+		2F25277B1937BCFF00D62E4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8D4DE53193667D500BBAFEE /* CareMeTests.m in Sources */,
+				2F25278D1937BCFF00D62E4B /* CareMeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D8D4DE4B193667D500BBAFEE /* PBXTargetDependency */ = {
+		2F2527851937BCFF00D62E4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D8D4DE29193667D500BBAFEE /* CareMe */;
-			targetProxy = D8D4DE4A193667D500BBAFEE /* PBXContainerItemProxy */;
+			target = 2F2527631937BCFE00D62E4B /* CareMe */;
+			targetProxy = 2F2527841937BCFF00D62E4B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D8D4DE36193667D500BBAFEE /* InfoPlist.strings */ = {
+		2F2527701937BCFE00D62E4B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D8D4DE37193667D500BBAFEE /* en */,
+				2F2527711937BCFE00D62E4B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		D8D4DE4F193667D500BBAFEE /* InfoPlist.strings */ = {
+		2F2527891937BCFF00D62E4B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D8D4DE50193667D500BBAFEE /* en */,
+				2F25278A1937BCFF00D62E4B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -283,7 +365,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D8D4DE54193667D500BBAFEE /* Debug */ = {
+		2F25278E1937BCFF00D62E4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -318,11 +400,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D8D4DE55193667D500BBAFEE /* Release */ = {
+		2F25278F1937BCFF00D62E4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -350,12 +431,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		D8D4DE57193667D500BBAFEE /* Debug */ = {
+		2F2527911937BCFF00D62E4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -368,7 +448,7 @@
 			};
 			name = Debug;
 		};
-		D8D4DE58193667D500BBAFEE /* Release */ = {
+		2F2527921937BCFF00D62E4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -381,7 +461,7 @@
 			};
 			name = Release;
 		};
-		D8D4DE5A193667D500BBAFEE /* Debug */ = {
+		2F2527941937BCFF00D62E4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
@@ -403,7 +483,7 @@
 			};
 			name = Debug;
 		};
-		D8D4DE5B193667D500BBAFEE /* Release */ = {
+		2F2527951937BCFF00D62E4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CareMe.app/CareMe";
@@ -424,32 +504,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D8D4DE25193667D500BBAFEE /* Build configuration list for PBXProject "CareMe" */ = {
+		2F25275F1937BCFE00D62E4B /* Build configuration list for PBXProject "CareMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D8D4DE54193667D500BBAFEE /* Debug */,
-				D8D4DE55193667D500BBAFEE /* Release */,
+				2F25278E1937BCFF00D62E4B /* Debug */,
+				2F25278F1937BCFF00D62E4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D8D4DE56193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMe" */ = {
+		2F2527901937BCFF00D62E4B /* Build configuration list for PBXNativeTarget "CareMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D8D4DE57193667D500BBAFEE /* Debug */,
-				D8D4DE58193667D500BBAFEE /* Release */,
+				2F2527911937BCFF00D62E4B /* Debug */,
+				2F2527921937BCFF00D62E4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		D8D4DE59193667D500BBAFEE /* Build configuration list for PBXNativeTarget "CareMeTests" */ = {
+		2F2527931937BCFF00D62E4B /* Build configuration list for PBXNativeTarget "CareMeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D8D4DE5A193667D500BBAFEE /* Debug */,
-				D8D4DE5B193667D500BBAFEE /* Release */,
+				2F2527941937BCFF00D62E4B /* Debug */,
+				2F2527951937BCFF00D62E4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D8D4DE22193667D500BBAFEE /* Project object */;
+	rootObject = 2F25275C1937BCFE00D62E4B /* Project object */;
 }

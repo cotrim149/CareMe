@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2CF6CA1A-95D0-4AEE-87F7-A267263C7425</string>
+	<string>587B2D7B-6F90-475E-8D07-EC122CF10F89</string>
 	<key>IDESourceControlProjectName</key>
 	<string>CareMe</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5C47D496-99AD-46B5-9896-DF5589E67E48</key>
-		<string>https://github.com/cotrim149/CareMe.git</string>
+		<key>8C19EDE6-C6BA-40BE-BC24-11D1336EC417</key>
+		<string>ssh://github.com/cotrim149/CareMe.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>CareMe/CareMe.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5C47D496-99AD-46B5-9896-DF5589E67E48</key>
+		<key>8C19EDE6-C6BA-40BE-BC24-11D1336EC417</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/cotrim149/CareMe.git</string>
+	<string>ssh://github.com/cotrim149/CareMe.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5C47D496-99AD-46B5-9896-DF5589E67E48</string>
+	<string>8C19EDE6-C6BA-40BE-BC24-11D1336EC417</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5C47D496-99AD-46B5-9896-DF5589E67E48</string>
+			<string>8C19EDE6-C6BA-40BE-BC24-11D1336EC417</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CareMe</string>
 		</dict>

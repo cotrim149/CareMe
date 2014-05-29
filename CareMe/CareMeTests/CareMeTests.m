@@ -2,8 +2,8 @@
 //  CareMeTests.m
 //  CareMeTests
 //
-//  Created by Alysson Lopes on 5/28/14.
-//  Copyright (c) 2014 AMV. All rights reserved.
+//  Created by Matheus Fonseca on 29/05/14.
+//  Copyright (c) 2014 Alysson Matheus Victor. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
