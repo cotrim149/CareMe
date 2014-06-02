@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMVAddConsultController : UIViewController
+@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+{
+    NSArray *_especialidades;
+    
+}
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *symptomsBt;
+@property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePk;
+
+
 @end
