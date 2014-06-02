@@ -25,6 +25,9 @@
 		2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B71937D23200D62E4B /* Calendar-Week.png */; };
 		2F2527BC1937D3E900D62E4B /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BA1937D3E900D62E4B /* Folder.png */; };
 		2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BB1937D3E900D62E4B /* Open-Mail.png */; };
+		2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */; };
+		2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */; };
+		2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,11 @@
 		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
 		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
 		2F2527BB1937D3E900D62E4B /* Open-Mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Open-Mail.png"; sourceTree = "<group>"; };
+		2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVCareMeUtil.h; sourceTree = "<group>"; };
+		2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVCareMeUtil.m; sourceTree = "<group>"; };
+		2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddConsultController.h; sourceTree = "<group>"; };
+		2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddConsultController.m; sourceTree = "<group>"; };
+		2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddConsultController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +177,8 @@
 			children = (
 				2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */,
 				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
+				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
+				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -190,6 +200,7 @@
 		2F2527991937BE0F00D62E4B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
 			);
 			name = XIB;
@@ -205,6 +216,8 @@
 		2F25279B1937BE2500D62E4B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */,
+				2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -301,6 +314,7 @@
 				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
+				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
 				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 			);
@@ -321,7 +335,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,
 				2F2527741937BCFE00D62E4B /* main.m in Sources */,
+				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,
 				2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
 			);
@@ -520,6 +536,7 @@
 				2F2527921937BCFF00D62E4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F2527931937BCFF00D62E4B /* Build configuration list for PBXNativeTarget "CareMeTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +545,7 @@
 				2F2527951937BCFF00D62E4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

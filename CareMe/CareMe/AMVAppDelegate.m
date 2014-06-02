@@ -8,6 +8,7 @@
 
 #import "AMVAppDelegate.h"
 #import "AMVHomeConsultController.h"
+#import "AMVCareMeUtil.h"
 
 @implementation AMVAppDelegate {
     UITabBarController *_tabController;
@@ -18,22 +19,33 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.backgroundColor = [AMVCareMeUtil thirdColor];
     
-    _tabController = [[UITabBarController alloc] init];
-    
-    AMVHomeConsultController *homeConsultController;
-    
-    homeConsultController = [[AMVHomeConsultController alloc] init];
-    _consultNavController = [[UINavigationController alloc] initWithRootViewController:homeConsultController];
-    
-    [_tabController addChildViewController:_consultNavController];
-    
-    self.window.rootViewController = _tabController;
+    [self addTabControlAndNavControlAndConfigureStyle];
     
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+-(void) addTabControlAndNavControlAndConfigureStyle {
+    _tabController = [[UITabBarController alloc] init];
+    AMVHomeConsultController *homeConsultController = [[AMVHomeConsultController alloc] init];
+    _consultNavController = [[UINavigationController alloc] initWithRootViewController:homeConsultController];
+    
+    [_tabController addChildViewController:_consultNavController];
+    self.window.rootViewController = _tabController;
+    
+    _consultNavController.navigationBar.barTintColor = [AMVCareMeUtil firstColor];
+    _consultNavController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AMVCareMeUtil secondColor]};
+    _consultNavController.navigationBar.translucent = NO;
+    _consultNavController.navigationBar.tintColor = [AMVCareMeUtil secondColor];
+
+    
+    _tabController.tabBar.barTintColor = [AMVCareMeUtil firstColor];
+    _tabController.tabBar.translucent = NO;
+    
+    _tabController.tabBar.selectedImageTintColor = [AMVCareMeUtil secondColor];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
