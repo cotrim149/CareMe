@@ -8,7 +8,6 @@
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
-#import "AMVAddSymptomController.h"
 
 @interface AMVAddConsultController ()
 
@@ -21,6 +20,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
+        _especialidades = [[NSArray alloc] initWithObjects:
+                           @"Acupuntura", @"Alergista", @"Anestesiologia", @"Cardiologia", @"Cirurgião",
+                           @"Clinica", @"Dermatologia", @"Endocrinologia", @"Gastroenterologia",
+                           @"Geriatria", @"Ginecologia", @"Infectologia", @"Nefrologia",@"Oftamologia",
+                           @"Oncologia", @"Ortopedia", @"Otorrinolaringologia", @"Pediatria",
+                           @"Pneumologia", @"Reumatologia", @"Urologia", nil];
     }
     return self;
 }
