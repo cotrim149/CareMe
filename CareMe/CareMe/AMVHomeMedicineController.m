@@ -8,6 +8,7 @@
 
 #import "AMVHomeMedicineController.h"
 #import "AMVCareMeUtil.h"
+#import "AMVAddMedicineController.h"
 
 @interface AMVHomeMedicineController ()
 
@@ -19,21 +20,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
         UITabBarItem *consultItem = [[UITabBarItem alloc] initWithTitle:@"Medicamentos"
                                                                   image:[UIImage imageNamed:@"Medicine.png"]
                                                           selectedImage:[UIImage imageNamed:@"Medicine.png"]];
         self.tabBarItem=consultItem;
+
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,7 +58,7 @@
 
 
 -(void) addMedicine {
-    
+    [self.navigationController pushViewController:[[AMVAddMedicineController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

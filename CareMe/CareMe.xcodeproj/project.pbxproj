@@ -31,6 +31,8 @@
 		2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */; };
 		2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */; };
 		2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D3193D18FB0037A496 /* Medicine.png */; };
+		2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */; };
+		2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,9 @@
 		2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVHomeMedicineController.m; sourceTree = "<group>"; };
 		2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVHomeMedicineController.xib; sourceTree = "<group>"; };
 		2F9BE5D3193D18FB0037A496 /* Medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medicine.png; sourceTree = "<group>"; };
+		2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddMedicineController.h; sourceTree = "<group>"; };
+		2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddMedicineController.m; sourceTree = "<group>"; };
+		2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddMedicineController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +193,8 @@
 				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
 				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
 				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
+				2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */,
+				2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -209,10 +216,10 @@
 		2F2527991937BE0F00D62E4B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
 				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
-				9F26B4A6193D1D1A00DB90BF /* AMVAddSymptomController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -328,7 +335,7 @@
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
-				9F26B4A8193D1D1A00DB90BF /* AMVAddSymptomController.xib in Resources */,
+				2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */,
 				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
@@ -350,7 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F26B4A7193D1D1A00DB90BF /* AMVAddSymptomController.m in Sources */,
+				2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */,
 				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,
 				2F2527741937BCFE00D62E4B /* main.m in Sources */,
 				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,

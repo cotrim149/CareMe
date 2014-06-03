@@ -35,12 +35,6 @@
     [super viewDidLoad];
     [self addComponentsAndConfigureStyle];
     
-    self.tabBarController.tabBar.hidden = YES;
-    self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
-    [self.specialtyPk selectRow:4 inComponent:0 animated:YES];
-
-    self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
-    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -54,6 +48,11 @@
                                                                      action:@selector(addCompleted)];
     
     self.navigationItem.rightBarButtonItem=completeAddBt;
+    
+    self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
+    [self.specialtyPk selectRow:4 inComponent:0 animated:YES];
+    
+    self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 }
 
 -(void) addCompleted {

@@ -20,7 +20,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        UITabBarItem *consultItem = [[UITabBarItem alloc] initWithTitle:@"Consultas"
+                                                                  image:[UIImage imageNamed:@"Calendar-Month.png"]
+                                                          selectedImage:[UIImage imageNamed:@"Calendar-Month.png"]];
+        self.tabBarItem=consultItem;
     }
     return self;
 }
@@ -35,11 +38,6 @@
 }
 
 -(void) addComponentsAndConfigureStyle {
-    UITabBarItem *consultItem = [[UITabBarItem alloc] initWithTitle:@"Consultas"
-                                                              image:[UIImage imageNamed:@"Calendar-Month.png"]
-                                                      selectedImage:[UIImage imageNamed:@"Calendar-Month.png"]];
-    self.tabBarItem=consultItem;
-    
     self.title=@"Consultas";
     
     UIBarButtonItem *addConsultBt = [[UIBarButtonItem alloc]
