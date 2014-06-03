@@ -50,7 +50,8 @@
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
     self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
-    [self.specialtyPk selectRow:4 inComponent:0 animated:YES];
+    
+    [self.specialtyPk selectRow:((int)[_especialidades count]/2) inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 }
@@ -79,11 +80,39 @@
 }
 
 -(void) addCompleted {
-    [self.navigationController popViewControllerAnimated:YES];
-    [self getPlace];
-    [self getDoctorName];
-    [self getPickerDate];
-    [self getPickerEspecialityID];
+
+    NSMutableString *msg = [[NSMutableString alloc] init];
+    
+    
+    if([self.placeTF.text isEqualToString:@""]){
+        [msg appendString:@"Local da consulta em branco\n"];
+    }
+
+    if([self.doctorNameTF.text isEqualToString:@""]){
+        [msg appendString:@"Nome Doutor em branco\n"];
+    }
+
+    if(![msg isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Campo em branco"
+                              message:msg
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    else{
+        
+        [self getPlace];
+        [self getDoctorName];
+        [self getPickerDate];
+        [self getPickerEspecialityID];
+
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning
