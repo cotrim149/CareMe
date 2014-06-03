@@ -28,6 +28,9 @@
 		2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */; };
 		2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */; };
 		2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */; };
+		2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */; };
+		2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */; };
+		2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D3193D18FB0037A496 /* Medicine.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,10 @@
 		2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddConsultController.h; sourceTree = "<group>"; };
 		2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddConsultController.m; sourceTree = "<group>"; };
 		2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddConsultController.xib; sourceTree = "<group>"; };
+		2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVHomeMedicineController.h; sourceTree = "<group>"; };
+		2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVHomeMedicineController.m; sourceTree = "<group>"; };
+		2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVHomeMedicineController.xib; sourceTree = "<group>"; };
+		2F9BE5D3193D18FB0037A496 /* Medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medicine.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +186,8 @@
 				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
 				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
 				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
+				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
+				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -200,6 +209,7 @@
 		2F2527991937BE0F00D62E4B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
 			);
@@ -225,6 +235,7 @@
 		2F2527B51937D23200D62E4B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5D3193D18FB0037A496 /* Medicine.png */,
 				2F2527BA1937D3E900D62E4B /* Folder.png */,
 				2F2527BB1937D3E900D62E4B /* Open-Mail.png */,
 				2F2527B61937D23200D62E4B /* Calendar-Month.png */,
@@ -312,10 +323,12 @@
 				2F2527721937BCFE00D62E4B /* InfoPlist.strings in Resources */,
 				2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */,
 				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
+				2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */,
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
 				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
+				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,6 +353,7 @@
 				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,
 				2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
+				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

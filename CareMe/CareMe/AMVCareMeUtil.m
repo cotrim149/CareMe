@@ -20,4 +20,22 @@
     return [UIColor whiteColor];
 }
 
++(DAY_PERIOD) dayPeriodNow {
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
+    int hour = (int)[components hour];
+    
+    DAY_PERIOD dayPeriod = 0;
+    if(hour < 12)
+        dayPeriod = MORNING;
+    else if (hour < 18)
+        dayPeriod = AFTERNOON;
+    else
+        dayPeriod = NIGHT;
+    
+    return dayPeriod;
+    
+}
+
 @end

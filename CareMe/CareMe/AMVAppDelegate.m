@@ -8,11 +8,13 @@
 
 #import "AMVAppDelegate.h"
 #import "AMVHomeConsultController.h"
+#import "AMVHomeMedicineController.h"
 #import "AMVCareMeUtil.h"
 
 @implementation AMVAppDelegate {
     UITabBarController *_tabController;
     UINavigationController *_consultNavController;
+    UINavigationController *_medicineNavController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -31,16 +33,24 @@
 -(void) addTabControlAndNavControlAndConfigureStyle {
     _tabController = [[UITabBarController alloc] init];
     AMVHomeConsultController *homeConsultController = [[AMVHomeConsultController alloc] init];
+    AMVHomeMedicineController *homeMedicineController = [[AMVHomeMedicineController alloc] init];
+    
     _consultNavController = [[UINavigationController alloc] initWithRootViewController:homeConsultController];
+    _medicineNavController = [[UINavigationController alloc] initWithRootViewController:homeMedicineController];
     
     [_tabController addChildViewController:_consultNavController];
+    [_tabController addChildViewController:_medicineNavController];
     self.window.rootViewController = _tabController;
     
     _consultNavController.navigationBar.barTintColor = [AMVCareMeUtil firstColor];
     _consultNavController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AMVCareMeUtil secondColor]};
     _consultNavController.navigationBar.translucent = NO;
     _consultNavController.navigationBar.tintColor = [AMVCareMeUtil secondColor];
-
+    
+    _medicineNavController.navigationBar.barTintColor = [AMVCareMeUtil firstColor];
+    _medicineNavController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [AMVCareMeUtil secondColor]};
+    _medicineNavController.navigationBar.translucent = NO;
+    _medicineNavController.navigationBar.tintColor = [AMVCareMeUtil secondColor];
     
     _tabController.tabBar.barTintColor = [AMVCareMeUtil firstColor];
     _tabController.tabBar.translucent = NO;

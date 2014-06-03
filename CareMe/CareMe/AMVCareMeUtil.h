@@ -10,6 +10,10 @@
 
 @interface AMVCareMeUtil : NSObject
 
+typedef NS_ENUM(short, DAY_PERIOD) {
+    MORNING, AFTERNOON, NIGHT
+};
+
 #define UIColorFromRGB(rgbValue, alphaValue) [UIColor \
     colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
     green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
@@ -18,5 +22,6 @@
 +(UIColor*) firstColor;
 +(UIColor*) secondColor;
 +(UIColor*) thirdColor;
++(DAY_PERIOD) dayPeriodNow;
 
 @end
