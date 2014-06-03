@@ -212,6 +212,7 @@
 				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
+				9F26B4A6193D1D1A00DB90BF /* AMVAddSymptomController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -327,6 +328,7 @@
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
+				9F26B4A8193D1D1A00DB90BF /* AMVAddSymptomController.xib in Resources */,
 				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
@@ -348,6 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F26B4A7193D1D1A00DB90BF /* AMVAddSymptomController.m in Sources */,
 				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,
 				2F2527741937BCFE00D62E4B /* main.m in Sources */,
 				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
+#import "AMVAddSymptomController.h"
 
 @interface AMVAddConsultController ()
 
