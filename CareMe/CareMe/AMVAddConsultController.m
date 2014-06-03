@@ -54,10 +54,36 @@
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 }
+-(void)getPlace{
+    _place = self.placeTF.text;
+}
+
+-(void)getDoctorName{
+    _doctorName = self.doctorNameTF.text;
+}
+-(void)getPickerDate{
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *components = [calendar components:(NSYearCalendarUnit  |
+                                                         NSMonthCalendarUnit |
+                                                         NSDayCalendarUnit   |
+                                                         NSHourCalendarUnit  |
+                                                         NSMinuteCalendarUnit|
+                                                         NSSecondCalendarUnit) fromDate:self.datePk.date];
+    _date = components;
+}
+
+-(void)getPickerEspecialityID{
+    _IdSpeciality = [self.specialtyPk selectedRowInComponent:0];
+}
 
 -(void) addCompleted {
     [self.navigationController popViewControllerAnimated:YES];
-    //NSLog(@"%d",[self.specialtyPk selectedRowInComponent:0]);
+    [self getPlace];
+    [self getDoctorName];
+    [self getPickerDate];
+    [self getPickerEspecialityID];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,10 +94,6 @@
 
 -(void) viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
-}
-
-- (void)addSymptoms:(id)sender {
-    
 }
 
 
