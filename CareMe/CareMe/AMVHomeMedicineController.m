@@ -20,7 +20,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UITabBarItem *consultItem = [[UITabBarItem alloc] initWithTitle:@"Medicamentos"
+        UITabBarItem *consultItem = [[UITabBarItem alloc] initWithTitle:@"Remédios"
                                                                   image:[UIImage imageNamed:@"Medicine.png"]
                                                           selectedImage:[UIImage imageNamed:@"Medicine.png"]];
         self.tabBarItem=consultItem;
@@ -36,7 +36,7 @@
 }
 
 -(void) addComponentsAndConfigureStyle {
-    self.title=@"Medicamentos";
+    self.title=@"Remédios";
     
     UIBarButtonItem *addMedicineBt = [[UIBarButtonItem alloc]
                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd

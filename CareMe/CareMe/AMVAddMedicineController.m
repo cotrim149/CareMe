@@ -10,7 +10,9 @@
 #import "AMVCareMeUtil.h"
 #import "DSLCalendarView.h"
 
-@interface AMVAddMedicineController ()
+@interface AMVAddMedicineController () {
+    DSLCalendarRange *_medicinePeriod;
+}
 
 @end
 
@@ -39,7 +41,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 }
 
 -(void) addComponentsAndConfigureStyle {
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Medicamentos" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     self.medicineHowUseTV.delegate = self;
     self.medicineHowUseTV.text = MEDICINE_HOWUSE_PLACEHOLDER;
@@ -48,7 +49,11 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self.medicineHowUseTV.layer.borderWidth = 1.0f; //make border 1px thick
     self.medicineHowUseTV.layer.cornerRadius = 5.0f;
     
+    self.medicineNameTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.medicineDosageTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
     self.tabBarController.tabBar.hidden = YES;
+    self.tabBarController.tabBar.translucent = YES;
     
     UIBarButtonItem *completeAddBt = [[UIBarButtonItem alloc] initWithTitle:@"Concluído"
                                                                       style:UIBarButtonItemStylePlain
@@ -60,8 +65,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
     self.scrollView.contentSize = self.contentView.frame.size;
-    
-    NSLog(@"configure = %f - %f", self.scrollView.contentSize.width, self.scrollView.contentSize.height);
 }
 
 - (IBAction)hideKeyboard:(id)sender {
@@ -73,8 +76,30 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 }
 
 -(void) addCompleted {
-    [self.navigationController popViewControllerAnimated:YES];
-    //NSLog(@"%d",[self.specialtyPk selectedRowInComponent:0]);
+    NSMutableString *errorMsg = [[NSMutableString alloc] init];
+    
+    if([self.medicineNameTF.text isEqualToString:@""])
+        [errorMsg appendString:@"Nome do medicamento em branco.\n"];
+    if([self.medicineDosageTF.text isEqualToString:@""])
+        [errorMsg appendString:@"Dosagem em branco.\n"];
+    if(_medicinePeriod == nil)
+        [errorMsg appendString:@"Período em branco.\n"];
+    
+    if(![errorMsg isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Erro!"
+                              message:errorMsg
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil];
+        [alert show];
+    }
+    else{
+        // Popula a entity
+        // Salva a entity
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -97,14 +122,16 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
     if (range != nil) {
-        NSLog( @"Selected %d/%d - %d/%d", (int) range.startDay.day, (int) range.startDay.month, (int) range.endDay.day, (int) range.endDay.month);
+        _medicinePeriod = range;
+        self.scrollView.scrollEnabled = YES;
     }
-    else {
-        NSLog( @"No selection" );
-    }
+
 }
 
 - (DSLCalendarRange*)calendarView:(DSLCalendarView *)calendarView didDragToDay:(NSDateComponents *)day selectingRange:(DSLCalendarRange *)range {
+    
+    self.scrollView.scrollEnabled = NO;
+    
     if (NO) { // Only select a single day
         return [[DSLCalendarRange alloc] initWithStartDay:day endDay:day];
     }
@@ -133,11 +160,10 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 }
 
 - (void)calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
-    NSLog(@"Will show %@ in %.3f seconds", month, duration);
+
 }
 
 - (void)calendarView:(DSLCalendarView *)calendarView didChangeToVisibleMonth:(NSDateComponents *)month {
-    NSLog(@"Now showing %@", month);
 }
 
 - (BOOL)day:(NSDateComponents*)day1 isBeforeDay:(NSDateComponents*)day2 {
