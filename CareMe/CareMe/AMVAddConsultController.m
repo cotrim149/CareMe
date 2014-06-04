@@ -55,14 +55,12 @@
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 }
--(void)getPlace{
-    _place = self.placeTF.text;
+
+- (IBAction)hideKeyboard:(id)sender {
+    [sender endEditing:YES];
 }
 
--(void)getDoctorName{
-    _doctorName = self.doctorNameTF.text;
-}
--(void)getPickerDate{
+-(NSDateComponents *)getPickerDate{
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     
@@ -72,30 +70,30 @@
                                                          NSHourCalendarUnit  |
                                                          NSMinuteCalendarUnit|
                                                          NSSecondCalendarUnit) fromDate:self.datePk.date];
-    _date = components;
+    return components;
 }
 
--(void)getPickerEspecialityID{
-    _IdSpeciality = [self.specialtyPk selectedRowInComponent:0];
+-(NSInteger)getPickerEspecialityID{
+    return [self.specialtyPk selectedRowInComponent:0];
 }
 
 -(void) addCompleted {
 
-    NSMutableString *msg = [[NSMutableString alloc] init];
+    NSMutableString *errorMsg = [[NSMutableString alloc] init];
     
     
     if([self.placeTF.text isEqualToString:@""]){
-        [msg appendString:@"Local da consulta em branco\n"];
+        [errorMsg appendString:@"Local da consulta em branco.\n"];
     }
 
     if([self.doctorNameTF.text isEqualToString:@""]){
-        [msg appendString:@"Nome Doutor em branco\n"];
+        [errorMsg appendString:@"Nome do médico em branco.\n"];
     }
 
-    if(![msg isEqualToString:@""]){
+    if(![errorMsg isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Campo em branco"
-                              message:msg
+                              message:errorMsg
                               delegate:self
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil];
@@ -104,10 +102,8 @@
     }
     else{
         
-        [self getPlace];
-        [self getDoctorName];
-        [self getPickerDate];
-        [self getPickerEspecialityID];
+        // Popula a entity
+        // Salva a entity
 
         [self.navigationController popViewControllerAnimated:YES];
         

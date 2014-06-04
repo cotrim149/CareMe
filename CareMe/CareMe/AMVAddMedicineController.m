@@ -16,31 +16,36 @@
 
 @implementation AMVAddMedicineController
 
+static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; // const pointer
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     [self addComponentsAndConfigureStyle];
 
-    self.periodCalendarView.delegate = self;
 }
 
 -(void) addComponentsAndConfigureStyle {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Medicamentos" style:UIBarButtonItemStylePlain target:nil action:nil];
     
-    self.medicineHowUseTV.layer.borderColor = [AMVCareMeUtil secondColor].CGColor;
+    self.medicineHowUseTV.delegate = self;
+    self.medicineHowUseTV.text = MEDICINE_HOWUSE_PLACEHOLDER;
+    self.medicineHowUseTV.textColor = [UIColor lightGrayColor];
+    self.medicineHowUseTV.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.medicineHowUseTV.layer.borderWidth = 1.0f; //make border 1px thick
-    
     self.medicineHowUseTV.layer.cornerRadius = 5.0f;
     
     self.tabBarController.tabBar.hidden = YES;
@@ -50,17 +55,44 @@
                                                                      target:self
                                                                      action:@selector(addCompleted)];
     
-    self.navigationItem.rightBarButtonItem=completeAddBt;
-    CGSize size = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*1.5);
-    self.scroll.contentSize = size;
-    NSLog(@"%f - %f", self.view.frame.size.width, self.view.frame.size.height*1.5);
-    NSLog(@"%f - %f",     self.scroll.frame.size.width,     self.scroll.frame.size.height);
+    self.periodCalendarView.delegate = self;
     
+    self.navigationItem.rightBarButtonItem=completeAddBt;
+    
+    self.scrollView.contentSize = self.contentView.frame.size;
+    
+    NSLog(@"configure = %f - %f", self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+}
+
+- (IBAction)hideKeyboard:(id)sender {
+    [sender endEditing:YES];
+}
+
+-(void) viewWillDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 -(void) addCompleted {
     [self.navigationController popViewControllerAnimated:YES];
     //NSLog(@"%d",[self.specialtyPk selectedRowInComponent:0]);
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:MEDICINE_HOWUSE_PLACEHOLDER]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = MEDICINE_HOWUSE_PLACEHOLDER;
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
 }
 
 - (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
@@ -112,10 +144,6 @@
     return ([day1.date compare:day2.date] == NSOrderedAscending);
 }
 
-
--(void) viewWillDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
-}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

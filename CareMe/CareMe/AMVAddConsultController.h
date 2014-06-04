@@ -18,9 +18,4 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePk;
 
-@property (readonly) NSDateComponents *date;
-@property (readonly) NSInteger IdSpeciality;
-@property (readonly) NSString *place;
-@property (readonly) NSString *doctorName;
-
 @end

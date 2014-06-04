@@ -6,11 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVAddMedicineController">
             <connections>
+                <outlet property="contentView" destination="viE-Kp-aL1" id="qLn-D2-q09"/>
                 <outlet property="medicineDosageTF" destination="4L9-Lx-azO" id="1oN-vg-N0k"/>
                 <outlet property="medicineHowUseTV" destination="ehk-gt-Bq7" id="Qyh-4x-AlL"/>
                 <outlet property="medicineNameTF" destination="Ztw-2C-67z" id="fTE-ru-eQC"/>
                 <outlet property="periodCalendarView" destination="Jln-Iv-Ekl" id="xaM-rM-7Es"/>
-                <outlet property="scroll" destination="Nrx-Vf-jjx" id="Vuh-hN-75b"/>
+                <outlet property="scrollView" destination="Nrx-Vf-jjx" id="csv-RD-ZqE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,30 +24,40 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do medicamento" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztw-2C-67z">
-                            <rect key="frame" x="22" y="39" width="276" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dosagem" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4L9-Lx-azO">
-                            <rect key="frame" x="20" y="95" width="276" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Como administrar" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-gt-Bq7">
-                            <rect key="frame" x="22" y="153" width="276" height="112"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                        </textView>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jln-Iv-Ekl" customClass="DSLCalendarView">
-                            <rect key="frame" x="0.0" y="294" width="320" height="240"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viE-Kp-aL1" customClass="UIControl">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do medicamento" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ztw-2C-67z">
+                                    <rect key="frame" x="22" y="43" width="276" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dosagem" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4L9-Lx-azO">
+                                    <rect key="frame" x="22" y="102" width="276" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-gt-Bq7">
+                                    <rect key="frame" x="20" y="159" width="276" height="112"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                </textView>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jln-Iv-Ekl" customClass="DSLCalendarView">
+                                    <rect key="frame" x="0.0" y="301" width="320" height="240"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="jq6-xQ-6iM"/>
+                            </connections>
                         </view>
                     </subviews>
                 </scrollView>
