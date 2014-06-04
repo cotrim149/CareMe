@@ -23,5 +23,5 @@ typedef NS_ENUM(short, DAY_PERIOD) {
 +(UIColor*) secondColor;
 +(UIColor*) thirdColor;
 +(DAY_PERIOD) dayPeriodNow;
-
++(NSString*) getAbsoluteFileNameToSave:(NSString*) suffix;
 @end

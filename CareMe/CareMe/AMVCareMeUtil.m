@@ -38,4 +38,11 @@
     
 }
 
+// Sufixos serao "medicine" e "consult"
++(NSString *)getAbsoluteFileNameToSave:(NSString *)suffix {
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    
+    return [NSString stringWithFormat:@"%@/CareMe_%@.plist", documentsPath, suffix];
+}
+
 @end

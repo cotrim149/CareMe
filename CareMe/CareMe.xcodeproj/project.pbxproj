@@ -134,6 +134,7 @@
 		2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection@2x.png"; sourceTree = "<group>"; };
 		2F9BE62B193E5FE30037A496 /* NSDate+DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DSLCalendarView.h"; sourceTree = "<group>"; };
 		2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DSLCalendarView.m"; sourceTree = "<group>"; };
+		2F9BE647193FC0F40037A496 /* AMVGenericDAO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVGenericDAO.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +264,7 @@
 		2F2527981937BE0900D62E4B /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE647193FC0F40037A496 /* AMVGenericDAO.h */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
