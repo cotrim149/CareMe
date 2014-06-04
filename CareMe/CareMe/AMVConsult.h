@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AMVConsult : NSObject
+@interface AMVConsult : NSObject <NSCoding>
 @property (nonatomic) NSString *doctorName;
 @property (nonatomic) NSString *consultPlace;
 @property (nonatomic) NSInteger IdDoctorSpeciality;

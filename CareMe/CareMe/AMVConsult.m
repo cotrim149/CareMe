@@ -10,4 +10,26 @@
 
 @implementation AMVConsult
 
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if (self) {
+        self.doctorName = [decoder decodeObjectForKey:@"doctorName"];
+        self.consultPlace = [decoder decodeObjectForKey:@"consultPlace"];
+        self.IdDoctorSpeciality = (int)[decoder decodeObjectForKey:@"IdDoctorSpeciality"];
+        self.date = [decoder decodeObjectForKey:@"date"];
+        
+    }
+    return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder
+{
+    [encoder encodeObject:self.doctorName forKey:@"doctorName"];
+    [encoder encodeObject:self.consultPlace forKey:@"consultPlace"];
+    [encoder encodeInteger:self.IdDoctorSpeciality forKey:@"IdDoctorSpecialityq"];
+    [encoder encodeObject:self.date forKey:@"date"];
+}
+
 @end

@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AMVMedicine : NSObject
+@interface AMVMedicine : NSObject <NSCoding>
+
 @property (nonatomic) NSString *medicineName;
 @property (nonatomic) NSString *medicineDosage;
 @property (nonatomic) NSString *medicineHowUse;
-@property (nonatomic) NSDateComponents *startDate;
-@property (nonatomic) NSDateComponents *completionDate;
+@property (nonatomic) NSDate *startDate;
+@property (nonatomic) NSData *endDate;
+
 @end

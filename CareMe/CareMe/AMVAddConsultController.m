@@ -8,6 +8,7 @@
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
+#import "AMVConsult.h"
 
 @interface AMVAddConsultController ()
 
@@ -103,6 +104,11 @@
     else{
         
         // Popula a entity
+        AMVConsult *consult = [[AMVConsult alloc] init];
+        [consult setConsultPlace:self.placeTF.text];
+        [consult setDoctorName:self.doctorNameTF.text];
+        [consult setIdDoctorSpeciality:[self getPickerEspecialityID]];
+        [consult setDate:[self getPickerDate]];
         // Salva a entity
 
         [self.navigationController popViewControllerAnimated:YES];
