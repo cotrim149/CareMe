@@ -40,7 +40,7 @@
 
 -(void) addComponentsAndConfigureStyle {
     
-    self.tabBarController.tabBar.translucent = YES;
+    self.tabBarController.tabBar.hidden = YES;
     
     UIBarButtonItem *completeAddBt = [[UIBarButtonItem alloc] initWithTitle:@"Concluído"
                                                                       style:UIBarButtonItemStylePlain
