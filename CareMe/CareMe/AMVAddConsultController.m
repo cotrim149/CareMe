@@ -9,6 +9,7 @@
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
 #import "AMVConsult.h"
+#import "AMVConsultDAO.h"
 
 @interface AMVAddConsultController ()
 
@@ -107,12 +108,18 @@
         
         // Popula a entity
         AMVConsult *consult = [[AMVConsult alloc] init];
+        
         [consult setConsultPlace:self.placeTF.text];
         [consult setDoctorName:self.doctorNameTF.text];
         [consult setIdDoctorSpeciality:[self getPickerEspecialityID]];
         [consult setDate:[self getPickerDate]];
+        
         // Salva a entity
-
+        
+        AMVConsultDAO *consultDAO = [[AMVConsultDAO alloc] init];
+        
+        [consultDAO saveConsult:consult];
+                
         [self.navigationController popViewControllerAnimated:YES];
         
     }

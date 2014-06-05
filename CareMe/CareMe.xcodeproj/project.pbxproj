@@ -58,6 +58,7 @@
 		2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */; };
 		9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D321193FA9B2007F30F9 /* AMVConsult.m */; };
 		9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D324193FAB9A007F30F9 /* AMVMedicine.m */; };
+		9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		9F62D321193FA9B2007F30F9 /* AMVConsult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsult.m; sourceTree = "<group>"; };
 		9F62D323193FAB9A007F30F9 /* AMVMedicine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicine.h; sourceTree = "<group>"; };
 		9F62D324193FAB9A007F30F9 /* AMVMedicine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicine.m; sourceTree = "<group>"; };
+		9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsultDAO.h; sourceTree = "<group>"; };
+		9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsultDAO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,8 @@
 		2F2527981937BE0900D62E4B /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */,
+				9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */,
 				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
 				2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */,
+				9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */,
 				2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
