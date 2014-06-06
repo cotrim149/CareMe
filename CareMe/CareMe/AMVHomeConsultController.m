@@ -10,13 +10,16 @@
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
 #import "AMVConsultDetailsViewController.h"
+#import "AMVConsult.h"
+#import "AMVConsultService.h"
+#import "AMVConsultCell.h"
 
 @interface AMVHomeConsultController ()
-
 @end
 
 @implementation AMVHomeConsultController
-//@synthesize tableViewConsults;
+@synthesize consults;
+@synthesize tableViewConsults;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +38,8 @@
     [super viewDidLoad];
     
     [self addComponentsAndConfigureStyle];
+    
+    self.consults = [AMVConsultService getAll];
     
     //    [self.navigationController pushViewController:a animated:a
 }
@@ -68,25 +73,27 @@
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return [consults count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //Cria a célula desta linha da tabela
-    static NSString *cellIdentifier = @"Cell";
+    NSString *cellIdentifier = @"AMVConsultCell";
+    AMVConsultCell *cell = (AMVConsultCell *)[self.tableViewConsults dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    UITableViewCell *cell = [self.tableViewConsults dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if(cell == nil){
-        // Faz cache da célula para evitar criar muitos objetos desnecessários durante o scroll
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    if(!cell){
+        
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil]objectAtIndex:0];
+        
     }
     
     //Numero da linha
     NSInteger linha = indexPath.row;
     
-    //Texto
-    cell.textLabel.text = [NSString stringWithFormat:@"Consulta %ld", (long)linha];
+    AMVConsult *consult = [consults objectAtIndex:linha];
+    
+    cell.consulta.text = consult.consultPlace;
+    cell.dr.text = consult.doctorName;
     
     return cell;
 }
@@ -95,14 +102,11 @@
     //Recupera o índice da linha selecionada
     NSInteger linha = indexPath.row;
     
-    NSLog(@"%ld",indexPath.row);
-    
-    //cria mensagem
-    NSString *msg = [NSString stringWithFormat:@"Consulta %ld", indexPath.row];
+     AMVConsult *consult = [consults objectAtIndex:linha];
     
     AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
     
-    consultDetails.consulta = msg;
+    consultDetails.consult = consult;
     
     [self.navigationController pushViewController:consultDetails animated:YES];
     

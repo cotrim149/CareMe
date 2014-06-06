@@ -11,6 +11,6 @@
 @interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *visualizationSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
-@property (weak, nonatomic) IBOutlet UITableView *consultTable;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewConsults;
+@property (nonatomic, strong) NSMutableArray *consults;
 @end

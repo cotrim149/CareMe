@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVConsult.h"
 
 @interface AMVConsultDetailsViewController : UIViewController
-@property (nonatomic, strong) NSString *consulta;
-@property (weak, nonatomic) IBOutlet UITextView *dadosConsulta;
+@property (nonatomic, strong) AMVConsult *consult;
+@property (weak, nonatomic) IBOutlet UITextView *doctor;
+@property (weak, nonatomic) IBOutlet UITextView *place;
+@property (weak, nonatomic) IBOutlet UITextView *date;
 @end

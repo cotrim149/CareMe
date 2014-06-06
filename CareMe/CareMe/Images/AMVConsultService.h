@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AMVConsultService : UIViewController
-
++(NSMutableArray *) getAll;
 @end

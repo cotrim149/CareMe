@@ -8,12 +8,13 @@
 
 #import "AMVConsultDetailsViewController.h"
 
+
 @interface AMVConsultDetailsViewController ()
 
 @end
 
 @implementation AMVConsultDetailsViewController
-@synthesize consulta;
+@synthesize consult;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +30,9 @@
     
     [super viewDidLoad];
     
-    self.dadosConsulta.text = consulta;
+    self.doctor.text = consult.doctorName;
+    self.place.text = consult.consultPlace;
+    
     // Do any additional setup after loading the view from its nib.
 }
 
