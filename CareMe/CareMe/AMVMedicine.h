@@ -13,7 +13,7 @@
 @property (nonatomic) NSString *medicineName;
 @property (nonatomic) NSString *medicineDosage;
 @property (nonatomic) NSString *medicineHowUse;
-@property (nonatomic) NSDate *startDate;
-@property (nonatomic) NSData *endDate;
+@property (nonatomic) NSDateComponents *startDate;
+@property (nonatomic) NSDateComponents *endDate;
 
 @end

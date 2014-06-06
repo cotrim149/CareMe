@@ -11,6 +11,7 @@
 @interface AMVConsult : NSObject <NSCoding>
 @property (nonatomic) NSString *doctorName;
 @property (nonatomic) NSString *consultPlace;
+@property (nonatomic) NSString *doctorSpeciality;
 @property (nonatomic) NSInteger IdDoctorSpeciality;
 @property (nonatomic) NSDateComponents *date;
 
