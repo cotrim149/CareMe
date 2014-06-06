@@ -12,21 +12,28 @@
 
 -(void)saveConsult:(AMVConsult*)consult{
     
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:consult];
+    NSMutableArray *consultas = [[NSMutableArray alloc] initWithArray:[self listConsult]];
+    
+    [consultas addObject:consult];
+
+    for (int i=0; i<[consultas count]; i++) {
+        NSLog(@"%@",[consultas objectAtIndex:i]);
+    }
+
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:consultas];
     
     [data writeToFile:@"/tmp/consulta.plist" atomically:YES];
-
+    
 }
 
 
 -(NSArray*)listConsult{
     
-    //        NSData *dataConsulta = [NSData dataWithContentsOfFile:@"/tmp/consulta.plist"];
-    //        AMVConsult *consultaCarregada = [NSKeyedUnarchiver unarchiveObjectWithData:dataConsulta];
-    //        NSLog(@"Doctor name: %@",consultaCarregada.doctorName);
+    NSData *dataConsulta = [NSData dataWithContentsOfFile:@"/tmp/consulta.plist"];
     
+    NSArray *consultas = [NSKeyedUnarchiver unarchiveObjectWithData:dataConsulta];
     
-    return nil;
+    return consultas;
 }
 
 @end

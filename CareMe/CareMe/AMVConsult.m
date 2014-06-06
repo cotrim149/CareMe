@@ -32,4 +32,7 @@
     [encoder encodeObject:self.date forKey:@"date"];
 }
 
+-(NSString*)description{
+    return [NSString stringWithFormat:@"nome:%@ \n local:%@ \n Especialidade: %ld \n Data: %@ \n",self.doctorName,self.consultPlace,(long)self.IdDoctorSpeciality,self.date];
+}
 @end
