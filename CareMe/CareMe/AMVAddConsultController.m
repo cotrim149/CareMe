@@ -119,7 +119,7 @@
         AMVConsultDAO *consultDAO = [[AMVConsultDAO alloc] init];
         
         [consultDAO saveConsult:consult];
-                
+        
         [self.navigationController popViewControllerAnimated:YES];
         
     }
