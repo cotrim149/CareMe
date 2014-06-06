@@ -9,12 +9,14 @@
 #import "AMVHomeConsultController.h"
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
+#import "AMVConsultDetailsViewController.h"
 
 @interface AMVHomeConsultController ()
 
 @end
 
 @implementation AMVHomeConsultController
+//@synthesize tableViewConsults;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +36,7 @@
     
     [self addComponentsAndConfigureStyle];
     
-//    [self.navigationController pushViewController:a animated:a
+    //    [self.navigationController pushViewController:a animated:a
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -63,6 +65,47 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 5;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Cria a célula desta linha da tabela
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [self.tableViewConsults dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(cell == nil){
+        // Faz cache da célula para evitar criar muitos objetos desnecessários durante o scroll
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    //Numero da linha
+    NSInteger linha = indexPath.row;
+    
+    //Texto
+    cell.textLabel.text = [NSString stringWithFormat:@"Consulta %ld", (long)linha];
+    
+    return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Recupera o índice da linha selecionada
+    NSInteger linha = indexPath.row;
+    
+    NSLog(@"%ld",indexPath.row);
+    
+    //cria mensagem
+    NSString *msg = [NSString stringWithFormat:@"Consulta %ld", indexPath.row];
+    
+    AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
+    
+    consultDetails.consulta = msg;
+    
+    [self.navigationController pushViewController:consultDetails animated:YES];
+    
 }
 
 @end
