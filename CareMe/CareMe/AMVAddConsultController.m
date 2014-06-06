@@ -111,7 +111,7 @@
         
         [consult setConsultPlace:self.placeTF.text];
         [consult setDoctorName:self.doctorNameTF.text];
-        [consult setIdDoctorSpeciality:[self getPickerEspecialityID]];
+        [consult setDoctorSpeciality:[_especialidades objectAtIndex:[self getPickerEspecialityID]]];
         [consult setDate:[self getPickerDate]];
         
         // Salva a entity
