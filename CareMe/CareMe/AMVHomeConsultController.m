@@ -46,11 +46,46 @@
     [self addComponentsAndConfigureStyle];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    _consults = [_dao listConsults];
+-(void) updateTable {
+    NSComparator comparator;
+    NSArray *unsortedConsults = [_dao listConsults];
+    
+    switch (self.visualizationSC.selectedSegmentIndex) {
+        case 0:
+            comparator = ^NSComparisonResult(id a, id b) {
+                NSDateComponents *first = ((AMVConsult*)a).date;
+                NSDateComponents *second = ((AMVConsult*)b).date;
+                
+                NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                
+                return [[gregorian dateFromComponents:second] compare:[gregorian dateFromComponents:first]];
+            };
+            break;
+        case 1:
+            comparator = ^NSComparisonResult(id a, id b) {
+                NSString *first = ((AMVConsult*)a).doctorSpeciality;
+                NSString *second = ((AMVConsult*)b).doctorSpeciality;
+                
+                return [[first lowercaseString] compare:[second lowercaseString]];
+            };
+            break;
+        default:
+            break;
+    }
+    
+    _consults = [unsortedConsults sortedArrayUsingComparator:comparator];
     
     [self.tableViewConsults reloadData];
 }
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self updateTable];
+}
+
+- (IBAction)changeVisualizationType:(id)sender {
+    [self updateTable];
+}
+
 
 -(void) addComponentsAndConfigureStyle {
     self.title=@"Consultas";
@@ -98,8 +133,7 @@
     
     AMVConsult *consult = [_consults objectAtIndex:linha];
     
-    cell.consulta.text = consult.place;
-    cell.dr.text = consult.doctorName;
+    [cell fillWithConsult: consult];
     
     return cell;
 }
