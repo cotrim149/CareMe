@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMVHomeMedicineController : UIViewController
+@interface AMVHomeMedicineController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dayPeriodSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
-@property (weak, nonatomic) IBOutlet UITableView *medicineTable;
+@property (weak, nonatomic) IBOutlet UITableView *tableViewMedicines;
 @end

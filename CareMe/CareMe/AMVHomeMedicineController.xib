@@ -7,8 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVHomeMedicineController">
             <connections>
                 <outlet property="dayPeriodSC" destination="JGL-7K-KSQ" id="MhM-kQ-ejD"/>
-                <outlet property="medicineTable" destination="nIR-8C-EaN" id="RQ8-Nn-rHY"/>
                 <outlet property="scroll" destination="tFX-Cq-BeF" id="YUU-dv-yfb"/>
+                <outlet property="tableViewMedicines" destination="nIR-8C-EaN" id="hDE-ZI-cUc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,6 +32,10 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-8C-EaN">
                             <rect key="frame" x="0.0" y="0.0" width="276" height="383"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="8s7-uh-B3t"/>
+                                <outlet property="delegate" destination="-1" id="6yw-z2-k2N"/>
+                            </connections>
                         </tableView>
                     </subviews>
                 </scrollView>

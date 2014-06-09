@@ -32,4 +32,8 @@
     [encoder encodeObject:self.endDate forKey:@"endDate"];
 }
 
+-(NSString*)description{
+    return [NSString stringWithFormat:@"Nome:%@ \n Dosagem:%@ \n Como usar: %@ \n",self.name,self.dosage,self.howUse];
+}
+
 @end

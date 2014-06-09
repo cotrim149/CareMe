@@ -63,6 +63,11 @@
 		D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05991942395400E18536 /* AMVHomeConsultController.xib */; };
 		D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D05A119425B6700E18536 /* AMVConsultCell.m */; };
 		D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05A219425B6700E18536 /* AMVConsultCell.xib */; };
+		D8D511181946424C008E407C /* AMVMedicineDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D511171946424C008E407C /* AMVMedicineDAO.m */; };
+		D8FD225D194648D90032863C /* AMVMedicineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FD225B194648D90032863C /* AMVMedicineCell.m */; };
+		D8FD225E194648D90032863C /* AMVMedicineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FD225C194648D90032863C /* AMVMedicineCell.xib */; };
+		D8FD226219464BD10032863C /* AMVMedicineDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */; };
+		D8FD226319464BD10032863C /* AMVMedicineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +158,14 @@
 		D89D05A019425B6700E18536 /* AMVConsultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsultCell.h; sourceTree = "<group>"; };
 		D89D05A119425B6700E18536 /* AMVConsultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsultCell.m; sourceTree = "<group>"; };
 		D89D05A219425B6700E18536 /* AMVConsultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVConsultCell.xib; sourceTree = "<group>"; };
+		D8D511161946424C008E407C /* AMVMedicineDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicineDAO.h; sourceTree = "<group>"; };
+		D8D511171946424C008E407C /* AMVMedicineDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicineDAO.m; sourceTree = "<group>"; };
+		D8FD225A194648D90032863C /* AMVMedicineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicineCell.h; sourceTree = "<group>"; };
+		D8FD225B194648D90032863C /* AMVMedicineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicineCell.m; sourceTree = "<group>"; };
+		D8FD225C194648D90032863C /* AMVMedicineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVMedicineCell.xib; sourceTree = "<group>"; };
+		D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicineDetailsViewController.h; sourceTree = "<group>"; };
+		D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicineDetailsViewController.m; sourceTree = "<group>"; };
+		D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVMedicineDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +284,8 @@
 				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
 				2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */,
 				2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */,
+				D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */,
+				D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -291,6 +306,8 @@
 			children = (
 				9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */,
 				9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */,
+				D8D511161946424C008E407C /* AMVMedicineDAO.h */,
+				D8D511171946424C008E407C /* AMVMedicineDAO.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -301,6 +318,8 @@
 				D89D05A219425B6700E18536 /* AMVConsultCell.xib */,
 				D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */,
 				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
+				D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */,
+				D8FD225C194648D90032863C /* AMVMedicineCell.xib */,
 				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 				D89D05991942395400E18536 /* AMVHomeConsultController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
@@ -386,6 +405,8 @@
 			children = (
 				D89D05A019425B6700E18536 /* AMVConsultCell.h */,
 				D89D05A119425B6700E18536 /* AMVConsultCell.m */,
+				D8FD225A194648D90032863C /* AMVMedicineCell.h */,
+				D8FD225B194648D90032863C /* AMVMedicineCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -476,6 +497,7 @@
 				2F9BE62E193E5FE30037A496 /* DSLCalendarDayCalloutView.xib in Resources */,
 				D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */,
 				2F9BE63C193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png in Resources */,
+				D8FD225E194648D90032863C /* AMVMedicineCell.xib in Resources */,
 				2F9BE63D193E5FE30037A496 /* DSLCalendarDaySelection-middle.png in Resources */,
 				2F9BE63A193E5FE30037A496 /* DSLCalendarDayCallout@2x.png in Resources */,
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
@@ -489,6 +511,7 @@
 				2F9BE641193E5FE30037A496 /* DSLCalendarDaySelection.png in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 				2F9BE637193E5FE30037A496 /* DSLCalendar-previousMonth.png in Resources */,
+				D8FD226319464BD10032863C /* AMVMedicineDetailsViewController.xib in Resources */,
 				2F9BE642193E5FE30037A496 /* DSLCalendarDaySelection@2x.png in Resources */,
 				D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */,
 				2F9BE63E193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
@@ -527,10 +550,13 @@
 				2F9BE634193E5FE30037A496 /* DSLCalendarView.m in Sources */,
 				9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
+				D8FD225D194648D90032863C /* AMVMedicineCell.m in Sources */,
 				2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */,
+				D8D511181946424C008E407C /* AMVMedicineDAO.m in Sources */,
 				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
 				2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */,
 				9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */,
+				D8FD226219464BD10032863C /* AMVMedicineDetailsViewController.m in Sources */,
 				2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */,
 				D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */,
 				D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */,

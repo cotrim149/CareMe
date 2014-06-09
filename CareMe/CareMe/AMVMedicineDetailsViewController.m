@@ -1,19 +1,18 @@
 //
-//  AMVConsultDetailsViewController.m
+//  AMVMedicineDetailsViewController.m
 //  CareMe
 //
-//  Created by Alysson Lopes on 6/5/14.
+//  Created by Alysson Lopes on 6/9/14.
 //  Copyright (c) 2014 Alysson Matheus Victor. All rights reserved.
 //
 
-#import "AMVConsultDetailsViewController.h"
+#import "AMVMedicineDetailsViewController.h"
 
-
-@interface AMVConsultDetailsViewController ()
+@interface AMVMedicineDetailsViewController ()
 
 @end
 
-@implementation AMVConsultDetailsViewController
+@implementation AMVMedicineDetailsViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,8 +28,7 @@
     
     [super viewDidLoad];
     
-    self.doctor.text = self.consult.doctorName;
-    self.place.text = self.consult.place;
+    self.name.text = self.medicine.name;
     
     // Do any additional setup after loading the view from its nib.
 }

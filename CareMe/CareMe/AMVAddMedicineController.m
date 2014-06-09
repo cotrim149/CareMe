@@ -10,8 +10,10 @@
 #import "AMVCareMeUtil.h"
 #import "DSLCalendarView.h"
 #import "AMVMedicine.h"
+#import "AMVMedicineDAO.h"
 
 @interface AMVAddMedicineController () {
+    AMVMedicineDAO *_dao;
     DSLCalendarRange *_medicinePeriod;
 }
 
@@ -25,7 +27,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        _dao = [[AMVMedicineDAO alloc]init];
     }
     return self;
 }
@@ -104,6 +106,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [medicine setStartDate:_medicinePeriod.startDay];
         [medicine setEndDate:_medicinePeriod.endDay];
         // Salva a entity
+        [_dao saveMedicinet:medicine];
         
         [self.navigationController popViewControllerAnimated:YES];
     }
