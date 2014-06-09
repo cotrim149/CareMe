@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVConsult.h"
 
 @interface AMVConsultCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *consulta;
-@property (weak, nonatomic) IBOutlet UILabel *dr;
 
+@property (weak, nonatomic) IBOutlet UILabel *specialityLb;
+@property (weak, nonatomic) IBOutlet UILabel *doctorNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *consultDate;
+
+-(void) fillWithConsult: (AMVConsult*) consult;
 @end

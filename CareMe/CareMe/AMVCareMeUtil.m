@@ -10,6 +10,8 @@
 
 @implementation AMVCareMeUtil
 
+static NSDateFormatter *_df;
+
 +(UIColor*) firstColor {
     return UIColorFromRGB(0xa0c5e7, 1);
 }
@@ -50,5 +52,6 @@
     [fileManager removeItemAtPath:[self getDocumentsFilePathWithSuffix:@"consult"] error:nil];
     [fileManager removeItemAtPath:[self getDocumentsFilePathWithSuffix:@"medicine"] error:nil];
 }
+
 
 @end

@@ -26,7 +26,6 @@
     if (self) {
         _dao = [[AMVConsultDAO alloc] init];
         _specialities = [_dao listSpecialities];
-        NSLog(@"COUNT = %lu", (unsigned long)[_specialities count]);
     }
     return self;
 }
