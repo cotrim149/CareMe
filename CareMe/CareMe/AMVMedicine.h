@@ -10,9 +10,9 @@
 
 @interface AMVMedicine : NSObject <NSCoding>
 
-@property (nonatomic) NSString *medicineName;
-@property (nonatomic) NSString *medicineDosage;
-@property (nonatomic) NSString *medicineHowUse;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *dosage;
+@property (nonatomic) NSString *howUse;
 @property (nonatomic) NSDateComponents *startDate;
 @property (nonatomic) NSDateComponents *endDate;
 

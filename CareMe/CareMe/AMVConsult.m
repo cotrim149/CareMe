@@ -15,8 +15,9 @@
     self = [super init];
     if (self) {
         self.doctorName = [decoder decodeObjectForKey:@"doctorName"];
-        self.consultPlace = [decoder decodeObjectForKey:@"consultPlace"];
+        self.place = [decoder decodeObjectForKey:@"place"];
         self.doctorSpeciality = [decoder decodeObjectForKey:@"doctorSpeciality"];
+        self.idDoctorSpeciality = [decoder decodeIntegerForKey:@"idDoctorSpeciality"];
         self.date = [decoder decodeObjectForKey:@"date"];
         
     }
@@ -27,12 +28,13 @@
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeObject:self.doctorName forKey:@"doctorName"];
-    [encoder encodeObject:self.consultPlace forKey:@"consultPlace"];
+    [encoder encodeObject:self.place forKey:@"place"];
     [encoder encodeObject:self.doctorSpeciality forKey:@"doctorSpeciality"];
+    [encoder encodeInteger:self.idDoctorSpeciality forKey:@"idDoctorSpeciality"];
     [encoder encodeObject:self.date forKey:@"date"];
 }
 
 -(NSString*)description{
-    return [NSString stringWithFormat:@"nome:%@ \n local:%@ \n Especialidade: %@ \n Data: %@ \n",self.doctorName,self.consultPlace,self.doctorSpeciality,self.date];
+    return [NSString stringWithFormat:@"nome:%@ \n local:%@ \n Especialidade: %@ \n Data: %@ \n",self.doctorName,self.place,self.doctorSpeciality,self.date];
 }
 @end

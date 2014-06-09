@@ -98,9 +98,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     else{
         // Popula a entity
         AMVMedicine *medicine = [[AMVMedicine alloc] init];
-        [medicine setMedicineName:self.medicineNameTF.text];
-        [medicine setMedicineDosage:self.medicineDosageTF.text];
-        [medicine setMedicineHowUse:self.medicineHowUseTV.text];
+        [medicine setName:self.medicineNameTF.text];
+        [medicine setDosage:self.medicineDosageTF.text];
+        [medicine setHowUse:self.medicineHowUseTV.text];
         [medicine setStartDate:_medicinePeriod.startDay];
         [medicine setEndDate:_medicinePeriod.endDay];
         // Salva a entity

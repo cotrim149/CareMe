@@ -7,33 +7,51 @@
 //
 
 #import "AMVConsultDAO.h"
+#import "AMVCareMeUtil.h"
 
 @implementation AMVConsultDAO
 
+static NSArray * _specialities;
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        if (_specialities == nil) {
+            _specialities = @[@"Acupuntura", @"Alergista", @"Anestesiologia", @"Cardiologia", @"Cirurgião",
+                              @"Clinica", @"Dermatologia", @"Endocrinologia", @"Gastroenterologia",
+                              @"Geriatria", @"Ginecologia", @"Infectologia", @"Nefrologia",@"Oftamologia",
+                              @"Oncologia", @"Ortopedia", @"Otorrinolaringologia", @"Pediatria",
+                              @"Pneumologia", @"Reumatologia", @"Urologia"];
+        }
+    }
+    return self;
+}
+
 -(void)saveConsult:(AMVConsult*)consult{
     
-    NSMutableArray *consultas = [[NSMutableArray alloc] initWithArray:[self listConsult]];
+    NSMutableArray *consults = [[NSMutableArray alloc] initWithArray:[self listConsults]];
     
-    [consultas addObject:consult];
+    [consults addObject:consult];
 
-    for (int i=0; i<[consultas count]; i++) {
-        NSLog(@"%@",[consultas objectAtIndex:i]);
-    }
-
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:consultas];
+    NSData *consultsData = [NSKeyedArchiver archivedDataWithRootObject:consults];
     
-    [data writeToFile:@"/tmp/consulta.plist" atomically:YES];
+    [consultsData writeToFile:[AMVCareMeUtil getDocumentsFilePathWithSuffix:@"consult"] atomically:YES];
     
 }
 
 
--(NSArray*)listConsult{
+-(NSArray*)listConsults {
+    NSData *consultsData = [NSData dataWithContentsOfFile:[AMVCareMeUtil getDocumentsFilePathWithSuffix:@"consult"]];
     
-    NSData *dataConsulta = [NSData dataWithContentsOfFile:@"/tmp/consulta.plist"];
+    NSArray *consults = [NSKeyedUnarchiver unarchiveObjectWithData:consultsData];
     
-    NSArray *consultas = [NSKeyedUnarchiver unarchiveObjectWithData:dataConsulta];
-    
-    return consultas;
+    return consults;
 }
+
+-(NSArray*)listSpecialities {
+    return _specialities;
+}
+
 
 @end

@@ -11,7 +11,10 @@
 #import "AMVConsult.h"
 #import "AMVConsultDAO.h"
 
-@interface AMVAddConsultController ()
+@interface AMVAddConsultController () {
+    AMVConsultDAO *_dao;
+    NSArray *_specialities;
+}
 
 @end
 
@@ -21,13 +24,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        _especialidades = [[NSArray alloc] initWithObjects:
-                           @"Acupuntura", @"Alergista", @"Anestesiologia", @"Cardiologia", @"Cirurgião",
-                           @"Clinica", @"Dermatologia", @"Endocrinologia", @"Gastroenterologia",
-                           @"Geriatria", @"Ginecologia", @"Infectologia", @"Nefrologia",@"Oftamologia",
-                           @"Oncologia", @"Ortopedia", @"Otorrinolaringologia", @"Pediatria",
-                           @"Pneumologia", @"Reumatologia", @"Urologia", nil];
+        _dao = [[AMVConsultDAO alloc] init];
+        _specialities = [_dao listSpecialities];
+        NSLog(@"COUNT = %lu", (unsigned long)[_specialities count]);
     }
     return self;
 }
@@ -36,8 +35,6 @@
 {
     [super viewDidLoad];
     [self addComponentsAndConfigureStyle];
-    
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -53,7 +50,7 @@
     
     self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
     
-    [self.specialtyPk selectRow:((int)[_especialidades count]/2) inComponent:0 animated:YES];
+    [self.specialtyPk selectRow:((int)[_specialities count]/2) inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 }
@@ -77,7 +74,7 @@
     return components;
 }
 
--(NSInteger)getPickerEspecialityID{
+-(NSInteger)getPickerEspecialityID {
     return [self.specialtyPk selectedRowInComponent:0];
 }
 
@@ -103,25 +100,21 @@
                               otherButtonTitles: nil];
         [alert show];
         
-    }
-    else{
+    } else {
         
         // Popula a entity
         AMVConsult *consult = [[AMVConsult alloc] init];
         
-        [consult setConsultPlace:self.placeTF.text];
-        [consult setDoctorName:self.doctorNameTF.text];
-        [consult setDoctorSpeciality:[_especialidades objectAtIndex:[self getPickerEspecialityID]]];
-        [consult setDate:[self getPickerDate]];
+        consult.place = self.placeTF.text;
+        consult.doctorName = self.doctorNameTF.text;
+        consult.idDoctorSpeciality = [self getPickerEspecialityID];
+        consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+        consult.date = [self getPickerDate];
         
         // Salva a entity
-        
-        AMVConsultDAO *consultDAO = [[AMVConsultDAO alloc] init];
-        
-        [consultDAO saveConsult:consult];
+        [_dao saveConsult:consult];
         
         [self.navigationController popViewControllerAnimated:YES];
-        
     }
     
 }
@@ -144,11 +137,11 @@
 }
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return [_especialidades count];
+    return [_specialities count];
 }
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [_especialidades objectAtIndex:row];
+    return [_specialities objectAtIndex:row];
 }
 
 

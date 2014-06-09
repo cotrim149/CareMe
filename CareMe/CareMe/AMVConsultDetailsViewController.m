@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     self.doctor.text = consult.doctorName;
-    self.place.text = consult.consultPlace;
+    self.place.text = consult.place;
     
     // Do any additional setup after loading the view from its nib.
 }

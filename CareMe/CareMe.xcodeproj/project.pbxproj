@@ -61,7 +61,6 @@
 		D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D05951942388000E18536 /* AMVConsultDetailsViewController.m */; };
 		D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */; };
 		D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05991942395400E18536 /* AMVHomeConsultController.xib */; };
-		D89D059E19423CA700E18536 /* AMVConsultService.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D059D19423CA700E18536 /* AMVConsultService.m */; };
 		D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D05A119425B6700E18536 /* AMVConsultCell.m */; };
 		D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05A219425B6700E18536 /* AMVConsultCell.xib */; };
 /* End PBXBuildFile section */
@@ -141,7 +140,19 @@
 		2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection@2x.png"; sourceTree = "<group>"; };
 		2F9BE62B193E5FE30037A496 /* NSDate+DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DSLCalendarView.h"; sourceTree = "<group>"; };
 		2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DSLCalendarView.m"; sourceTree = "<group>"; };
-		2F9BE647193FC0F40037A496 /* AMVGenericDAO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVGenericDAO.h; sourceTree = "<group>"; };
+		9F62D320193FA9B2007F30F9 /* AMVConsult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsult.h; sourceTree = "<group>"; };
+		9F62D321193FA9B2007F30F9 /* AMVConsult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsult.m; sourceTree = "<group>"; };
+		9F62D323193FAB9A007F30F9 /* AMVMedicine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicine.h; sourceTree = "<group>"; };
+		9F62D324193FAB9A007F30F9 /* AMVMedicine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicine.m; sourceTree = "<group>"; };
+		9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsultDAO.h; sourceTree = "<group>"; };
+		9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsultDAO.m; sourceTree = "<group>"; };
+		D89D05941942388000E18536 /* AMVConsultDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsultDetailsViewController.h; sourceTree = "<group>"; };
+		D89D05951942388000E18536 /* AMVConsultDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsultDetailsViewController.m; sourceTree = "<group>"; };
+		D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVConsultDetailsViewController.xib; sourceTree = "<group>"; };
+		D89D05991942395400E18536 /* AMVHomeConsultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVHomeConsultController.xib; sourceTree = "<group>"; };
+		D89D05A019425B6700E18536 /* AMVConsultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsultCell.h; sourceTree = "<group>"; };
+		D89D05A119425B6700E18536 /* AMVConsultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsultCell.m; sourceTree = "<group>"; };
+		D89D05A219425B6700E18536 /* AMVConsultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVConsultCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				D89D059F19425B1500E18536 /* Cell */,
-				D89D059B19423BD300E18536 /* Service */,
 				2F2527B51937D23200D62E4B /* Images */,
 				2F25279B1937BE2500D62E4B /* Util */,
 				2F25279A1937BE1500D62E4B /* View */,
@@ -279,7 +289,8 @@
 		2F2527981937BE0900D62E4B /* DAO */ = {
 			isa = PBXGroup;
 			children = (
-				2F9BE647193FC0F40037A496 /* AMVGenericDAO.h */,
+				9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */,
+				9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -367,16 +378,6 @@
 				2F9BE629193E5FE30037A496 /* DSLCalendarDaySelection.png */,
 				2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */,
 			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		D89D059B19423BD300E18536 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				D89D059C19423CA700E18536 /* AMVConsultService.h */,
-				D89D059D19423CA700E18536 /* AMVConsultService.m */,
-			);
-			name = Service;
 			path = Images;
 			sourceTree = "<group>";
 		};
@@ -527,12 +528,10 @@
 				9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
 				2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */,
-				9F62D32E194245AE007F30F9 /* AMVMedicineDAO.m in Sources */,
 				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
 				2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */,
 				9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */,
 				2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */,
-				D89D059E19423CA700E18536 /* AMVConsultService.m in Sources */,
 				D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */,
 				D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */,
 			);

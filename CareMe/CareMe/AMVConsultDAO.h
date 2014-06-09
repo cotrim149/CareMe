@@ -12,6 +12,6 @@
 @interface AMVConsultDAO : NSObject
 
 -(void)saveConsult:(AMVConsult*)consult;
--(NSArray*)listConsult;
-
+-(NSArray*)listConsults;
+-(NSArray*)listSpecialities;
 @end

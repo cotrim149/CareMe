@@ -24,8 +24,11 @@
     self.window.backgroundColor = [AMVCareMeUtil thirdColor];
     
     [self addTabControlAndNavControlAndConfigureStyle];
-    
+        
     [self.window makeKeyAndVisible];
+    
+    // DELETAR TODOS OS PLISTS
+    [AMVCareMeUtil deleteAllPlists];
     
     return YES;
 }

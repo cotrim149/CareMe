@@ -11,14 +11,18 @@
 #import "AMVCareMeUtil.h"
 #import "AMVConsultDetailsViewController.h"
 #import "AMVConsult.h"
-#import "AMVConsultService.h"
+#import "AMVConsultDAO.h"
 #import "AMVConsultCell.h"
 
-@interface AMVHomeConsultController ()
+@interface AMVHomeConsultController () {
+    AMVConsultDAO *_dao;
+    NSArray *_consults;
+}
+
 @end
 
 @implementation AMVHomeConsultController
-@synthesize consults;
+
 @synthesize tableViewConsults;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +33,8 @@
                                                                   image:[UIImage imageNamed:@"Calendar-Month.png"]
                                                           selectedImage:[UIImage imageNamed:@"Calendar-Month.png"]];
         self.tabBarItem=consultItem;
+        
+        _dao = [[AMVConsultDAO alloc] init];
     }
     return self;
 }
@@ -38,10 +44,12 @@
     [super viewDidLoad];
     
     [self addComponentsAndConfigureStyle];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    _consults = [_dao listConsults];
     
-    self.consults = [AMVConsultService getAll];
-    
-    //    [self.navigationController pushViewController:a animated:a
+    [self.tableViewConsults reloadData];
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -73,7 +81,7 @@
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [consults count];
+    return [_consults count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -82,27 +90,25 @@
     AMVConsultCell *cell = (AMVConsultCell *)[self.tableViewConsults dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if(!cell){
-        
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil]objectAtIndex:0];
-        
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil] objectAtIndex:0];
     }
     
     //Numero da linha
     NSInteger linha = indexPath.row;
     
-    AMVConsult *consult = [consults objectAtIndex:linha];
+    AMVConsult *consult = [_consults objectAtIndex:linha];
     
-    cell.consulta.text = consult.consultPlace;
+    cell.consulta.text = consult.place;
     cell.dr.text = consult.doctorName;
     
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //Recupera o índice da linha selecionada
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
     NSInteger linha = indexPath.row;
     
-     AMVConsult *consult = [consults objectAtIndex:linha];
+    AMVConsult *consult = [_consults objectAtIndex:linha];
     
     AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
     

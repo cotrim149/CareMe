@@ -35,14 +35,20 @@
         dayPeriod = NIGHT;
     
     return dayPeriod;
-    
 }
 
 // Sufixos serao "medicine" e "consult"
-+(NSString *)getAbsoluteFileNameToSave:(NSString *)suffix {
++(NSString *)getDocumentsFilePathWithSuffix:(NSString *)suffix {
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     
     return [NSString stringWithFormat:@"%@/CareMe_%@.plist", documentsPath, suffix];
+}
+
++(void) deleteAllPlists {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    [fileManager removeItemAtPath:[self getDocumentsFilePathWithSuffix:@"consult"] error:nil];
+    [fileManager removeItemAtPath:[self getDocumentsFilePathWithSuffix:@"medicine"] error:nil];
 }
 
 @end
