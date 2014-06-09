@@ -20,7 +20,6 @@
 		2F25278B1937BCFF00D62E4B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527891937BCFF00D62E4B /* InfoPlist.strings */; };
 		2F25278D1937BCFF00D62E4B /* CareMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25278C1937BCFF00D62E4B /* CareMeTests.m */; };
 		2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */; };
-		2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */; };
 		2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B61937D23200D62E4B /* Calendar-Month.png */; };
 		2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B71937D23200D62E4B /* Calendar-Week.png */; };
 		2F2527BC1937D3E900D62E4B /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BA1937D3E900D62E4B /* Folder.png */; };
@@ -56,6 +55,15 @@
 		2F9BE641193E5FE30037A496 /* DSLCalendarDaySelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE629193E5FE30037A496 /* DSLCalendarDaySelection.png */; };
 		2F9BE642193E5FE30037A496 /* DSLCalendarDaySelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */; };
 		2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */; };
+		9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D321193FA9B2007F30F9 /* AMVConsult.m */; };
+		9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D324193FAB9A007F30F9 /* AMVMedicine.m */; };
+		9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */; };
+		D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D05951942388000E18536 /* AMVConsultDetailsViewController.m */; };
+		D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */; };
+		D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05991942395400E18536 /* AMVHomeConsultController.xib */; };
+		D89D059E19423CA700E18536 /* AMVConsultService.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D059D19423CA700E18536 /* AMVConsultService.m */; };
+		D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D89D05A119425B6700E18536 /* AMVConsultCell.m */; };
+		D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89D05A219425B6700E18536 /* AMVConsultCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +95,6 @@
 		2F25278C1937BCFF00D62E4B /* CareMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareMeTests.m; sourceTree = "<group>"; };
 		2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVHomeConsultController.h; sourceTree = "<group>"; };
 		2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVHomeConsultController.m; sourceTree = "<group>"; };
-		2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVHomeConsultController.xib; sourceTree = "<group>"; };
 		2F2527B61937D23200D62E4B /* Calendar-Month.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Month.png"; sourceTree = "<group>"; };
 		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
 		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
@@ -195,6 +202,8 @@
 		2F25276D1937BCFE00D62E4B /* CareMe */ = {
 			isa = PBXGroup;
 			children = (
+				D89D059F19425B1500E18536 /* Cell */,
+				D89D059B19423BD300E18536 /* Service */,
 				2F2527B51937D23200D62E4B /* Images */,
 				2F25279B1937BE2500D62E4B /* Util */,
 				2F25279A1937BE1500D62E4B /* View */,
@@ -242,6 +251,8 @@
 		2F2527961937BDF800D62E4B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D89D05941942388000E18536 /* AMVConsultDetailsViewController.h */,
+				D89D05951942388000E18536 /* AMVConsultDetailsViewController.m */,
 				2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */,
 				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
 				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
@@ -257,6 +268,10 @@
 		2F2527971937BDFE00D62E4B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				9F62D320193FA9B2007F30F9 /* AMVConsult.h */,
+				9F62D321193FA9B2007F30F9 /* AMVConsult.m */,
+				9F62D323193FAB9A007F30F9 /* AMVMedicine.h */,
+				9F62D324193FAB9A007F30F9 /* AMVMedicine.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -272,10 +287,12 @@
 		2F2527991937BE0F00D62E4B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				D89D05A219425B6700E18536 /* AMVConsultCell.xib */,
+				D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */,
 				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
 				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
+				D89D05991942395400E18536 /* AMVHomeConsultController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
-				2F2527B21937CC9000D62E4B /* AMVHomeConsultController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
@@ -351,6 +368,25 @@
 				2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		D89D059B19423BD300E18536 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				D89D059C19423CA700E18536 /* AMVConsultService.h */,
+				D89D059D19423CA700E18536 /* AMVConsultService.m */,
+			);
+			name = Service;
+			path = Images;
+			sourceTree = "<group>";
+		};
+		D89D059F19425B1500E18536 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D89D05A019425B6700E18536 /* AMVConsultCell.h */,
+				D89D05A119425B6700E18536 /* AMVConsultCell.m */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,9 +469,11 @@
 			files = (
 				2F2527721937BCFE00D62E4B /* InfoPlist.strings in Resources */,
 				2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */,
+				D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */,
 				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
 				2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */,
 				2F9BE62E193E5FE30037A496 /* DSLCalendarDayCalloutView.xib in Resources */,
+				D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */,
 				2F9BE63C193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				2F9BE63D193E5FE30037A496 /* DSLCalendarDaySelection-middle.png in Resources */,
 				2F9BE63A193E5FE30037A496 /* DSLCalendarDayCallout@2x.png in Resources */,
@@ -443,7 +481,6 @@
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
 				2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */,
-				2F2527B41937CC9000D62E4B /* AMVHomeConsultController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
 				2F9BE638193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png in Resources */,
 				2F9BE631193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib in Resources */,
@@ -452,6 +489,7 @@
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 				2F9BE637193E5FE30037A496 /* DSLCalendar-previousMonth.png in Resources */,
 				2F9BE642193E5FE30037A496 /* DSLCalendarDaySelection@2x.png in Resources */,
+				D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */,
 				2F9BE63E193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
 				2F9BE63B193E5FE30037A496 /* DSLCalendarDaySelection-left.png in Resources */,
 				2F9BE639193E5FE30037A496 /* DSLCalendarDayCallout.png in Resources */,
@@ -479,17 +517,24 @@
 				2F9BE632193E5FE30037A496 /* DSLCalendarMonthView.m in Sources */,
 				2F9BE630193E5FE30037A496 /* DSLCalendarMonthSelectorView.m in Sources */,
 				2F9BE62D193E5FE30037A496 /* DSLCalendarDayCalloutView.m in Sources */,
+				9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */,
 				2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */,
 				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,
 				2F2527741937BCFE00D62E4B /* main.m in Sources */,
 				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,
 				2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */,
 				2F9BE634193E5FE30037A496 /* DSLCalendarView.m in Sources */,
+				9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
 				2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */,
+				9F62D32E194245AE007F30F9 /* AMVMedicineDAO.m in Sources */,
 				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
 				2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */,
+				9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */,
 				2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */,
+				D89D059E19423CA700E18536 /* AMVConsultService.m in Sources */,
+				D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */,
+				D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,12 +9,17 @@
 #import "AMVHomeConsultController.h"
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
+#import "AMVConsultDetailsViewController.h"
+#import "AMVConsult.h"
+#import "AMVConsultService.h"
+#import "AMVConsultCell.h"
 
 @interface AMVHomeConsultController ()
-
 @end
 
 @implementation AMVHomeConsultController
+@synthesize consults;
+@synthesize tableViewConsults;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +39,9 @@
     
     [self addComponentsAndConfigureStyle];
     
-//    [self.navigationController pushViewController:a animated:a
+    self.consults = [AMVConsultService getAll];
+    
+    //    [self.navigationController pushViewController:a animated:a
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -63,6 +70,46 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [consults count];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Cria a célula desta linha da tabela
+    NSString *cellIdentifier = @"AMVConsultCell";
+    AMVConsultCell *cell = (AMVConsultCell *)[self.tableViewConsults dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    if(!cell){
+        
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil]objectAtIndex:0];
+        
+    }
+    
+    //Numero da linha
+    NSInteger linha = indexPath.row;
+    
+    AMVConsult *consult = [consults objectAtIndex:linha];
+    
+    cell.consulta.text = consult.consultPlace;
+    cell.dr.text = consult.doctorName;
+    
+    return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //Recupera o índice da linha selecionada
+    NSInteger linha = indexPath.row;
+    
+     AMVConsult *consult = [consults objectAtIndex:linha];
+    
+    AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
+    
+    consultDetails.consult = consult;
+    
+    [self.navigationController pushViewController:consultDetails animated:YES];
+    
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "AMVAddMedicineController.h"
 #import "AMVCareMeUtil.h"
 #import "DSLCalendarView.h"
+#import "AMVMedicine.h"
 
 @interface AMVAddMedicineController () {
     DSLCalendarRange *_medicinePeriod;
@@ -96,6 +97,12 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     }
     else{
         // Popula a entity
+        AMVMedicine *medicine = [[AMVMedicine alloc] init];
+        [medicine setMedicineName:self.medicineNameTF.text];
+        [medicine setMedicineDosage:self.medicineDosageTF.text];
+        [medicine setMedicineHowUse:self.medicineHowUseTV.text];
+        [medicine setStartDate:_medicinePeriod.startDay];
+        [medicine setEndDate:_medicinePeriod.endDay];
         // Salva a entity
         
         [self.navigationController popViewControllerAnimated:YES];
