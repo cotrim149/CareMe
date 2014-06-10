@@ -11,8 +11,6 @@
 
 @implementation AMVConsultCell
 
-
-
 - (void)awakeFromNib
 {
     // Initialization code

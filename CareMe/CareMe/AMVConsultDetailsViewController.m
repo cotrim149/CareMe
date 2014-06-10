@@ -7,6 +7,7 @@
 //
 
 #import "AMVConsultDetailsViewController.h"
+#import "AMVCareMeUtil.h"
 
 
 @interface AMVConsultDetailsViewController ()
@@ -29,10 +30,24 @@
     
     [super viewDidLoad];
     
-    self.doctor.text = self.consult.doctorName;
-    self.place.text = self.consult.place;
+    self.doctorNameLb.text = self.consult.doctorName;
+    self.consultDateLb.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu", self.consult.date.day, self.consult.date.month, self.consult.date.year];
+    self.consultPlaceLb.text = self.consult.place;
+    self.doctorSpecialityLb.text = self.consult.doctorSpeciality;
     
-    // Do any additional setup after loading the view from its nib.
+    CGRect layerFrame = CGRectMake(0, 0, self.deleteConsultBt.frame.size.width, self.deleteConsultBt.frame.size.height);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, 0); // top line
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    CAShapeLayer * line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.5;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.deleteConsultBt.layer addSublayer:line];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,6 +55,23 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (IBAction)deleteConsult:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar a Consulta?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Consulta" otherButtonTitles:nil,nil];
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+    
+    
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == actionSheet.destructiveButtonIndex)
+    {
+        NSLog(@"DELETOU");
+    } 
+}
+
 
 /*
 #pragma mark - Navigation

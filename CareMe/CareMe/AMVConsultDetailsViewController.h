@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "AMVConsult.h"
 
-@interface AMVConsultDetailsViewController : UIViewController
+@interface AMVConsultDetailsViewController : UIViewController <UIActionSheetDelegate>
 @property (nonatomic, strong) AMVConsult *consult;
-@property (weak, nonatomic) IBOutlet UITextView *doctor;
-@property (weak, nonatomic) IBOutlet UITextView *place;
-@property (weak, nonatomic) IBOutlet UITextView *date;
+
+@property (weak, nonatomic) IBOutlet UILabel *doctorNameLb;
+@property (weak, nonatomic) IBOutlet UILabel *consultPlaceLb;
+@property (weak, nonatomic) IBOutlet UILabel *consultDateLb;
+@property (weak, nonatomic) IBOutlet UILabel *doctorSpecialityLb;
+@property (weak, nonatomic) IBOutlet UIButton *deleteConsultBt;
+
 @end

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(short, AMVConsultVisualizationType) {
+    VT_DATE, VT_SPECIALITY, VT_PLACE
+};
+
 @interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *visualizationSC;

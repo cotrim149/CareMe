@@ -21,9 +21,8 @@
 
 @end
 
-@implementation AMVHomeConsultController
 
-@synthesize tableViewConsults;
+@implementation AMVHomeConsultController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -47,11 +46,12 @@
 }
 
 -(void) updateTable {
-    NSComparator comparator;
-    NSArray *unsortedConsults = [_dao listConsults];
+    NSComparator comparator = nil;
     
-    switch (self.visualizationSC.selectedSegmentIndex) {
-        case 0:
+    AMVConsultVisualizationType visualizationType = (AMVConsultVisualizationType) self.visualizationSC.selectedSegmentIndex;
+    
+    switch (visualizationType) {
+        case VT_DATE:
             comparator = ^NSComparisonResult(id a, id b) {
                 NSDateComponents *first = ((AMVConsult*)a).date;
                 NSDateComponents *second = ((AMVConsult*)b).date;
@@ -61,7 +61,7 @@
                 return [[gregorian dateFromComponents:second] compare:[gregorian dateFromComponents:first]];
             };
             break;
-        case 1:
+        case VT_SPECIALITY:
             comparator = ^NSComparisonResult(id a, id b) {
                 NSString *first = ((AMVConsult*)a).doctorSpeciality;
                 NSString *second = ((AMVConsult*)b).doctorSpeciality;
@@ -69,13 +69,22 @@
                 return [[first lowercaseString] compare:[second lowercaseString]];
             };
             break;
-        default:
+        case VT_PLACE:
+            comparator = ^NSComparisonResult(id a, id b) {
+                NSString *first = ((AMVConsult*)a).place;
+                NSString *second = ((AMVConsult*)b).place;
+                
+                return [[first lowercaseString] compare:[second lowercaseString]];
+            };
             break;
     }
     
-    _consults = [unsortedConsults sortedArrayUsingComparator:comparator];
-    
-    [self.tableViewConsults reloadData];
+    if(comparator) {
+        NSArray *unsortedConsults = [_dao listConsults];
+        _consults = [unsortedConsults sortedArrayUsingComparator:comparator];
+        
+        [self.tableViewConsults reloadData];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated {
