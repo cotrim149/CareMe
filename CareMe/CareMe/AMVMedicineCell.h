@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVMedicine.h"
 
 @interface AMVMedicineCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *untilLabel;
 @property (weak, nonatomic) IBOutlet UILabel *name;
-
+@property (weak, nonatomic) IBOutlet UILabel *endDate;
+-(void)fillWithMedicine:(AMVMedicine*)medicine;
 @end
