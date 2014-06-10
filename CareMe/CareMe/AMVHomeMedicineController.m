@@ -101,7 +101,7 @@
     
     AMVMedicine *medicine = [_medicines objectAtIndex:linha];
     
-    cell.name.text = medicine.name;
+    [cell fillWithMedicine:medicine];
     
     return cell;
     
