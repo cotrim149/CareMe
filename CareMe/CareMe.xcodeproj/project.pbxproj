@@ -195,6 +195,7 @@
 		2F25275B1937BCFE00D62E4B = {
 			isa = PBXGroup;
 			children = (
+				2F2527B51937D23200D62E4B /* Images */,
 				2F9BE60D193E5FE30037A496 /* DSLCalendarView */,
 				2F25276D1937BCFE00D62E4B /* CareMe */,
 				2F2527861937BCFF00D62E4B /* CareMeTests */,
@@ -226,14 +227,9 @@
 		2F25276D1937BCFE00D62E4B /* CareMe */ = {
 			isa = PBXGroup;
 			children = (
-				D89D059F19425B1500E18536 /* Cell */,
-				2F2527B51937D23200D62E4B /* Images */,
 				2F25279B1937BE2500D62E4B /* Util */,
-				2F25279A1937BE1500D62E4B /* View */,
-				2F2527991937BE0F00D62E4B /* XIB */,
-				2F2527981937BE0900D62E4B /* DAO */,
-				2F2527971937BDFE00D62E4B /* Entity */,
-				2F2527961937BDF800D62E4B /* Controller */,
+				D8CFD90C1947708500EAC205 /* Consult */,
+				D8CFD90B1947707D00EAC205 /* Medicine */,
 				2F2527761937BCFE00D62E4B /* AMVAppDelegate.h */,
 				2F2527771937BCFE00D62E4B /* AMVAppDelegate.m */,
 				2F2527791937BCFE00D62E4B /* Images.xcassets */,
@@ -280,12 +276,6 @@
 				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
 				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
 				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
-				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
-				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
-				2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */,
-				2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */,
-				D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */,
-				D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -295,8 +285,6 @@
 			children = (
 				9F62D320193FA9B2007F30F9 /* AMVConsult.h */,
 				9F62D321193FA9B2007F30F9 /* AMVConsult.m */,
-				9F62D323193FAB9A007F30F9 /* AMVMedicine.h */,
-				9F62D324193FAB9A007F30F9 /* AMVMedicine.m */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -306,8 +294,6 @@
 			children = (
 				9F62D3291940DF7D007F30F9 /* AMVConsultDAO.h */,
 				9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */,
-				D8D511161946424C008E407C /* AMVMedicineDAO.h */,
-				D8D511171946424C008E407C /* AMVMedicineDAO.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -317,21 +303,10 @@
 			children = (
 				D89D05A219425B6700E18536 /* AMVConsultCell.xib */,
 				D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */,
-				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
-				D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */,
-				D8FD225C194648D90032863C /* AMVMedicineCell.xib */,
-				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 				D89D05991942395400E18536 /* AMVHomeConsultController.xib */,
 				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 			);
 			name = XIB;
-			sourceTree = "<group>";
-		};
-		2F25279A1937BE1500D62E4B /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 		2F25279B1937BE2500D62E4B /* Util */ = {
@@ -352,7 +327,8 @@
 				2F2527B61937D23200D62E4B /* Calendar-Month.png */,
 				2F2527B71937D23200D62E4B /* Calendar-Week.png */,
 			);
-			path = Images;
+			name = Images;
+			path = CareMe/Images;
 			sourceTree = "<group>";
 		};
 		2F9BE60D193E5FE30037A496 /* DSLCalendarView */ = {
@@ -405,6 +381,79 @@
 			children = (
 				D89D05A019425B6700E18536 /* AMVConsultCell.h */,
 				D89D05A119425B6700E18536 /* AMVConsultCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		D8CFD90B1947707D00EAC205 /* Medicine */ = {
+			isa = PBXGroup;
+			children = (
+				D8CFD9121947718000EAC205 /* Cell */,
+				D8CFD9111947716900EAC205 /* Controller */,
+				D8CFD9101947715500EAC205 /* Entity */,
+				D8CFD90F1947714500EAC205 /* DAO */,
+				D8CFD90E1947712500EAC205 /* XIB */,
+			);
+			name = Medicine;
+			sourceTree = "<group>";
+		};
+		D8CFD90C1947708500EAC205 /* Consult */ = {
+			isa = PBXGroup;
+			children = (
+				2F2527991937BE0F00D62E4B /* XIB */,
+				2F2527981937BE0900D62E4B /* DAO */,
+				2F2527971937BDFE00D62E4B /* Entity */,
+				2F2527961937BDF800D62E4B /* Controller */,
+				D89D059F19425B1500E18536 /* Cell */,
+			);
+			name = Consult;
+			sourceTree = "<group>";
+		};
+		D8CFD90E1947712500EAC205 /* XIB */ = {
+			isa = PBXGroup;
+			children = (
+				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
+				D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */,
+				D8FD225C194648D90032863C /* AMVMedicineCell.xib */,
+				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
+			);
+			name = XIB;
+			sourceTree = "<group>";
+		};
+		D8CFD90F1947714500EAC205 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				D8D511161946424C008E407C /* AMVMedicineDAO.h */,
+				D8D511171946424C008E407C /* AMVMedicineDAO.m */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
+		D8CFD9101947715500EAC205 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				9F62D323193FAB9A007F30F9 /* AMVMedicine.h */,
+				9F62D324193FAB9A007F30F9 /* AMVMedicine.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
+		D8CFD9111947716900EAC205 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
+				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
+				2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */,
+				2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */,
+				D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */,
+				D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		D8CFD9121947718000EAC205 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
 				D8FD225A194648D90032863C /* AMVMedicineCell.h */,
 				D8FD225B194648D90032863C /* AMVMedicineCell.m */,
 			);
