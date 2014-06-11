@@ -202,8 +202,6 @@
     if(editingStyle == UITableViewCellEditingStyleDelete){
         [_dao deleteConsultWithIndex:indexPath.row];
 
-        NSLog(@"%@",[_dao listConsults]);
-        NSLog(@"%d",indexPath.row);
         NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
        
         [self.tableViewConsults beginUpdates];
