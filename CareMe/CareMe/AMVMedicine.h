@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(short, AMVPeriodEnum){
+    HOUR,
+    WEEK
+};
+
 @interface AMVMedicine : NSObject <NSCoding>
 
 @property (nonatomic) NSString *name;
@@ -15,6 +20,7 @@
 @property (nonatomic) NSString *howUse;
 @property (nonatomic) NSDateComponents *startDate;
 @property (nonatomic) NSDateComponents *endDate;
-@property (nonatomic) 
+@property (nonatomic) NSInteger *periodValue;
+@property (nonatomic) AMVPeriodEnum period;
 
 @end

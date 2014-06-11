@@ -32,29 +32,6 @@
 		2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D3193D18FB0037A496 /* Medicine.png */; };
 		2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */; };
 		2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */; };
-		2F9BE62D193E5FE30037A496 /* DSLCalendarDayCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE60F193E5FE30037A496 /* DSLCalendarDayCalloutView.m */; };
-		2F9BE62E193E5FE30037A496 /* DSLCalendarDayCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE610193E5FE30037A496 /* DSLCalendarDayCalloutView.xib */; };
-		2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE612193E5FE30037A496 /* DSLCalendarDayView.m */; };
-		2F9BE630193E5FE30037A496 /* DSLCalendarMonthSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE614193E5FE30037A496 /* DSLCalendarMonthSelectorView.m */; };
-		2F9BE631193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE615193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib */; };
-		2F9BE632193E5FE30037A496 /* DSLCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE617193E5FE30037A496 /* DSLCalendarMonthView.m */; };
-		2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE619193E5FE30037A496 /* DSLCalendarRange.m */; };
-		2F9BE634193E5FE30037A496 /* DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE61B193E5FE30037A496 /* DSLCalendarView.m */; };
-		2F9BE635193E5FE30037A496 /* DSLCalendar-nextMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE61D193E5FE30037A496 /* DSLCalendar-nextMonth.png */; };
-		2F9BE636193E5FE30037A496 /* DSLCalendar-nextMonth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE61E193E5FE30037A496 /* DSLCalendar-nextMonth@2x.png */; };
-		2F9BE637193E5FE30037A496 /* DSLCalendar-previousMonth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE61F193E5FE30037A496 /* DSLCalendar-previousMonth.png */; };
-		2F9BE638193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE620193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png */; };
-		2F9BE639193E5FE30037A496 /* DSLCalendarDayCallout.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE621193E5FE30037A496 /* DSLCalendarDayCallout.png */; };
-		2F9BE63A193E5FE30037A496 /* DSLCalendarDayCallout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE622193E5FE30037A496 /* DSLCalendarDayCallout@2x.png */; };
-		2F9BE63B193E5FE30037A496 /* DSLCalendarDaySelection-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE623193E5FE30037A496 /* DSLCalendarDaySelection-left.png */; };
-		2F9BE63C193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE624193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png */; };
-		2F9BE63D193E5FE30037A496 /* DSLCalendarDaySelection-middle.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE625193E5FE30037A496 /* DSLCalendarDaySelection-middle.png */; };
-		2F9BE63E193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE626193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png */; };
-		2F9BE63F193E5FE30037A496 /* DSLCalendarDaySelection-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE627193E5FE30037A496 /* DSLCalendarDaySelection-right.png */; };
-		2F9BE640193E5FE30037A496 /* DSLCalendarDaySelection-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE628193E5FE30037A496 /* DSLCalendarDaySelection-right@2x.png */; };
-		2F9BE641193E5FE30037A496 /* DSLCalendarDaySelection.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE629193E5FE30037A496 /* DSLCalendarDaySelection.png */; };
-		2F9BE642193E5FE30037A496 /* DSLCalendarDaySelection@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */; };
-		2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */; };
 		9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D321193FA9B2007F30F9 /* AMVConsult.m */; };
 		9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D324193FAB9A007F30F9 /* AMVMedicine.m */; };
 		9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */; };
@@ -115,36 +92,6 @@
 		2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddMedicineController.h; sourceTree = "<group>"; };
 		2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddMedicineController.m; sourceTree = "<group>"; };
 		2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddMedicineController.xib; sourceTree = "<group>"; };
-		2F9BE60E193E5FE30037A496 /* DSLCalendarDayCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarDayCalloutView.h; sourceTree = "<group>"; };
-		2F9BE60F193E5FE30037A496 /* DSLCalendarDayCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarDayCalloutView.m; sourceTree = "<group>"; };
-		2F9BE610193E5FE30037A496 /* DSLCalendarDayCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSLCalendarDayCalloutView.xib; sourceTree = "<group>"; };
-		2F9BE611193E5FE30037A496 /* DSLCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarDayView.h; sourceTree = "<group>"; };
-		2F9BE612193E5FE30037A496 /* DSLCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarDayView.m; sourceTree = "<group>"; };
-		2F9BE613193E5FE30037A496 /* DSLCalendarMonthSelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarMonthSelectorView.h; sourceTree = "<group>"; };
-		2F9BE614193E5FE30037A496 /* DSLCalendarMonthSelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarMonthSelectorView.m; sourceTree = "<group>"; };
-		2F9BE615193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DSLCalendarMonthSelectorView.xib; sourceTree = "<group>"; };
-		2F9BE616193E5FE30037A496 /* DSLCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarMonthView.h; sourceTree = "<group>"; };
-		2F9BE617193E5FE30037A496 /* DSLCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarMonthView.m; sourceTree = "<group>"; };
-		2F9BE618193E5FE30037A496 /* DSLCalendarRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarRange.h; sourceTree = "<group>"; };
-		2F9BE619193E5FE30037A496 /* DSLCalendarRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarRange.m; sourceTree = "<group>"; };
-		2F9BE61A193E5FE30037A496 /* DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLCalendarView.h; sourceTree = "<group>"; };
-		2F9BE61B193E5FE30037A496 /* DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLCalendarView.m; sourceTree = "<group>"; };
-		2F9BE61D193E5FE30037A496 /* DSLCalendar-nextMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendar-nextMonth.png"; sourceTree = "<group>"; };
-		2F9BE61E193E5FE30037A496 /* DSLCalendar-nextMonth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendar-nextMonth@2x.png"; sourceTree = "<group>"; };
-		2F9BE61F193E5FE30037A496 /* DSLCalendar-previousMonth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendar-previousMonth.png"; sourceTree = "<group>"; };
-		2F9BE620193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendar-previousMonth@2x.png"; sourceTree = "<group>"; };
-		2F9BE621193E5FE30037A496 /* DSLCalendarDayCallout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSLCalendarDayCallout.png; sourceTree = "<group>"; };
-		2F9BE622193E5FE30037A496 /* DSLCalendarDayCallout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDayCallout@2x.png"; sourceTree = "<group>"; };
-		2F9BE623193E5FE30037A496 /* DSLCalendarDaySelection-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left.png"; sourceTree = "<group>"; };
-		2F9BE624193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-left@2x.png"; sourceTree = "<group>"; };
-		2F9BE625193E5FE30037A496 /* DSLCalendarDaySelection-middle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-middle.png"; sourceTree = "<group>"; };
-		2F9BE626193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-middle@2x.png"; sourceTree = "<group>"; };
-		2F9BE627193E5FE30037A496 /* DSLCalendarDaySelection-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-right.png"; sourceTree = "<group>"; };
-		2F9BE628193E5FE30037A496 /* DSLCalendarDaySelection-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection-right@2x.png"; sourceTree = "<group>"; };
-		2F9BE629193E5FE30037A496 /* DSLCalendarDaySelection.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DSLCalendarDaySelection.png; sourceTree = "<group>"; };
-		2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DSLCalendarDaySelection@2x.png"; sourceTree = "<group>"; };
-		2F9BE62B193E5FE30037A496 /* NSDate+DSLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DSLCalendarView.h"; sourceTree = "<group>"; };
-		2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DSLCalendarView.m"; sourceTree = "<group>"; };
 		9F62D320193FA9B2007F30F9 /* AMVConsult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsult.h; sourceTree = "<group>"; };
 		9F62D321193FA9B2007F30F9 /* AMVConsult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsult.m; sourceTree = "<group>"; };
 		9F62D323193FAB9A007F30F9 /* AMVMedicine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicine.h; sourceTree = "<group>"; };
@@ -196,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				2F2527B51937D23200D62E4B /* Images */,
-				2F9BE60D193E5FE30037A496 /* DSLCalendarView */,
 				2F25276D1937BCFE00D62E4B /* CareMe */,
 				2F2527861937BCFF00D62E4B /* CareMeTests */,
 				2F2527661937BCFE00D62E4B /* Frameworks */,
@@ -329,51 +275,6 @@
 			);
 			name = Images;
 			path = CareMe/Images;
-			sourceTree = "<group>";
-		};
-		2F9BE60D193E5FE30037A496 /* DSLCalendarView */ = {
-			isa = PBXGroup;
-			children = (
-				2F9BE60E193E5FE30037A496 /* DSLCalendarDayCalloutView.h */,
-				2F9BE60F193E5FE30037A496 /* DSLCalendarDayCalloutView.m */,
-				2F9BE610193E5FE30037A496 /* DSLCalendarDayCalloutView.xib */,
-				2F9BE611193E5FE30037A496 /* DSLCalendarDayView.h */,
-				2F9BE612193E5FE30037A496 /* DSLCalendarDayView.m */,
-				2F9BE613193E5FE30037A496 /* DSLCalendarMonthSelectorView.h */,
-				2F9BE614193E5FE30037A496 /* DSLCalendarMonthSelectorView.m */,
-				2F9BE615193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib */,
-				2F9BE616193E5FE30037A496 /* DSLCalendarMonthView.h */,
-				2F9BE617193E5FE30037A496 /* DSLCalendarMonthView.m */,
-				2F9BE618193E5FE30037A496 /* DSLCalendarRange.h */,
-				2F9BE619193E5FE30037A496 /* DSLCalendarRange.m */,
-				2F9BE61A193E5FE30037A496 /* DSLCalendarView.h */,
-				2F9BE61B193E5FE30037A496 /* DSLCalendarView.m */,
-				2F9BE61C193E5FE30037A496 /* Images */,
-				2F9BE62B193E5FE30037A496 /* NSDate+DSLCalendarView.h */,
-				2F9BE62C193E5FE30037A496 /* NSDate+DSLCalendarView.m */,
-			);
-			path = DSLCalendarView;
-			sourceTree = "<group>";
-		};
-		2F9BE61C193E5FE30037A496 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				2F9BE61D193E5FE30037A496 /* DSLCalendar-nextMonth.png */,
-				2F9BE61E193E5FE30037A496 /* DSLCalendar-nextMonth@2x.png */,
-				2F9BE61F193E5FE30037A496 /* DSLCalendar-previousMonth.png */,
-				2F9BE620193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png */,
-				2F9BE621193E5FE30037A496 /* DSLCalendarDayCallout.png */,
-				2F9BE622193E5FE30037A496 /* DSLCalendarDayCallout@2x.png */,
-				2F9BE623193E5FE30037A496 /* DSLCalendarDaySelection-left.png */,
-				2F9BE624193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png */,
-				2F9BE625193E5FE30037A496 /* DSLCalendarDaySelection-middle.png */,
-				2F9BE626193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png */,
-				2F9BE627193E5FE30037A496 /* DSLCalendarDaySelection-right.png */,
-				2F9BE628193E5FE30037A496 /* DSLCalendarDaySelection-right@2x.png */,
-				2F9BE629193E5FE30037A496 /* DSLCalendarDaySelection.png */,
-				2F9BE62A193E5FE30037A496 /* DSLCalendarDaySelection@2x.png */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		D89D059F19425B1500E18536 /* Cell */ = {
@@ -543,32 +444,16 @@
 				D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */,
 				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
 				2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */,
-				2F9BE62E193E5FE30037A496 /* DSLCalendarDayCalloutView.xib in Resources */,
 				D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */,
-				2F9BE63C193E5FE30037A496 /* DSLCalendarDaySelection-left@2x.png in Resources */,
 				D8FD225E194648D90032863C /* AMVMedicineCell.xib in Resources */,
-				2F9BE63D193E5FE30037A496 /* DSLCalendarDaySelection-middle.png in Resources */,
-				2F9BE63A193E5FE30037A496 /* DSLCalendarDayCallout@2x.png in Resources */,
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
 				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
 				2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
-				2F9BE638193E5FE30037A496 /* DSLCalendar-previousMonth@2x.png in Resources */,
-				2F9BE631193E5FE30037A496 /* DSLCalendarMonthSelectorView.xib in Resources */,
-				2F9BE63F193E5FE30037A496 /* DSLCalendarDaySelection-right.png in Resources */,
-				2F9BE641193E5FE30037A496 /* DSLCalendarDaySelection.png in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
-				2F9BE637193E5FE30037A496 /* DSLCalendar-previousMonth.png in Resources */,
 				D8FD226319464BD10032863C /* AMVMedicineDetailsViewController.xib in Resources */,
-				2F9BE642193E5FE30037A496 /* DSLCalendarDaySelection@2x.png in Resources */,
 				D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */,
-				2F9BE63E193E5FE30037A496 /* DSLCalendarDaySelection-middle@2x.png in Resources */,
-				2F9BE63B193E5FE30037A496 /* DSLCalendarDaySelection-left.png in Resources */,
-				2F9BE639193E5FE30037A496 /* DSLCalendarDayCallout.png in Resources */,
-				2F9BE635193E5FE30037A496 /* DSLCalendar-nextMonth.png in Resources */,
-				2F9BE640193E5FE30037A496 /* DSLCalendarDaySelection-right@2x.png in Resources */,
-				2F9BE636193E5FE30037A496 /* DSLCalendar-nextMonth@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,26 +472,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9BE632193E5FE30037A496 /* DSLCalendarMonthView.m in Sources */,
-				2F9BE630193E5FE30037A496 /* DSLCalendarMonthSelectorView.m in Sources */,
-				2F9BE62D193E5FE30037A496 /* DSLCalendarDayCalloutView.m in Sources */,
 				9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */,
 				2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */,
 				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,
 				2F2527741937BCFE00D62E4B /* main.m in Sources */,
 				2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */,
 				2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */,
-				2F9BE634193E5FE30037A496 /* DSLCalendarView.m in Sources */,
 				9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */,
 				2F2527781937BCFE00D62E4B /* AMVAppDelegate.m in Sources */,
 				D8FD225D194648D90032863C /* AMVMedicineCell.m in Sources */,
-				2F9BE62F193E5FE30037A496 /* DSLCalendarDayView.m in Sources */,
 				D8D511181946424C008E407C /* AMVMedicineDAO.m in Sources */,
 				2F9BE5D1193D0E4C0037A496 /* AMVHomeMedicineController.m in Sources */,
-				2F9BE633193E5FE30037A496 /* DSLCalendarRange.m in Sources */,
 				9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */,
 				D8FD226219464BD10032863C /* AMVMedicineDetailsViewController.m in Sources */,
-				2F9BE643193E5FE30037A496 /* NSDate+DSLCalendarView.m in Sources */,
 				D89D05971942388000E18536 /* AMVConsultDetailsViewController.m in Sources */,
 				D89D05A319425B6700E18536 /* AMVConsultCell.m in Sources */,
 			);
