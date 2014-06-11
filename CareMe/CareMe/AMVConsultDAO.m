@@ -53,5 +53,16 @@ static NSArray * _specialities;
     return _specialities;
 }
 
+-(void)deleteConsultWithIndex:(int)index{
+    NSMutableArray *consults = [[NSMutableArray alloc] initWithArray:[self listConsults]];
+    
+    [consults removeObjectAtIndex:index];
+    
+    NSData *consultsData = [NSKeyedArchiver archivedDataWithRootObject:consults];
+    
+    [consultsData writeToFile:[AMVCareMeUtil getDocumentsFilePathWithSuffix:@"consult"] atomically:YES];
+
+    
+}
 
 @end

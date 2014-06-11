@@ -167,8 +167,13 @@
     
 
     if([tableView cellForRowAtIndexPath:indexPath].editing){
-        NSLog(@"celula habilitada\n\n");
-        NSLog(@"Linha = %d", indexPath.row );
+        AMVAddConsultController *consultController = [[AMVAddConsultController alloc] init];
+        
+        AMVConsult *consult = [_consults objectAtIndex:indexPath.row];
+        
+        consultController.consult = consult;
+        
+        [self.navigationController pushViewController:consultController animated:YES];
     }
     else{
         NSInteger linha = indexPath.row;

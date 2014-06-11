@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVConsult.h"
 
 @interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
+@property (nonatomic, strong) AMVConsult *consult;
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
