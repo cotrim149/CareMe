@@ -121,15 +121,18 @@
 
 -(void) editConsult{
     
-    if(self.tableViewConsults.editing){
-        [self.tableViewConsults setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem.title = @"Editar";
-
-    }else{
-        [self.tableViewConsults setEditing:YES animated:YES];
-        self.navigationItem.leftBarButtonItem.title = @"OK";
-        self.tableViewConsults.allowsSelectionDuringEditing = YES;
-
+    if([self.tableViewConsults numberOfRowsInSection:0] > 0){
+        if(self.tableViewConsults.editing){
+            [self.tableViewConsults setEditing:NO animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            
+        }else{
+            [self.tableViewConsults setEditing:YES animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"OK";
+            self.tableViewConsults.allowsSelectionDuringEditing = YES;
+            
+        }
+        
     }
 
 
@@ -211,6 +214,10 @@
         [self.tableViewConsults endUpdates];
         
         [self updateTable];
+        
+        if([self.tableViewConsults numberOfRowsInSection:0] == 0){
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+        }
 
     }
     
