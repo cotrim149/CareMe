@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(short, AMVPeriodEnum){
+    HOUR,
+    WEEK
+};
+
 @interface AMVMedicine : NSObject <NSCoding>
 
 @property (nonatomic) NSString *name;

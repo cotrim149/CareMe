@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DSLCalendarView.h"
 
-@interface AMVAddMedicineController : UIViewController <DSLCalendarViewDelegate, UITextViewDelegate>
+@interface AMVAddMedicineController : UIViewController <UITextViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITextField *medicineNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *medicineDosageTF;
 @property (weak, nonatomic) IBOutlet UITextView *medicineHowUseTV;
+@property (weak, nonatomic) IBOutlet UITextField *startDate;
+@property (weak, nonatomic) IBOutlet UITextField *endDate;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet DSLCalendarView *periodCalendarView;
 @property (weak, nonatomic) IBOutlet UIControl *contentView;
+@property (nonatomic) UIDatePicker *startDatePiker;
+@property (nonatomic) UIDatePicker *endDatePiker;
+
+//-(void)updateStartDate:(id)sender;
 
 @end

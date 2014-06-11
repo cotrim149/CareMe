@@ -8,13 +8,12 @@
 
 #import "AMVAddMedicineController.h"
 #import "AMVCareMeUtil.h"
-#import "DSLCalendarView.h"
 #import "AMVMedicine.h"
 #import "AMVMedicineDAO.h"
 
 @interface AMVAddMedicineController () {
     AMVMedicineDAO *_dao;
-    DSLCalendarRange *_medicinePeriod;
+    UITextField *activeField;
 }
 
 @end
@@ -32,28 +31,41 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     return self;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self addComponentsAndConfigureStyle];
-
+    
+    self.startDatePiker = [[UIDatePicker alloc]init];
+    
+    [self.startDatePiker setDate:[NSDate date]];
+    [self.startDatePiker setDatePickerMode:UIDatePickerModeDateAndTime];
+    [self.startDatePiker addTarget:self action:@selector(updateStartDate:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.startDate setInputView:self.startDatePiker];
+    
+    self.endDatePiker = [[UIDatePicker alloc]init];
+    
+    [self.endDatePiker setDate:[NSDate date]];
+    [self.endDatePiker setDatePickerMode:UIDatePickerModeDate];
+    [self.endDatePiker addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.endDate setInputView:self.endDatePiker];
+    
 }
 
 -(void) addComponentsAndConfigureStyle {
+    
+    self.medicineNameTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.medicineDosageTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     self.medicineHowUseTV.delegate = self;
     self.medicineHowUseTV.text = MEDICINE_HOWUSE_PLACEHOLDER;
     self.medicineHowUseTV.textColor = [UIColor lightGrayColor];
     self.medicineHowUseTV.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.medicineHowUseTV.layer.borderWidth = 1.0f; //make border 1px thick
+    self.medicineHowUseTV.layer.borderWidth =  0.3f;
     self.medicineHowUseTV.layer.cornerRadius = 5.0f;
-    
-    self.medicineNameTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.medicineDosageTF.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     self.tabBarController.tabBar.hidden = YES;
     self.tabBarController.tabBar.translucent = YES;
@@ -62,8 +74,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(addCompleted)];
-    
-    self.periodCalendarView.delegate = self;
     
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
@@ -74,10 +84,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [sender endEditing:YES];
 }
 
--(void) viewWillDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
-}
-
 -(void) addCompleted {
     NSMutableString *errorMsg = [[NSMutableString alloc] init];
     
@@ -85,8 +91,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [errorMsg appendString:@"Nome do medicamento em branco.\n"];
     if([self.medicineDosageTF.text isEqualToString:@""])
         [errorMsg appendString:@"Dosagem em branco.\n"];
-    if(_medicinePeriod == nil)
-        [errorMsg appendString:@"Período em branco.\n"];
+    //    if(_medicinePeriod == nil)
+    //        [errorMsg appendString:@"Período em branco.\n"];
     
     if(![errorMsg isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc]
@@ -103,8 +109,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [medicine setName:self.medicineNameTF.text];
         [medicine setDosage:self.medicineDosageTF.text];
         [medicine setHowUse:self.medicineHowUseTV.text];
-        [medicine setStartDate:_medicinePeriod.startDay];
-        [medicine setEndDate:_medicinePeriod.endDay];
+        //        [medicine setStartDate:_medicinePeriod.startDay];
+        //        [medicine setEndDate:_medicinePeriod.endDay];
         // Salva a entity
         [_dao saveMedicinet:medicine];
         
@@ -118,6 +124,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         textView.text = @"";
         textView.textColor = [UIColor blackColor]; //optional
     }
+    
     [textView becomeFirstResponder];
 }
 
@@ -127,53 +134,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         textView.text = MEDICINE_HOWUSE_PLACEHOLDER;
         textView.textColor = [UIColor lightGrayColor]; //optional
     }
+    
     [textView resignFirstResponder];
-}
-
-- (void)calendarView:(DSLCalendarView *)calendarView didSelectRange:(DSLCalendarRange *)range {
-    if (range != nil) {
-        _medicinePeriod = range;
-        self.scrollView.scrollEnabled = YES;
-    }
-
-}
-
-- (DSLCalendarRange*)calendarView:(DSLCalendarView *)calendarView didDragToDay:(NSDateComponents *)day selectingRange:(DSLCalendarRange *)range {
-    
-    self.scrollView.scrollEnabled = NO;
-    
-    if (NO) { // Only select a single day
-        return [[DSLCalendarRange alloc] initWithStartDay:day endDay:day];
-    }
-    else if (NO) { // Don't allow selections before today
-        NSDateComponents *today = [[NSDate date] dslCalendarView_dayWithCalendar:calendarView.visibleMonth.calendar];
-        
-        NSDateComponents *startDate = range.startDay;
-        NSDateComponents *endDate = range.endDay;
-        
-        if ([self day:startDate isBeforeDay:today] && [self day:endDate isBeforeDay:today]) {
-            return nil;
-        }
-        else {
-            if ([self day:startDate isBeforeDay:today]) {
-                startDate = [today copy];
-            }
-            if ([self day:endDate isBeforeDay:today]) {
-                endDate = [today copy];
-            }
-            
-            return [[DSLCalendarRange alloc] initWithStartDay:startDate endDay:endDate];
-        }
-    }
-    
-    return range;
-}
-
-- (void)calendarView:(DSLCalendarView *)calendarView willChangeToVisibleMonth:(NSDateComponents *)month duration:(NSTimeInterval)duration {
-
-}
-
-- (void)calendarView:(DSLCalendarView *)calendarView didChangeToVisibleMonth:(NSDateComponents *)month {
 }
 
 - (BOOL)day:(NSDateComponents*)day1 isBeforeDay:(NSDateComponents*)day2 {
@@ -184,6 +146,86 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)updateStartDate:(id)sender
+{
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd/MM/yyyy hh:mm"];
+    
+    NSString *dateString = [format stringFromDate:self.startDatePiker.date];
+    
+    self.startDate.text = dateString;
+    
+}
+
+-(void)updateEndDate:(id)sender
+{
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd/MM/yyyy"];
+    
+    NSString *dateString = [format stringFromDate:self.endDatePiker.date];
+    
+    self.endDate.text = dateString;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)notification
+{
+    
+    NSDictionary* info = [notification userInfo];
+    
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 20, 0.0);
+    
+    self.scrollView.contentInset = contentInsets;
+    
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    CGRect aRect = self.view.frame;
+    
+    aRect.size.height -= kbSize.height + 50;
+    
+//    CGPointMake(activeField.frame.size.height, activeField.frame.origin.y);
+    
+    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
+    
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)notification
+{
+    
+    NSDictionary* info = [notification userInfo];
+    
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
+    
+    self.scrollView.contentInset = contentInsets;
+    
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
 }
 
 @end
