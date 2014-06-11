@@ -47,6 +47,7 @@
 }
 
 -(void) updateTable {
+    
     NSComparator comparator;
     NSArray *unsortedConsults = [_dao listConsults];
     
@@ -80,6 +81,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self updateTable];
+    
 }
 
 - (IBAction)changeVisualizationType:(id)sender {
@@ -99,6 +101,14 @@
     
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
+    UIBarButtonItem *editConsultBt = [[UIBarButtonItem alloc]
+                                      initWithTitle:@"Editar"
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(editConsult)];
+    
+    self.navigationItem.leftBarButtonItem = editConsultBt;
+     
     self.visualizationSC.tintColor = [AMVCareMeUtil firstColor];
     [self.visualizationSC setTitle:@"Data" forSegmentAtIndex:0];
     [self.visualizationSC setTitle:@"Especialidade" forSegmentAtIndex:1];
@@ -107,6 +117,20 @@
 
 -(void) addConsult {
     [self.navigationController pushViewController:[[AMVAddConsultController alloc] init] animated:YES];
+}
+
+-(void) editConsult{
+    
+    if(self.tableViewConsults.editing){
+        [self.tableViewConsults setEditing:NO animated:YES];
+
+    }else{
+        [self.tableViewConsults setEditing:YES animated:YES];
+        self.tableViewConsults.allowsSelectionDuringEditing = YES;
+
+    }
+
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,7 +151,7 @@
     if(!cell){
         cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil] objectAtIndex:0];
     }
-    
+
     //Numero da linha
     NSInteger linha = indexPath.row;
     
@@ -138,17 +162,27 @@
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSInteger linha = indexPath.row;
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    AMVConsult *consult = [_consults objectAtIndex:linha];
+
+    if([tableView cellForRowAtIndexPath:indexPath].editing){
+        NSLog(@"celula habilitada\n\n");
+        NSLog(@"Linha = %d", indexPath.row );
+    }
+    else{
+        NSInteger linha = indexPath.row;
+        
+        AMVConsult *consult = [_consults objectAtIndex:linha];
+        
+        AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
+        
+        consultDetails.consult = consult;
+        
+        [self.navigationController pushViewController:consultDetails animated:YES];
+        
+    }
     
-    AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
-    
-    consultDetails.consult = consult;
-    
-    [self.navigationController pushViewController:consultDetails animated:YES];
     
 }
 
