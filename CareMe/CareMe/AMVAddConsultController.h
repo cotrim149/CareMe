@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVHomeConsultController.h"
+#import "AMVEventsManagerDelegate.h"
 
-@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate, AMVEventsManagerDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
+@property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;
+
+@property (weak, nonatomic) IBOutlet UISwitch *addToCalandarSw;
+@property (weak, nonatomic) IBOutlet UILabel *addToCalendarLb;
 
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;

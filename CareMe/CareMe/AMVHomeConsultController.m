@@ -58,7 +58,7 @@
                 
                 NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
                 
-                return [[gregorian dateFromComponents:second] compare:[gregorian dateFromComponents:first]];
+                return [[gregorian dateFromComponents:first] compare:[gregorian dateFromComponents:second]];
             };
             break;
         case VT_SPECIALITY:
@@ -115,9 +115,10 @@
 }
 
 -(void) addConsult {
-    [self.navigationController pushViewController:[[AMVAddConsultController alloc] init] animated:YES];
-}
+    AMVAddConsultController *addConsultController = [[AMVAddConsultController alloc] init];
 
+    [self.navigationController pushViewController:addConsultController animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -15,6 +15,5 @@
 @property (nonatomic) NSString *howUse;
 @property (nonatomic) NSDateComponents *startDate;
 @property (nonatomic) NSDateComponents *endDate;
-@property (nonatomic) 
 
 @end

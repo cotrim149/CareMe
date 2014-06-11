@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     self.doctorNameLb.text = self.consult.doctorName;
-    self.consultDateLb.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu", self.consult.date.day, self.consult.date.month, self.consult.date.year];
+    self.consultDateLb.text = [NSString stringWithFormat:@"%02d/%02d/%02d", self.consult.date.day, self.consult.date.month, self.consult.date.year];
     self.consultPlaceLb.text = self.consult.place;
     self.doctorSpecialityLb.text = self.consult.doctorSpeciality;
     
@@ -48,12 +48,24 @@
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.deleteConsultBt.layer addSublayer:line];
     
+    UIBarButtonItem *editBt = [[UIBarButtonItem alloc] initWithTitle:@"Editar"
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(editConsult)];
+    
+    self.navigationItem.rightBarButtonItem=editBt;
+
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)editConsult {
+    
 }
 
 - (IBAction)deleteConsult:(id)sender {

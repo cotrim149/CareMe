@@ -24,6 +24,7 @@
 		2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B71937D23200D62E4B /* Calendar-Week.png */; };
 		2F2527BC1937D3E900D62E4B /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BA1937D3E900D62E4B /* Folder.png */; };
 		2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BB1937D3E900D62E4B /* Open-Mail.png */; };
+		2F7DDE8F19478F0B00692B51 /* AMVEventsManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */; };
 		2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */; };
 		2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */; };
 		2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */; };
@@ -103,6 +104,9 @@
 		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
 		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
 		2F2527BB1937D3E900D62E4B /* Open-Mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Open-Mail.png"; sourceTree = "<group>"; };
+		2F376D221948C5BA00569682 /* AMVEventsManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVEventsManagerDelegate.h; sourceTree = "<group>"; };
+		2F7DDE8D19478F0B00692B51 /* AMVEventsManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVEventsManagerSingleton.h; sourceTree = "<group>"; };
+		2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVEventsManagerSingleton.m; sourceTree = "<group>"; };
 		2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVCareMeUtil.h; sourceTree = "<group>"; };
 		2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVCareMeUtil.m; sourceTree = "<group>"; };
 		2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddConsultController.h; sourceTree = "<group>"; };
@@ -314,6 +318,9 @@
 			children = (
 				2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */,
 				2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */,
+				2F7DDE8D19478F0B00692B51 /* AMVEventsManagerSingleton.h */,
+				2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */,
+				2F376D221948C5BA00569682 /* AMVEventsManagerDelegate.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -590,6 +597,7 @@
 				2F9BE632193E5FE30037A496 /* DSLCalendarMonthView.m in Sources */,
 				2F9BE630193E5FE30037A496 /* DSLCalendarMonthSelectorView.m in Sources */,
 				2F9BE62D193E5FE30037A496 /* DSLCalendarDayCalloutView.m in Sources */,
+				2F7DDE8F19478F0B00692B51 /* AMVEventsManagerSingleton.m in Sources */,
 				9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */,
 				2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */,
 				2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */,

@@ -25,9 +25,9 @@
 }
 
 -(void)fillWithConsult:(AMVConsult*)consult {    
-    self.doctorNameLb.text = [NSString stringWithFormat:@"Dr. %@", consult.doctorName];
+    self.doctorNameLb.text = [NSString stringWithFormat:@"Dr(a) %@", consult.doctorName];
     self.specialityLb.text = consult.doctorSpeciality;
-    self.consultDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu", consult.date.day, consult.date.month, consult.date.year];
+    self.consultDate.text = [NSString stringWithFormat:@"%02d/%02d/%02d", consult.date.day, consult.date.month, consult.date.year];
     self.consultDate.textColor = [AMVCareMeUtil secondColor];
     self.doctorNameLb.textColor = [AMVCareMeUtil secondColor];
 }

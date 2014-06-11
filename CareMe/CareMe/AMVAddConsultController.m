@@ -10,10 +10,13 @@
 #import "AMVCareMeUtil.h"
 #import "AMVConsult.h"
 #import "AMVConsultDAO.h"
+#import "AMVEventsManagerSingleton.h"
+#import "AMVHomeConsultController.h"
 
 @interface AMVAddConsultController () {
     AMVConsultDAO *_dao;
     NSArray *_specialities;
+    AMVEventsManagerSingleton *_eventsManager;
 }
 
 @end
@@ -26,6 +29,8 @@
     if (self) {
         _dao = [[AMVConsultDAO alloc] init];
         _specialities = [_dao listSpecialities];
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
+        _eventsManager.delegate = self;
     }
     return self;
 }
@@ -33,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self addComponentsAndConfigureStyle];
 }
 
@@ -52,8 +58,84 @@
     [self.specialtyPk selectRow:((int)[_specialities count]/2) inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
+    
+    [self.datePk setMinimumDate:[NSDate date]];
+    
+    
+    CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, 0); // top line
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    CAShapeLayer * line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.5;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addToCalendarLb.layer addSublayer:line];
+    
+    layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
+    path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.5;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addAlarmLb.layer addSublayer:line];
 }
 
+-(void)notifyConsultEventResult:(BOOL)result {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if(result == YES) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Consulta adicionada aos eventos!"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+            
+            
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Não foi possível adicionar a consulta aos eventos. Verifique as permissões do app."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
+}
+
+-(void)notifyMedicineReminderResult:(BOOL)result {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        if(result == YES) {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Consulta foi adicionada aos lembretes!"
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+            
+            
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Não foi possível adicionar a consulta aos lembretes. Verifique as permissões do app."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
+
+}
 
 
 - (IBAction)hideKeyboard:(id)sender {
@@ -78,7 +160,6 @@
 }
 
 -(void) addCompleted {
-
     NSMutableString *errorMsg = [[NSMutableString alloc] init];
     
     
@@ -113,10 +194,16 @@
         // Salva a entity
         [_dao saveConsult:consult];
         
+        if(self.addToCalandarSw.isOn) {
+            [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
+        }
+
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
