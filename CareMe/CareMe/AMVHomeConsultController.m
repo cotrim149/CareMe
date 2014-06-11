@@ -123,9 +123,11 @@
     
     if(self.tableViewConsults.editing){
         [self.tableViewConsults setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem.title = @"Editar";
 
     }else{
         [self.tableViewConsults setEditing:YES animated:YES];
+        self.navigationItem.leftBarButtonItem.title = @"OK";
         self.tableViewConsults.allowsSelectionDuringEditing = YES;
 
     }
@@ -191,4 +193,28 @@
     
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        [_dao deleteConsultWithIndex:indexPath.row];
+
+        NSLog(@"%@",[_dao listConsults]);
+        NSLog(@"%d",indexPath.row);
+        NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
+       
+        [self.tableViewConsults beginUpdates];
+  
+        [self.tableViewConsults deleteRowsAtIndexPaths:consulta withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewConsults endUpdates];
+        
+        [self updateTable];
+
+    }
+    
+}
 @end
