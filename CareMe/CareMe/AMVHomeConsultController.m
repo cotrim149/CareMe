@@ -89,6 +89,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self updateTable];
+    
 }
 
 - (IBAction)changeVisualizationType:(id)sender {
@@ -108,6 +109,14 @@
     
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
+    UIBarButtonItem *editConsultBt = [[UIBarButtonItem alloc]
+                                      initWithTitle:@"Editar"
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(editConsult)];
+    
+    self.navigationItem.leftBarButtonItem = editConsultBt;
+     
     self.visualizationSC.tintColor = [AMVCareMeUtil firstColor];
     [self.visualizationSC setTitle:@"Data" forSegmentAtIndex:0];
     [self.visualizationSC setTitle:@"Especialidade" forSegmentAtIndex:1];
@@ -119,6 +128,26 @@
 
     [self.navigationController pushViewController:addConsultController animated:YES];
 }
+
+-(void) editConsult{
+    
+    if([self.tableViewConsults numberOfRowsInSection:0] > 0){
+        if(self.tableViewConsults.editing){
+            [self.tableViewConsults setEditing:NO animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            
+        }else{
+            [self.tableViewConsults setEditing:YES animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"OK";
+            self.tableViewConsults.allowsSelectionDuringEditing = YES;
+            
+        }
+        
+    }
+
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -137,7 +166,7 @@
     if(!cell){
         cell = [[[NSBundle mainBundle]loadNibNamed:@"AMVConsultCell" owner:self options:nil] objectAtIndex:0];
     }
-    
+
     //Numero da linha
     NSInteger linha = indexPath.row;
     
@@ -148,18 +177,60 @@
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    NSInteger linha = indexPath.row;
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    AMVConsult *consult = [_consults objectAtIndex:linha];
+
+    if([tableView cellForRowAtIndexPath:indexPath].editing){
+        AMVAddConsultController *consultController = [[AMVAddConsultController alloc] init];
+        
+        AMVConsult *consult = [_consults objectAtIndex:indexPath.row];
+        
+        consultController.consultToBeEdited = consult;
+        
+        [self.navigationController pushViewController:consultController animated:YES];
+    }
+    else{
+        NSInteger linha = indexPath.row;
+        
+        AMVConsult *consult = [_consults objectAtIndex:linha];
+        
+        AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
+        
+        consultDetails.consult = consult;
+        
+        [self.navigationController pushViewController:consultDetails animated:YES];
+        
+    }
     
-    AMVConsultDetailsViewController *consultDetails = [[AMVConsultDetailsViewController alloc]init];
-    
-    consultDetails.consult = consult;
-    
-    [self.navigationController pushViewController:consultDetails animated:YES];
     
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        [_dao deleteConsult: [[_dao listConsults] objectAtIndex:indexPath.row]];
+
+        NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
+       
+        [self.tableViewConsults beginUpdates];
+  
+        [self.tableViewConsults deleteRowsAtIndexPaths:consulta withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewConsults endUpdates];
+        
+        [self updateTable];
+        
+        if([self.tableViewConsults numberOfRowsInSection:0] == 0){
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+        }
+
+    }
+    
+}
 @end

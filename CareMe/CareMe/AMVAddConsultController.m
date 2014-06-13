@@ -8,7 +8,6 @@
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
-#import "AMVConsult.h"
 #import "AMVConsultDAO.h"
 #import "AMVEventsManagerSingleton.h"
 #import "AMVHomeConsultController.h"
@@ -40,6 +39,16 @@
     [super viewDidLoad];
     
     [self addComponentsAndConfigureStyle];
+    
+    if(_consultToBeEdited){
+        self.doctorNameTF.text = _consultToBeEdited.doctorName;
+        self.placeTF.text = _consultToBeEdited.place;
+        [self.specialtyPk selectRow:_consultToBeEdited.idDoctorSpeciality inComponent:0 animated:YES];
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        [self.datePk setDate:[calendar dateFromComponents:_consultToBeEdited.date]];
+    }
+    
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -58,9 +67,15 @@
     [self.specialtyPk selectRow:((int)[_specialities count]/2) inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
-    
-    [self.datePk setMinimumDate:[NSDate date]];
-    
+
+    if(_consultToBeEdited) {
+        NSDate *editedConsultDate = [[NSCalendar currentCalendar] dateFromComponents: _consultToBeEdited.date];
+        NSDate *nowDate = [NSDate date];
+        NSDate *oldestDate = [editedConsultDate earlierDate:nowDate]; 
+        self.datePk.minimumDate = oldestDate;
+    } else {
+        self.datePk.minimumDate = [NSDate date];
+    }
     
     CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
     CGMutablePathRef path = CGPathCreateMutable();
@@ -181,23 +196,37 @@
         [alert show];
         
     } else {
-        
-        // Popula a entity
-        AMVConsult *consult = [[AMVConsult alloc] init];
-        
-        consult.place = self.placeTF.text;
-        consult.doctorName = self.doctorNameTF.text;
-        consult.idDoctorSpeciality = [self getPickerEspecialityID];
-        consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
-        consult.date = [self getPickerDate];
-        
-        // Salva a entity
-        [_dao saveConsult:consult];
-        
-        if(self.addToCalandarSw.isOn) {
-            [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
-        }
+        // EDITANDO
+        if(_consultToBeEdited){
+            [_dao deleteConsult:_consultToBeEdited];
 
+            AMVConsult *consult = [[AMVConsult alloc] init];
+            
+            consult.place = self.placeTF.text;
+            consult.doctorName = self.doctorNameTF.text;
+            consult.idDoctorSpeciality = [self getPickerEspecialityID];
+            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+            consult.date = [self getPickerDate];
+            
+            [_dao saveConsult:consult];
+            
+        // NOVO
+        } else {
+            // Popula a entity
+            AMVConsult *consult = [[AMVConsult alloc] init];
+            
+            consult.place = self.placeTF.text;
+            consult.doctorName = self.doctorNameTF.text;
+            consult.idDoctorSpeciality = [self getPickerEspecialityID];
+            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+            consult.date = [self getPickerDate];
+            
+            // Salva a entity
+            [_dao saveConsult:consult];
+            if(self.addToCalandarSw.isOn) {
+                [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
+            }
+        }
         
         [self.navigationController popViewControllerAnimated:YES];
     }
