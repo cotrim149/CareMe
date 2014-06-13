@@ -155,32 +155,35 @@
     
 }
 
-//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return YES;
-//}
-//
-//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    if(editingStyle == UITableViewCellEditingStyleDelete){
-//        
-//        [_dao deleteConsult: [[_dao listConsults] objectAtIndex:indexPath.row]];
-//        
-//        NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
-//        
-//        [self.tableViewMedicines beginUpdates];
-//        
-//        [self.tableViewMedicines deleteRowsAtIndexPaths:consulta withRowAnimation:UITableViewRowAnimationFade];
-//        [self.tableViewMedicines insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
-//        [self.tableViewMedicines endUpdates];
-//        
-//        //[self updateTable];
-//        
-//        if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
-//            self.navigationItem.leftBarButtonItem.title = @"Editar";
-//        }
-//        
-//    }
-//    
-//}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        [_dao deleteMedicine: [[_dao listMedicines] objectAtIndex:indexPath.row]];
+        
+        NSArray *medicines = [NSArray arrayWithObjects:indexPath, nil];
+        
+        [self.tableViewMedicines beginUpdates];
+        [self.tableViewMedicines deleteRowsAtIndexPaths:medicines withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewMedicines insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.tableViewMedicines endUpdates];
+        
+        _medicines = [_dao listMedicines];
+        
+        [self.tableViewMedicines reloadData];
+        
+        if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            NSLog(@"%ld",(long)[self.tableViewMedicines numberOfRowsInSection:0]);
+        }
+        
+    }
+    
+}
 
 @end
