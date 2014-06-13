@@ -179,7 +179,6 @@
         
         if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
             self.navigationItem.leftBarButtonItem.title = @"Editar";
-            NSLog(@"%ld",(long)[self.tableViewMedicines numberOfRowsInSection:0]);
         }
         
     }

@@ -34,6 +34,12 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     [self addComponentsAndConfigureStyle];
     
+    if(_medicineToBeEdited){
+        self.medicineNameTF.text = _medicineToBeEdited.name;
+        self.medicineDosageTF.text = _medicineToBeEdited.dosage;
+        self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
+    }
+    
     self.startDatePiker = [[UIDatePicker alloc]init];
     
     [self.startDatePiker setDate:[NSDate date]];
@@ -101,15 +107,32 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [alert show];
     }
     else{
-        // Popula a entity
-        AMVMedicine *medicine = [[AMVMedicine alloc] init];
-        [medicine setName:self.medicineNameTF.text];
-        [medicine setDosage:self.medicineDosageTF.text];
-        [medicine setHowUse:self.medicineHowUseTV.text];
-        //        [medicine setStartDate:_medicinePeriod.startDay];
-        //        [medicine setEndDate:_medicinePeriod.endDay];
-        // Salva a entity
-        [_dao saveMedicinet:medicine];
+        // EDITADO
+        if(_medicineToBeEdited){
+            [_dao deleteMedicine:_medicineToBeEdited];
+            
+            AMVMedicine *medicine = [[AMVMedicine alloc] init];
+            
+            medicine.name = self.medicineNameTF.text;
+            medicine.dosage = self.medicineDosageTF.text;
+            medicine.howUse = self.medicineHowUseTV.text;
+            
+            [_dao saveMedicinet:medicine];
+         
+        // NOVO
+        }else {
+            // Popula a entity
+            AMVMedicine *medicine = [[AMVMedicine alloc] init];
+            [medicine setName:self.medicineNameTF.text];
+            [medicine setDosage:self.medicineDosageTF.text];
+            [medicine setHowUse:self.medicineHowUseTV.text];
+            //        [medicine setStartDate:_medicinePeriod.startDay];
+            //        [medicine setEndDate:_medicinePeriod.endDay];
+            // Salva a entity
+            [_dao saveMedicinet:medicine];
+            
+        }
+        
         
         [self.navigationController popViewControllerAnimated:YES];
     }
