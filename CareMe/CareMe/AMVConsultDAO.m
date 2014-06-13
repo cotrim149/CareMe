@@ -53,8 +53,21 @@ static NSArray * _specialities;
     return _specialities;
 }
 
--(void)deleteConsultWithIndex:(int)index{
+-(void)deleteConsult:(AMVConsult*)consult{
+    int index=0;
+    
     NSMutableArray *consults = [[NSMutableArray alloc] initWithArray:[self listConsults]];
+    
+    for (int i=0; i< [consults count]; i++) {
+        AMVConsult *tempConsult = [consults objectAtIndex:i];
+        
+        if([tempConsult.doctorName isEqualToString:consult.doctorName]
+           && [tempConsult.place isEqualToString:consult.place]
+           && tempConsult.idDoctorSpeciality == consult.idDoctorSpeciality
+           && [tempConsult.date isEqual:consult.date]) {
+            index = i;
+        }
+    }
     
     [consults removeObjectAtIndex:index];
     

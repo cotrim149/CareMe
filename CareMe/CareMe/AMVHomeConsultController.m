@@ -128,6 +128,26 @@
 
     [self.navigationController pushViewController:addConsultController animated:YES];
 }
+
+-(void) editConsult{
+    
+    if([self.tableViewConsults numberOfRowsInSection:0] > 0){
+        if(self.tableViewConsults.editing){
+            [self.tableViewConsults setEditing:NO animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            
+        }else{
+            [self.tableViewConsults setEditing:YES animated:YES];
+            self.navigationItem.leftBarButtonItem.title = @"OK";
+            self.tableViewConsults.allowsSelectionDuringEditing = YES;
+            
+        }
+        
+    }
+
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -166,7 +186,7 @@
         
         AMVConsult *consult = [_consults objectAtIndex:indexPath.row];
         
-        consultController.consult = consult;
+        consultController.consultToBeEdited = consult;
         
         [self.navigationController pushViewController:consultController animated:YES];
     }
@@ -193,7 +213,8 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if(editingStyle == UITableViewCellEditingStyleDelete){
-        [_dao deleteConsultWithIndex:indexPath.row];
+        
+        [_dao deleteConsult: [[_dao listConsults] objectAtIndex:indexPath.row]];
 
         NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
        

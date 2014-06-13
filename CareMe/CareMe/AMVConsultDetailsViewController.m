@@ -31,7 +31,7 @@
     [super viewDidLoad];
     
     self.doctorNameLb.text = self.consult.doctorName;
-    self.consultDateLb.text = [NSString stringWithFormat:@"%02d/%02d/%02d", self.consult.date.day, self.consult.date.month, self.consult.date.year];
+    self.consultDateLb.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld %02ld:%02ld", (long)self.consult.date.day, (long)self.consult.date.month, (long)self.consult.date.year, (long)self.consult.date.hour, (long)self.consult.date.minute];
     self.consultPlaceLb.text = self.consult.place;
     self.doctorSpecialityLb.text = self.consult.doctorSpeciality;
     

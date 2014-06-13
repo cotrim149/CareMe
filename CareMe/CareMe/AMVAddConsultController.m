@@ -40,13 +40,13 @@
     
     [self addComponentsAndConfigureStyle];
     
-    if(_consult){
-        self.doctorNameTF.text = _consult.doctorName;
-        self.placeTF.text = _consult.place;
-        [self.specialtyPk selectRow:_consult.idDoctorSpeciality inComponent:0 animated:YES];
+    if(_consultToBeEdited){
+        self.doctorNameTF.text = _consultToBeEdited.doctorName;
+        self.placeTF.text = _consultToBeEdited.place;
+        [self.specialtyPk selectRow:_consultToBeEdited.idDoctorSpeciality inComponent:0 animated:YES];
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
-        [self.datePk setDate:[calendar dateFromComponents:_consult.date]];
+        [self.datePk setDate:[calendar dateFromComponents:_consultToBeEdited.date]];
     }
     
 }
@@ -67,9 +67,15 @@
     [self.specialtyPk selectRow:((int)[_specialities count]/2) inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
-    
-    [self.datePk setMinimumDate:[NSDate date]];
-    
+
+    if(_consultToBeEdited) {
+        NSDate *editedConsultDate = [[NSCalendar currentCalendar] dateFromComponents: _consultToBeEdited.date];
+        NSDate *nowDate = [NSDate date];
+        NSDate *oldestDate = [editedConsultDate earlierDate:nowDate]; 
+        self.datePk.minimumDate = oldestDate;
+    } else {
+        self.datePk.minimumDate = [NSDate date];
+    }
     
     CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
     CGMutablePathRef path = CGPathCreateMutable();
@@ -190,25 +196,9 @@
         [alert show];
         
     } else {
-        if(_consult){
-            NSMutableArray *consultas = [[NSMutableArray alloc] initWithArray:[_dao listConsults]];
-            int index=0;
-            
-            for (int i=0; i< [consultas count]; i++) {
-                AMVConsult *tempConsult = [consultas objectAtIndex:i];
-                
-                if([tempConsult.doctorName isEqualToString:_consult.doctorName]){
-                    if([tempConsult.place isEqualToString:_consult.place]){
-                        if(tempConsult.idDoctorSpeciality == _consult.idDoctorSpeciality){
-                            if([tempConsult.date isEqual:_consult.date]){
-                                index = i;
-                            }
-                        }
-                    }
-                }
-            }
-
-            [_dao deleteConsultWithIndex:index];
+        // EDITANDO
+        if(_consultToBeEdited){
+            [_dao deleteConsult:_consultToBeEdited];
 
             AMVConsult *consult = [[AMVConsult alloc] init];
             
@@ -218,9 +208,10 @@
             consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
             consult.date = [self getPickerDate];
             
-            
             [_dao saveConsult:consult];
-        }else{
+            
+        // NOVO
+        } else {
             // Popula a entity
             AMVConsult *consult = [[AMVConsult alloc] init];
             
@@ -232,13 +223,10 @@
             
             // Salva a entity
             [_dao saveConsult:consult];
-            
+            if(self.addToCalandarSw.isOn) {
+                [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
+            }
         }
-        
-        if(self.addToCalandarSw.isOn) {
-            [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
-        }
-
         
         [self.navigationController popViewControllerAnimated:YES];
     }

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AMVHomeConsultController.h"
 #import "AMVEventsManagerDelegate.h"
+#import "AMVConsult.h"
 
 @interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate, AMVEventsManagerDelegate>
 
@@ -18,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *addToCalandarSw;
 @property (weak, nonatomic) IBOutlet UILabel *addToCalendarLb;
 
-@property (nonatomic, strong) AMVConsult *consult;
+@property (nonatomic, strong) AMVConsult *consultToBeEdited;
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;

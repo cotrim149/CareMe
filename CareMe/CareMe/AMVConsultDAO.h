@@ -14,5 +14,5 @@
 -(void)saveConsult:(AMVConsult*)consult;
 -(NSArray*)listConsults;
 -(NSArray*)listSpecialities;
--(void)deleteConsultWithIndex:(int)index;
+-(void)deleteConsult:(AMVConsult*)consult;
 @end
