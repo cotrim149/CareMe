@@ -8,7 +8,6 @@
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
-#import "AMVConsult.h"
 #import "AMVConsultDAO.h"
 #import "AMVEventsManagerSingleton.h"
 #import "AMVHomeConsultController.h"
@@ -40,6 +39,16 @@
     [super viewDidLoad];
     
     [self addComponentsAndConfigureStyle];
+    
+    if(_consult){
+        self.doctorNameTF.text = _consult.doctorName;
+        self.placeTF.text = _consult.place;
+        [self.specialtyPk selectRow:_consult.idDoctorSpeciality inComponent:0 animated:YES];
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        [self.datePk setDate:[calendar dateFromComponents:_consult.date]];
+    }
+    
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -181,18 +190,50 @@
         [alert show];
         
     } else {
-        
-        // Popula a entity
-        AMVConsult *consult = [[AMVConsult alloc] init];
-        
-        consult.place = self.placeTF.text;
-        consult.doctorName = self.doctorNameTF.text;
-        consult.idDoctorSpeciality = [self getPickerEspecialityID];
-        consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
-        consult.date = [self getPickerDate];
-        
-        // Salva a entity
-        [_dao saveConsult:consult];
+        if(_consult){
+            NSMutableArray *consultas = [[NSMutableArray alloc] initWithArray:[_dao listConsults]];
+            int index=0;
+            
+            for (int i=0; i< [consultas count]; i++) {
+                AMVConsult *tempConsult = [consultas objectAtIndex:i];
+                
+                if([tempConsult.doctorName isEqualToString:_consult.doctorName]){
+                    if([tempConsult.place isEqualToString:_consult.place]){
+                        if(tempConsult.idDoctorSpeciality == _consult.idDoctorSpeciality){
+                            if([tempConsult.date isEqual:_consult.date]){
+                                index = i;
+                            }
+                        }
+                    }
+                }
+            }
+
+            [_dao deleteConsultWithIndex:index];
+
+            AMVConsult *consult = [[AMVConsult alloc] init];
+            
+            consult.place = self.placeTF.text;
+            consult.doctorName = self.doctorNameTF.text;
+            consult.idDoctorSpeciality = [self getPickerEspecialityID];
+            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+            consult.date = [self getPickerDate];
+            
+            
+            [_dao saveConsult:consult];
+        }else{
+            // Popula a entity
+            AMVConsult *consult = [[AMVConsult alloc] init];
+            
+            consult.place = self.placeTF.text;
+            consult.doctorName = self.doctorNameTF.text;
+            consult.idDoctorSpeciality = [self getPickerEspecialityID];
+            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+            consult.date = [self getPickerDate];
+            
+            // Salva a entity
+            [_dao saveConsult:consult];
+            
+        }
         
         if(self.addToCalandarSw.isOn) {
             [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];

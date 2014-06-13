@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *addToCalandarSw;
 @property (weak, nonatomic) IBOutlet UILabel *addToCalendarLb;
 
+@property (nonatomic, strong) AMVConsult *consult;
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
