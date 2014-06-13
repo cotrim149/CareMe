@@ -204,6 +204,10 @@
     
 }
 
+- (IBAction)addToCalendarChange:(id)sender {
+    self.addAlarmSw.enabled = self.addToCalandarSw.isOn ? YES : NO;
+}
+
 
 - (void)didReceiveMemoryWarning
 {
