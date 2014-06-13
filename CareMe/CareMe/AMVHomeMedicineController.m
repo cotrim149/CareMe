@@ -27,6 +27,9 @@
         self.tabBarItem=consultItem;
         
         _dao = [[AMVMedicineDAO alloc]init];
+        
+        _titleLeftBarButtonEditing = @"Editar";
+        _titleLeftBarButtonOK = @"OK";
 
     }
     return self;
@@ -40,8 +43,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     _medicines = [_dao listMedicines];
-    
     [self.tableViewMedicines reloadData];
+    if(self.tableViewMedicines.editing){
+        [self.tableViewMedicines setEditing:NO];
+        self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
+    }
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -57,7 +63,7 @@
     self.navigationItem.rightBarButtonItem=addMedicineBt;
     
     UIBarButtonItem *editMedicineBt = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"Editar"
+                                      initWithTitle:_titleLeftBarButtonEditing
                                       style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(editMedicine)];
@@ -84,11 +90,11 @@
     if([self.tableViewMedicines numberOfRowsInSection:0] > 0){
         if(self.tableViewMedicines.editing){
             [self.tableViewMedicines setEditing:NO animated:YES];
-            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
             
         }else{
             [self.tableViewMedicines setEditing:YES animated:YES];
-            self.navigationItem.leftBarButtonItem.title = @"OK";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonOK;
             self.tableViewMedicines.allowsSelectionDuringEditing = YES;
             
         }
@@ -178,7 +184,7 @@
         [self.tableViewMedicines reloadData];
         
         if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
-            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
         }
         
     }

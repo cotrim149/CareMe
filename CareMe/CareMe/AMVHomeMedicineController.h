@@ -15,9 +15,13 @@
 #import "AMVMedicineDetailsViewController.h"
 
 @interface AMVHomeMedicineController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-
+{
+    NSString *_titleLeftBarButtonEditing;
+    NSString *_titleLeftBarButtonOK;
+}
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dayPeriodSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMedicines;
+
 
 @end
