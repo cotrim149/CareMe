@@ -28,7 +28,16 @@
     
     [super viewDidLoad];
     
-    self.name.text = self.medicine.name;
+    self.name.text = [NSString stringWithFormat:@"Remédio: %@",self.medicine.name];
+    self.dosage.text = [NSString stringWithFormat:@"Dosagem: %@", self.medicine.dosage];
+    self.howUse.text = [NSString stringWithFormat:@"Como usar: %@", self.medicine.howUse];
+    self.startDate.text = [NSString stringWithFormat:@"Início: %02lu/%02lu/%02lu",self.medicine.startDate.day, self.medicine.startDate.month, self.medicine.startDate.year];
+    
+    self.endDate.text = [NSString stringWithFormat:@"Fim: %02lu/%02lu/%02lu",self.medicine.endDate.day, self.medicine.endDate.month, self.medicine.endDate.year];
+    
+    NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
+    
+    self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
     
     // Do any additional setup after loading the view from its nib.
 }

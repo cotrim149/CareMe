@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AMVAddMedicineController : UIViewController <UITextViewDelegate>
+@interface AMVAddMedicineController : UIViewController <UITextViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITextField *medicineNameTF;
@@ -18,9 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *endDate;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIControl *contentView;
-@property (nonatomic) UIDatePicker *startDatePiker;
-@property (nonatomic) UIDatePicker *endDatePiker;
-
-//-(void)updateStartDate:(id)sender;
+@property (nonatomic) UIDatePicker *startDatePicker;
+@property (nonatomic) UIDatePicker *endDatePicker;
+@property (weak, nonatomic) IBOutlet UIPickerView *periodPicker;
 
 @end

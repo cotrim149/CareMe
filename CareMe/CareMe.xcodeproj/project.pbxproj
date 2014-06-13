@@ -220,12 +220,12 @@
 		2F2527961937BDF800D62E4B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
+				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
 				D89D05941942388000E18536 /* AMVConsultDetailsViewController.h */,
 				D89D05951942388000E18536 /* AMVConsultDetailsViewController.m */,
 				2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */,
 				2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */,
-				2F9BE5C9193CFCFD0037A496 /* AMVAddConsultController.h */,
-				2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -349,10 +349,10 @@
 		D8CFD9111947716900EAC205 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
-				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
 				2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */,
 				2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */,
+				2F9BE5CE193D0E4C0037A496 /* AMVHomeMedicineController.h */,
+				2F9BE5CF193D0E4C0037A496 /* AMVHomeMedicineController.m */,
 				D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */,
 				D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */,
 			);
@@ -479,9 +479,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F9BE632193E5FE30037A496 /* DSLCalendarMonthView.m in Sources */,
-				2F9BE630193E5FE30037A496 /* DSLCalendarMonthSelectorView.m in Sources */,
-				2F9BE62D193E5FE30037A496 /* DSLCalendarDayCalloutView.m in Sources */,
 				2F7DDE8F19478F0B00692B51 /* AMVEventsManagerSingleton.m in Sources */,
 				9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */,
 				2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */,
