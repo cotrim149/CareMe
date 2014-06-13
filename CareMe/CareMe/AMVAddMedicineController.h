@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVCareMeUtil.h"
+#import "AMVMedicine.h"
+#import "AMVMedicineDAO.h"
 
 @interface AMVAddMedicineController : UIViewController <UITextViewDelegate>
 
+@property (nonatomic) AMVMedicine *medicineToBeEdited;
 
 @property (weak, nonatomic) IBOutlet UITextField *medicineNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *medicineDosageTF;

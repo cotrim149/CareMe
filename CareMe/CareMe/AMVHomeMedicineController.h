@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AMVCareMeUtil.h"
+#import "AMVAddMedicineController.h"
+#import "AMVMedicineDAO.h"
+#import "AMVMedicineCell.h"
+#import "AMVMedicine.h"
+#import "AMVMedicineDetailsViewController.h"
 
 @interface AMVHomeMedicineController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *dayPeriodSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMedicines;
+
 @end
