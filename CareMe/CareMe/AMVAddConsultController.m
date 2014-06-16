@@ -214,9 +214,11 @@
             _consultToBeEdited.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
             _consultToBeEdited.date = [self getPickerDate];
             
-            NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
-            
-            [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
+            if(_consultToBeEdited.eventId != nil) {
+                NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
+                
+                [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
+            }
 
             [_dao saveConsult:_consultToBeEdited];
             
@@ -235,6 +237,8 @@
                 NSString *eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
                 
                 [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
+                
+                consult.eventId = eventId;
             }
             
             // Salva a entity

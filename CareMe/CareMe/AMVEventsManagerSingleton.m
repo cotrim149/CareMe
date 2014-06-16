@@ -36,8 +36,7 @@ static AMVEventsManagerSingleton *_instance;
 }
 
 -(NSString*) manipulateConsultEvent: (AMVConsult*)consult withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType {
-    __block BOOL sucess = NO;
-
+    
     EKEvent *calendarEvent = nil;
     if(manipulationType == CREATE_EVENT)
         calendarEvent  = [EKEvent eventWithEventStore:_store];
@@ -68,7 +67,6 @@ static AMVEventsManagerSingleton *_instance;
     }
     
     if([self checkLockFile] == NO) {
-        NSLog(@"Nao existe lock");
         if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
             // iOS 6 and later
             [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
@@ -80,21 +78,23 @@ static AMVEventsManagerSingleton *_instance;
             [self createLockFile];
         }
     }
-    
-    NSError *err;
-    if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
-        [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
-    else if(manipulationType == DELETE_EVENT)
-        [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
-    
-    if (err == noErr) {
-        sucess = YES;
-    } else {
-        NSLog(@"Error manipulating data: %@", err);
-        return nil;
+    if([self checkLockFile] == YES) {
+        NSError *err;
+        if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
+            [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
+        else if(manipulationType == DELETE_EVENT)
+            [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
+        
+        if (err != noErr) {
+            NSLog(@"Error manipulating data: %@", err);
+            return nil;
+        }
     }
     
-    return  calendarEvent.eventIdentifier;
+   if(manipulationType == DELETE_EVENT)
+       return @"";
+   else
+        return  calendarEvent.eventIdentifier;
 }
 
 -(BOOL) checkLockFile {

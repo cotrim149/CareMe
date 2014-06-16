@@ -193,6 +193,7 @@
         AMVConsult *consult = [_consults objectAtIndex:indexPath.row];
         
         consultController.consultToBeEdited = consult;
+        NSLog(@"ID da edit = %@", consultController.consultToBeEdited.eventId);
         
         [self.navigationController pushViewController:consultController animated:YES];
     }
@@ -257,8 +258,10 @@
     if(editingStyle == UITableViewCellEditingStyleDelete){
         AMVConsult *consultToBeDeleted = [[_dao listConsults] objectAtIndex:indexPath.row];
         
-        NSString *eventId = [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
-        [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
+        if(consultToBeDeleted.eventId != nil) {
+            NSString *eventId = [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
+            [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
+        }
         
         [_dao deleteConsult: consultToBeDeleted];
 
