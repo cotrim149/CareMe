@@ -27,7 +27,6 @@
     if (self) {
         _dao = [[AMVConsultDAO alloc] init];
         _eventsManager = [AMVEventsManagerSingleton getInstance];
-        _eventsManager.delegate = self;
     }
     return self;
 }
@@ -72,7 +71,9 @@
                 case DELETE_EVENT:
                     msg = @"Consulta foi removida dos eventos!";
                     break;
-                    
+                case CREATE_EVENT:
+                    msg = @"Consulta foi adicionada aos aventos!";
+                    break;
                 default:
                     break;
             }
@@ -139,7 +140,8 @@
     if (buttonIndex == actionSheet.destructiveButtonIndex)
     {
         [_dao deleteConsult:self.consult];
-        [_eventsManager manipulateConsultEvent:self.consult withAlarm:NO manipulationType:DELETE_EVENT];
+        NSString *eventId = [_eventsManager manipulateConsultEvent:self.consult withAlarm:NO manipulationType:DELETE_EVENT];
+        [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
         [self.navigationController popViewControllerAnimated:YES];
     } 
 }

@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AMVHomeConsultController.h"
-#import "AMVEventsManagerDelegate.h"
 #import "AMVConsult.h"
 
-@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate, AMVEventsManagerDelegate>
+@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
 @property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;

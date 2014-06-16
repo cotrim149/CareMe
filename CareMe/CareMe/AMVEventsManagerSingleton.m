@@ -9,6 +9,7 @@
 #import "AMVEventsManagerSingleton.h"
 #import <EventKit/EventKit.h>
 #import "AMVConsultDAO.h"
+#import "AMVCareMeUtil.h"
 
 @implementation AMVEventsManagerSingleton {
     EKEventStore *_store;
@@ -46,7 +47,6 @@ static AMVEventsManagerSingleton *_instance;
     if(calendarEvent == nil) {
         return nil;
     }
-    
 
     if (manipulationType == CREATE_EVENT || manipulationType == UPDATE_EVENT) {
         NSCalendar *cal = [NSCalendar currentCalendar];
@@ -67,38 +67,46 @@ static AMVEventsManagerSingleton *_instance;
         }
     }
     
-    if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-        // iOS 6 and later
-        
-        // ISSSO SO PRECISA SER FEITO UMA UNICA VEEEEZ
-//        [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-//            if (granted) {
-//                // code here for when the user allows your app to access the calendar
-                NSError *err;
-                if(manipulationType == CREATE_EVENT || manipulationType == UPDATE_EVENT)
-                    [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
-                else if(manipulationType == DELETE_EVENT)
-                    [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
-                
-                if (err == noErr) {
-                    sucess = YES;
+    if([self checkLockFile] == NO) {
+        NSLog(@"Nao existe lock");
+        if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+            // iOS 6 and later
+            [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+                if (granted) {
+                    [self createLockFile];
                 }
-//            }
-        
-            //[self.delegate notifyConsultEventResult:sucess manipulationType:manipulationType];
-            self.delegate = nil;
-//        }];
+            }];
+        } else {
+            [self createLockFile];
+        }
+    }
+    
+    NSError *err;
+    if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
+        [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
+    else if(manipulationType == DELETE_EVENT)
+        [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
+    
+    if (err == noErr) {
+        sucess = YES;
     } else {
-        // code here for iOS < 6.0
-        NSError *err;
-        if (err == noErr)
-            sucess = YES;
-        
-        [self.delegate notifyConsultEventResult:sucess manipulationType:manipulationType];
-        self.delegate = nil;
+        NSLog(@"Error manipulating data: %@", err);
+        return nil;
     }
     
     return  calendarEvent.eventIdentifier;
+}
+
+-(BOOL) checkLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"lock"];
+    
+    return [[NSFileManager defaultManager] fileExistsAtPath:lockFile];
+}
+
+-(void) createLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"lock"];
+    
+    [[NSData data] writeToFile:lockFile options:NSDataWritingAtomic error:nil];
 }
 
 //-(void) addConsultReminder:(AMVConsult *)consult withAlarm: (BOOL) withAlarm{
