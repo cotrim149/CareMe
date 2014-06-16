@@ -19,6 +19,8 @@
         self.howUse = [decoder decodeObjectForKey:@"howUse"];
         self.startDate = [decoder decodeObjectForKey:@"startDate"];
         self.endDate = [decoder decodeObjectForKey:@"endDate"];
+        self.periodValue = [decoder decodeIntegerForKey:@"periodValue"];
+        self.periodType = [decoder decodeIntegerForKey:@"periodType"];
     }
     return self;
 }
@@ -30,6 +32,8 @@
     [encoder encodeObject:self.howUse forKey:@"howUse"];
     [encoder encodeObject:self.startDate forKey:@"startDate"];
     [encoder encodeObject:self.endDate forKey:@"endDate"];
+    [encoder encodeInteger:self.periodValue forKey:@"periodValue"];
+    [encoder encodeInteger:self.periodType forKey:@"periodType"];
 }
 
 -(NSString*)description{

@@ -13,7 +13,9 @@
 
 @interface AMVAddMedicineController () {
     AMVMedicineDAO *_dao;
-    UITextField *activeField;
+    UITextField *_activeField;
+    NSArray *_periodTypes;
+    NSArray *_periodValues;
 }
 
 @end
@@ -27,6 +29,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dao = [[AMVMedicineDAO alloc]init];
+        _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
+        _periodValues = [self getPeriodValues];
+        
     }
     return self;
 }
@@ -37,21 +42,21 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     [self addComponentsAndConfigureStyle];
     
-    self.startDatePiker = [[UIDatePicker alloc]init];
+    self.startDatePicker = [[UIDatePicker alloc]init];
     
-    [self.startDatePiker setDate:[NSDate date]];
-    [self.startDatePiker setDatePickerMode:UIDatePickerModeDateAndTime];
-    [self.startDatePiker addTarget:self action:@selector(updateStartDate:) forControlEvents:UIControlEventValueChanged];
+    [self.startDatePicker setDate:[NSDate date]];
+    [self.startDatePicker setDatePickerMode:UIDatePickerModeDateAndTime];
+    [self.startDatePicker addTarget:self action:@selector(updateStartDate:) forControlEvents:UIControlEventValueChanged];
     
-    [self.startDate setInputView:self.startDatePiker];
+    [self.startDate setInputView:self.startDatePicker];
     
-    self.endDatePiker = [[UIDatePicker alloc]init];
+    self.endDatePicker = [[UIDatePicker alloc]init];
     
-    [self.endDatePiker setDate:[NSDate date]];
-    [self.endDatePiker setDatePickerMode:UIDatePickerModeDate];
-    [self.endDatePiker addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventValueChanged];
+    [self.endDatePicker setDate:[NSDate date]];
+    [self.endDatePicker setDatePickerMode:UIDatePickerModeDate];
+    [self.endDatePicker addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventValueChanged];
     
-    [self.endDate setInputView:self.endDatePiker];
+    [self.endDate setInputView:self.endDatePicker];
     
 }
 
@@ -66,6 +71,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self.medicineHowUseTV.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.medicineHowUseTV.layer.borderWidth =  0.3f;
     self.medicineHowUseTV.layer.cornerRadius = 5.0f;
+    
+    self.periodPicker.transform = CGAffineTransformMakeScale(0.8, 0.8);
     
     self.tabBarController.tabBar.hidden = YES;
     self.tabBarController.tabBar.translucent = YES;
@@ -109,8 +116,13 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [medicine setName:self.medicineNameTF.text];
         [medicine setDosage:self.medicineDosageTF.text];
         [medicine setHowUse:self.medicineHowUseTV.text];
-        //        [medicine setStartDate:_medicinePeriod.startDay];
-        //        [medicine setEndDate:_medicinePeriod.endDay];
+        [medicine setStartDate: [self getDateComponent:self.startDatePicker] ];
+        [medicine setEndDate:[self getDateComponent:self.endDatePicker]];
+        
+        [medicine setPeriodType:(AMVPeriodEnum)[self.periodPicker selectedRowInComponent:1]];
+        
+        [medicine setPeriodValue:(NSInteger)[self.periodPicker selectedRowInComponent:0] + 1];
+        
         // Salva a entity
         [_dao saveMedicinet:medicine];
         
@@ -154,9 +166,11 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"dd/MM/yyyy hh:mm"];
     
-    NSString *dateString = [format stringFromDate:self.startDatePiker.date];
+    NSString *dateString = [format stringFromDate:self.startDatePicker.date];
     
     self.startDate.text = dateString;
+    
+    [self.endDatePicker setMinimumDate:self.startDatePicker.date];
     
 }
 
@@ -166,7 +180,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"dd/MM/yyyy"];
     
-    NSString *dateString = [format stringFromDate:self.endDatePiker.date];
+    NSString *dateString = [format stringFromDate:self.endDatePicker.date];
     
     self.endDate.text = dateString;
     
@@ -206,8 +220,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
 //    CGPointMake(activeField.frame.size.height, activeField.frame.origin.y);
     
-    if (!CGRectContainsPoint(aRect, activeField.frame.origin) ) {
-        [self.scrollView scrollRectToVisible:activeField.frame animated:YES];
+    if (!CGRectContainsPoint(aRect, _activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:_activeField.frame animated:YES];
     }
     
 }
@@ -226,6 +240,72 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
+}
+
+-(NSDateComponents *)getDateComponent:(UIDatePicker *) datePicker{
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents *components = [calendar components:(NSYearCalendarUnit  |
+                                                         NSMonthCalendarUnit |
+                                                         NSDayCalendarUnit   |
+                                                         NSHourCalendarUnit  |
+                                                         NSMinuteCalendarUnit|
+                                                         NSSecondCalendarUnit) fromDate:datePicker.date];
+    return components;
+}
+
+///Period Picker
+
+// returns the number of 'columns' to display.
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2;
+}
+
+// returns the # of rows in each component..
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    
+    //set number of rows
+    
+    if(component == 0)
+    {
+        return [_periodValues count];
+    }else
+    {
+        return [_periodTypes count];
+    }
+}
+
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if(component == 0)
+    {
+        return [_periodValues objectAtIndex:row];
+    }
+    else
+    {
+        return [_periodTypes objectAtIndex:row];
+    }
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
+    
+    
+    
+}
+
+-(NSArray *)getPeriodValues{
+    
+    NSMutableArray *values = [[NSMutableArray alloc]init];
+    
+    for (int i = 1; i <= 100; i++) {
+        [values addObject:[NSString stringWithFormat:@"%d",i ]];
+    }
+    
+    return [[NSArray alloc]initWithArray:values];
 }
 
 @end

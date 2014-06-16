@@ -28,7 +28,7 @@
     [self.window makeKeyAndVisible];
     
     // DELETAR TODOS OS PLISTS
-    //[AMVCareMeUtil deleteAllPlists];
+//    [AMVCareMeUtil deleteAllPlists];
     
     return YES;
 }
