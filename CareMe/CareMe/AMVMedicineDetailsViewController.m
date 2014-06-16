@@ -30,7 +30,7 @@
     
     self.name.text = [NSString stringWithFormat:@"Remédio: %@",self.medicine.name];
     self.dosage.text = [NSString stringWithFormat:@"Dosagem: %@", self.medicine.dosage];
-    self.howUse.text = [NSString stringWithFormat:@"Como usar: %@", self.medicine.howUse];
+    self.howUseTF.text = [NSString stringWithFormat:@"Como usar: %@", self.medicine.howUse];
     self.startDate.text = [NSString stringWithFormat:@"Início: %02lu/%02lu/%02lu",self.medicine.startDate.day, self.medicine.startDate.month, self.medicine.startDate.year];
     
     self.endDate.text = [NSString stringWithFormat:@"Fim: %02lu/%02lu/%02lu",self.medicine.endDate.day, self.medicine.endDate.month, self.medicine.endDate.year];
