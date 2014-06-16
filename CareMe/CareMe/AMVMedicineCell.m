@@ -13,7 +13,8 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    NSString *cellIdentifier = @"AMVMedicineCell";
+    [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -24,16 +25,13 @@
 }
 
 -(void)fillWithMedicine:(AMVMedicine*)medicine {
-    self.name.text = medicine.name;
-    self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",medicine.endDate.day,medicine.endDate.month,medicine.endDate.year];
-    self.endDate.textColor = [AMVCareMeUtil secondColor];
+    self.textLabel.text = medicine.name;
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",medicine.endDate.day,medicine.endDate.month,medicine.endDate.year];
+    self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
+    self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
+
     self.untilLabel.textColor = [AMVCareMeUtil secondColor];
     
-//    self.doctorNameLb.text = [NSString stringWithFormat:@"Dr. %@", consult.doctorName];
-//    self.specialityLb.text = consult.doctorSpeciality;
-//    self.consultDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu", consult.date.day, consult.date.month, consult.date.year];
-//    self.consultDate.textColor = [AMVCareMeUtil secondColor];
-//    self.doctorNameLb.textColor = [AMVCareMeUtil secondColor];
 }
 
 @end
