@@ -43,6 +43,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         self.medicineNameTF.text = _medicineToBeEdited.name;
         self.medicineDosageTF.text = _medicineToBeEdited.dosage;
         self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
+        self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",_medicineToBeEdited.endDate.day,_medicineToBeEdited.endDate.month, _medicineToBeEdited.endDate.year];
+        self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",_medicineToBeEdited.startDate.day,_medicineToBeEdited.startDate.month, _medicineToBeEdited.startDate.year, _medicineToBeEdited.startDate.hour, _medicineToBeEdited.startDate.minute];
     }
     
     self.startDatePicker = [[UIDatePicker alloc]init];

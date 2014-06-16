@@ -27,14 +27,12 @@
 
 -(void)fillWithConsult:(AMVConsult*)consult {
     
-    self.textLabel.text = consult.doctorSpeciality;
+    self.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", consult.doctorName,consult.doctorSpeciality];
+    self.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+    
     self.detailTextLabel.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld", (long)consult.date.day, (long)consult.date.month, (long)consult.date.year];
     self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
     self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
-    
-    self.doctorNameLb.text = [NSString stringWithFormat:@"Dr(a) %@", consult.doctorName];
-
-    self.doctorNameLb.textColor = [AMVCareMeUtil secondColor];
 }
 
 @end
