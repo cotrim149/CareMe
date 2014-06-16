@@ -251,10 +251,10 @@
 		2F2527991937BE0F00D62E4B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 				D89D05A219425B6700E18536 /* AMVConsultCell.xib */,
 				D89D05961942388000E18536 /* AMVConsultDetailsViewController.xib */,
 				D89D05991942395400E18536 /* AMVHomeConsultController.xib */,
-				2F9BE5CB193CFCFD0037A496 /* AMVAddConsultController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";

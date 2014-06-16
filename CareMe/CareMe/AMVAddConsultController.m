@@ -16,6 +16,7 @@
     AMVConsultDAO *_dao;
     NSArray *_specialities;
     AMVEventsManagerSingleton *_eventsManager;
+    UITextField *_activeField;
 }
 
 @end
@@ -40,6 +41,10 @@
     
     [self addComponentsAndConfigureStyle];
     
+    self.datePk = [[UIDatePicker alloc]init];
+    [self.datePk setDate:[NSDate date]];
+    
+    
     if(_consultToBeEdited){
         self.doctorNameTF.text = _consultToBeEdited.doctorName;
         self.placeTF.text = _consultToBeEdited.place;
@@ -47,7 +52,20 @@
         
         NSCalendar *calendar = [NSCalendar currentCalendar];
         [self.datePk setDate:[calendar dateFromComponents:_consultToBeEdited.date]];
+        
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"dd/MM/yyyy hh:mm"];
+        
+        NSString *dateString = [format stringFromDate:[calendar dateFromComponents:_consultToBeEdited.date]];
+        
+        self.dateTF.text = dateString;
+        
     }
+    
+    [self.datePk setDatePickerMode:UIDatePickerModeDateAndTime];
+    [self.datePk addTarget:self action:@selector(updateConsultDate:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.dateTF setInputView:self.datePk];
     
 }
 
@@ -88,7 +106,7 @@
     CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
     CAShapeLayer * line = [CAShapeLayer layer];
     line.path = path;
-    line.lineWidth = 0.5;
+    line.lineWidth = 0.3;
     line.frame = layerFrame;
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addToCalendarLb.layer addSublayer:line];
@@ -100,7 +118,7 @@
     CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
     line = [CAShapeLayer layer];
     line.path = path;
-    line.lineWidth = 0.5;
+    line.lineWidth = 0.3;
     line.frame = layerFrame;
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addAlarmLb.layer addSublayer:line];
@@ -264,11 +282,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) viewWillDisappear:(BOOL)animated {
-    self.tabBarController.tabBar.hidden = NO;
-}
-
-
 // Picker
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -281,6 +294,74 @@
 
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     return [_specialities objectAtIndex:row];
+}
+
+-(void)updateConsultDate:(id)sender
+{
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd/MM/yyyy hh:mm"];
+    
+    NSString *dateString = [format stringFromDate:self.datePk.date];
+    
+    self.dateTF.text = dateString;
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.tabBarController.tabBar.hidden = NO;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)notification
+{
+    
+    NSDictionary* info = [notification userInfo];
+    
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 20, 0.0);
+    
+    self.scrollView.contentInset = contentInsets;
+    
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    CGRect aRect = self.view.frame;
+    
+    aRect.size.height -= kbSize.height + 50;
+    
+    //    CGPointMake(activeField.frame.size.height, activeField.frame.origin.y);
+    
+    if (!CGRectContainsPoint(aRect, _activeField.frame.origin) ) {
+        [self.scrollView scrollRectToVisible:_activeField.frame animated:YES];
+    }
+    
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)notification
+{
+    
+    NSDictionary* info = [notification userInfo];
+    
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
+    
+    self.scrollView.contentInset = contentInsets;
+    
+    self.scrollView.scrollIndicatorInsets = contentInsets;
+    
 }
 
 
