@@ -37,6 +37,8 @@
         _eventsManager = [AMVEventsManagerSingleton getInstance];
         
         _dao = [[AMVConsultDAO alloc] init];
+        _titleLeftBarButtonEditing = @"Editar";
+        _titleLeftBarButtonOK = @"OK";
     }
     return self;
 }
@@ -92,6 +94,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self updateTable];
+    if(self.tableViewConsults.editing){
+        [self.tableViewConsults setEditing:NO];
+        self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
+    }
+
     
 }
 
@@ -112,7 +119,7 @@
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
     UIBarButtonItem *editConsultBt = [[UIBarButtonItem alloc]
-                                      initWithTitle:@"Editar"
+                                      initWithTitle:_titleLeftBarButtonEditing
                                       style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(editConsult)];
@@ -135,11 +142,11 @@
     if([self.tableViewConsults numberOfRowsInSection:0] > 0){
         if(self.tableViewConsults.editing){
             [self.tableViewConsults setEditing:NO animated:YES];
-            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
             
         }else{
             [self.tableViewConsults setEditing:YES animated:YES];
-            self.navigationItem.leftBarButtonItem.title = @"OK";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonOK;
             self.tableViewConsults.allowsSelectionDuringEditing = YES;
             
         }
@@ -266,7 +273,7 @@
         [self updateTable];
         
         if([self.tableViewConsults numberOfRowsInSection:0] == 0){
-            self.navigationItem.leftBarButtonItem.title = @"Editar";
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
         }
 
     }

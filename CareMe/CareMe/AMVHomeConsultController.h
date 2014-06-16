@@ -13,7 +13,10 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
 };
 
 @interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate>
-
+{
+    NSString *_titleLeftBarButtonEditing;
+    NSString *_titleLeftBarButtonOK;
+}
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *visualizationSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
