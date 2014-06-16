@@ -12,6 +12,7 @@
 
 @interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
 @property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;
 
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePk;
+@property (weak, nonatomic) IBOutlet UITextField *dateTF;
+@property (nonatomic) IBOutlet UIDatePicker *datePk;
 
 @end
