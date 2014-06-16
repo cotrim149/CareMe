@@ -10,9 +10,10 @@
                 <outlet property="addAlarmSw" destination="mwc-c3-J8K" id="pLe-MC-SUr"/>
                 <outlet property="addToCalandarSw" destination="jb1-x9-2Ej" id="f9U-gq-Uxu"/>
                 <outlet property="addToCalendarLb" destination="yu9-cO-nOc" id="zQc-uo-TbO"/>
-                <outlet property="datePk" destination="MMf-5Z-vAD" id="avK-zT-uBc"/>
+                <outlet property="dateTF" destination="Ico-gq-w2O" id="uPB-EH-cB2"/>
                 <outlet property="doctorNameTF" destination="asa-iT-Ft2" id="9mD-cN-UVL"/>
                 <outlet property="placeTF" destination="BR7-B6-C0b" id="VGA-qE-1RR"/>
+                <outlet property="scrollView" destination="NDJ-ez-ABV" id="aae-Nw-qO5"/>
                 <outlet property="specialtyPk" destination="RBR-Iv-TpR" id="QpT-sd-kWE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,57 +25,51 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDJ-ez-ABV">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-tS-T4T" customClass="UIControl">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
+                            <rect key="frame" x="0.0" y="-6" width="320" height="530"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Local da consulta" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BR7-B6-C0b">
-                                    <rect key="frame" x="22" y="153.5" width="276" height="30"/>
+                                    <rect key="frame" x="22" y="90" width="276" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Médico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asa-iT-Ft2">
-                                    <rect key="frame" x="22" y="106.5" width="276" height="30"/>
+                                    <rect key="frame" x="22" y="37" width="276" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Iv-TpR">
-                                    <rect key="frame" x="60" y="181" width="200" height="162"/>
+                                    <rect key="frame" x="60" y="134" width="200" height="162"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="W1w-5A-ATq"/>
                                     </connections>
                                 </pickerView>
-                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MMf-5Z-vAD">
-                                    <rect key="frame" x="0.0" y="328" width="320" height="162"/>
-                                    <date key="date" timeIntervalSinceReferenceDate="423427475.52037001">
-                                        <!--2014-06-02 18:44:35 +0000-->
-                                    </date>
-                                </datePicker>
+                                <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data e Horário" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ico-gq-w2O">
+                                    <rect key="frame" x="89" y="309" width="143" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar ao calendário?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-cO-nOc">
-                                    <rect key="frame" x="0.0" y="27" width="320" height="37"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="0.0" y="373" width="320" height="37"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jb1-x9-2Ej">
-                                    <rect key="frame" x="251" y="30" width="51" height="31"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="251" y="376" width="51" height="31"/>
                                     <connections>
                                         <action selector="addToCalendarChange:" destination="-1" eventType="valueChanged" id="09Y-bG-u8Y"/>
                                     </connections>
                                 </switch>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar alarme?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCO-rF-y1B">
-                                    <rect key="frame" x="0.0" y="64" width="320" height="37"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="0.0" y="410" width="320" height="37"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-c3-J8K">
-                                    <rect key="frame" x="251" y="67" width="51" height="31"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <rect key="frame" x="251" y="413" width="51.5" height="31"/>
                                 </switch>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

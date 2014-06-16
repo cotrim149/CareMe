@@ -13,7 +13,8 @@
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    NSString *cellIdentifier = @"AMVConsultCell";
+    [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -24,11 +25,15 @@
     // Configure the view for the selected state
 }
 
--(void)fillWithConsult:(AMVConsult*)consult {    
+-(void)fillWithConsult:(AMVConsult*)consult {
+    
+    self.textLabel.text = consult.doctorSpeciality;
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld", (long)consult.date.day, (long)consult.date.month, (long)consult.date.year];
+    self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
+    self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
+    
     self.doctorNameLb.text = [NSString stringWithFormat:@"Dr(a) %@", consult.doctorName];
-    self.specialityLb.text = consult.doctorSpeciality;
-    self.consultDate.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld", (long)consult.date.day, (long)consult.date.month, (long)consult.date.year];
-    self.consultDate.textColor = [AMVCareMeUtil secondColor];
+
     self.doctorNameLb.textColor = [AMVCareMeUtil secondColor];
 }
 

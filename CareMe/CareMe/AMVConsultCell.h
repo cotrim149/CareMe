@@ -11,9 +11,7 @@
 
 @interface AMVConsultCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *specialityLb;
 @property (weak, nonatomic) IBOutlet UILabel *doctorNameLb;
-@property (weak, nonatomic) IBOutlet UILabel *consultDate;
 
 -(void) fillWithConsult: (AMVConsult*) consult;
 @end
