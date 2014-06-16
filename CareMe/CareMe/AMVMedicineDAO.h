@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "AMVMedicine.h"
+#import "AMVCareMeUtil.h"
 
 @interface AMVMedicineDAO : NSObject
 
 -(void)saveMedicinet:(AMVMedicine*)medicine;
 -(NSArray*)listMedicines;
-
+-(void)deleteMedicine:(AMVMedicine*)medicine;
 @end

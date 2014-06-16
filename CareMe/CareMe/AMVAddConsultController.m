@@ -30,7 +30,6 @@
         _dao = [[AMVConsultDAO alloc] init];
         _specialities = [_dao listSpecialities];
         _eventsManager = [AMVEventsManagerSingleton getInstance];
-        _eventsManager.delegate = self;
     }
     return self;
 }
@@ -124,32 +123,7 @@
     [self.addAlarmLb.layer addSublayer:line];
 }
 
--(void)notifyConsultEventResult:(BOOL)result {
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        if(result == YES) {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Alerta!"
-                                  message:@"Consulta adicionada aos eventos!"
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-            
-            
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Alerta!"
-                                  message:@"Não foi possível adicionar a consulta aos eventos. Verifique as permissões do app."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    });
-}
-
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
         NSString *msg = nil;
         if(result == YES) {
             switch (manipulationType) {
@@ -184,8 +158,6 @@
                                   otherButtonTitles:nil];
             [alert show];
         }
-    });
-
 }
 
 
@@ -235,7 +207,6 @@
         // EDITANDO
         if(_consultToBeEdited){
             [_dao deleteConsult:_consultToBeEdited];
-
             
             _consultToBeEdited.place = self.placeTF.text;
             _consultToBeEdited.doctorName = self.doctorNameTF.text;
@@ -243,7 +214,9 @@
             _consultToBeEdited.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
             _consultToBeEdited.date = [self getPickerDate];
             
-            [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
+            NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
+            
+            [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
 
             [_dao saveConsult:_consultToBeEdited];
             
@@ -259,7 +232,9 @@
             consult.date = [self getPickerDate];
             
             if(self.addToCalandarSw.isOn) {
-                consult.eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+                NSString *eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+                
+                [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
             }
             
             // Salva a entity

@@ -13,7 +13,6 @@
 #import "AMVConsult.h"
 #import "AMVConsultDAO.h"
 #import "AMVConsultCell.h"
-#import "AMVEventsManagerDelegate.h"
 #import "AMVEventsManagerSingleton.h"
 
 @interface AMVHomeConsultController () {
@@ -36,7 +35,6 @@
                                                           selectedImage:[UIImage imageNamed:@"Calendar-Month.png"]];
         self.tabBarItem=consultItem;
         _eventsManager = [AMVEventsManagerSingleton getInstance];
-        _eventsManager.delegate = self;
         
         _dao = [[AMVConsultDAO alloc] init];
     }
@@ -99,38 +97,6 @@
 
 - (IBAction)changeVisualizationType:(id)sender {
     [self updateTable];
-}
-
--(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        NSString *msg = nil;
-        if(result == YES) {
-            switch (manipulationType) {
-                case DELETE_EVENT:
-                    msg = @"Consulta foi removida dos eventos!";
-                    break;
-                    
-                default:
-                    break;
-            }
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Alerta!"
-                                  message:msg
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        } else {
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Alerta!"
-                                  message:@"Não foi possível acessar os seus eventos. Verifique as permissões do app."
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            [alert show];
-        }
-    });
-    
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -233,9 +199,7 @@
         consultDetails.consult = consult;
         
         [self.navigationController pushViewController:consultDetails animated:YES];
-        
     }
-    
     
 }
 
@@ -243,13 +207,52 @@
     return YES;
 }
 
+-(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    NSString *msg = nil;
+    if(result == YES) {
+        switch (manipulationType) {
+            case CREATE_EVENT:
+                msg = @"Consulta foi adicionada aos eventos!";
+                break;
+            case UPDATE_EVENT:
+                msg = @"Consulta foi atualizada aos aventos!";
+                break;
+            case DELETE_EVENT:
+                msg = @"Consulta foi removida dos eventos!";
+                break;
+                
+            default:
+                break;
+        }
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:msg
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:@"Não foi possível acessar os seus eventos. Verifique as permissões do app."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if(editingStyle == UITableViewCellEditingStyleDelete){
         AMVConsult *consultToBeDeleted = [[_dao listConsults] objectAtIndex:indexPath.row];
-        NSLog(@"ID = %@", consultToBeDeleted.eventId);
         
-        [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
+        NSString *eventId = [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
+        [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
+        
         [_dao deleteConsult: consultToBeDeleted];
 
         NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
