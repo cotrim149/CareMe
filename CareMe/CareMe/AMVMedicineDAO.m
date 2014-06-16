@@ -7,7 +7,6 @@
 //
 
 #import "AMVMedicineDAO.h"
-#import "AMVCareMeUtil.h"
 
 @implementation AMVMedicineDAO
 
@@ -30,6 +29,32 @@
     NSArray *medicines = [NSKeyedUnarchiver unarchiveObjectWithData:medicinesData];
     
     return medicines;
+}
+
+-(void)deleteMedicine:(AMVMedicine*)medicine{
+    int index=0;
+    
+    NSMutableArray *medicines = [[NSMutableArray alloc] initWithArray:[self listMedicines]];
+    
+    for (int i=0; i< [medicines count]; i++) {
+        AMVMedicine *tempMedicine = [medicines objectAtIndex:i];
+        
+        if([tempMedicine.name isEqualToString:medicine.name]
+           && [tempMedicine.dosage isEqualToString:medicine.dosage]
+           && [tempMedicine.howUse isEqualToString: medicine.howUse]
+           && [tempMedicine.startDate isEqual:medicine.startDate]
+           && [tempMedicine.endDate isEqual:medicine.endDate]) {
+            index = i;
+        }
+    }
+    
+    [medicines removeObjectAtIndex:index];
+    
+    NSData *medicinesData = [NSKeyedArchiver archivedDataWithRootObject:medicines];
+    
+    [medicinesData writeToFile:[AMVCareMeUtil getDocumentsFilePathWithSuffix:@"medicine"] atomically:YES];
+    
+    
 }
 
 @end

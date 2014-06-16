@@ -7,12 +7,6 @@
 //
 
 #import "AMVHomeMedicineController.h"
-#import "AMVCareMeUtil.h"
-#import "AMVAddMedicineController.h"
-#import "AMVMedicineDAO.h"
-#import "AMVMedicineCell.h"
-#import "AMVMedicine.h"
-#import "AMVMedicineDetailsViewController.h"
 
 @interface AMVHomeMedicineController (){
     AMVMedicineDAO *_dao;
@@ -33,6 +27,9 @@
         self.tabBarItem=consultItem;
         
         _dao = [[AMVMedicineDAO alloc]init];
+        
+        _titleLeftBarButtonEditing = @"Editar";
+        _titleLeftBarButtonOK = @"OK";
 
     }
     return self;
@@ -46,8 +43,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     _medicines = [_dao listMedicines];
-    
     [self.tableViewMedicines reloadData];
+    if(self.tableViewMedicines.editing){
+        [self.tableViewMedicines setEditing:NO];
+        self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
+    }
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -62,6 +62,15 @@
     
     self.navigationItem.rightBarButtonItem=addMedicineBt;
     
+    UIBarButtonItem *editMedicineBt = [[UIBarButtonItem alloc]
+                                      initWithTitle:_titleLeftBarButtonEditing
+                                      style:UIBarButtonItemStylePlain
+                                      target:self
+                                      action:@selector(editMedicine)];
+    
+    self.navigationItem.leftBarButtonItem = editMedicineBt;
+
+    
     self.dayPeriodSC.tintColor = [AMVCareMeUtil firstColor];
     [self.dayPeriodSC setTitle:@"Manhã" forSegmentAtIndex:0];
     [self.dayPeriodSC setTitle:@"Tarde" forSegmentAtIndex:1];
@@ -74,6 +83,25 @@
 
 -(void) addMedicine {
     [self.navigationController pushViewController:[[AMVAddMedicineController alloc] init] animated:YES];
+}
+
+-(void) editMedicine{
+    
+    if([self.tableViewMedicines numberOfRowsInSection:0] > 0){
+        if(self.tableViewMedicines.editing){
+            [self.tableViewMedicines setEditing:NO animated:YES];
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
+            
+        }else{
+            [self.tableViewMedicines setEditing:YES animated:YES];
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonOK;
+            self.tableViewMedicines.allowsSelectionDuringEditing = YES;
+            
+        }
+        
+    }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -108,15 +136,59 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger linha = indexPath.row;
     
-    AMVMedicine *medicine = [_medicines objectAtIndex:linha];
+    if([tableView cellForRowAtIndexPath:indexPath].editing){
+        AMVAddMedicineController *medicineController = [[AMVAddMedicineController alloc] init];
+        
+        AMVMedicine *medicine = [_medicines objectAtIndex:indexPath.row];
+        
+        medicineController.medicineToBeEdited = medicine;
+        
+        [self.navigationController pushViewController:medicineController animated:YES];
+        
+    }else {
+        NSInteger linha = indexPath.row;
+        
+        AMVMedicine *medicine = [_medicines objectAtIndex:linha];
+        
+        AMVMedicineDetailsViewController *medicineDetails = [[AMVMedicineDetailsViewController alloc]init];
+        
+        medicineDetails.medicine = medicine;
+        
+        [self.navigationController pushViewController:medicineDetails animated:YES];
+        
+    }
     
-    AMVMedicineDetailsViewController *medicineDetails = [[AMVMedicineDetailsViewController alloc]init];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    medicineDetails.medicine = medicine;
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        
+        [_dao deleteMedicine: [[_dao listMedicines] objectAtIndex:indexPath.row]];
+        
+        NSArray *medicines = [NSArray arrayWithObjects:indexPath, nil];
+        
+        [self.tableViewMedicines beginUpdates];
+        [self.tableViewMedicines deleteRowsAtIndexPaths:medicines withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewMedicines insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.tableViewMedicines endUpdates];
+        
+        _medicines = [_dao listMedicines];
+        
+        [self.tableViewMedicines reloadData];
+        
+        if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
+            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
+        }
+        
+    }
     
-    [self.navigationController pushViewController:medicineDetails animated:YES];
 }
 
 @end

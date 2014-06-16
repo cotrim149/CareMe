@@ -7,9 +7,6 @@
 //
 
 #import "AMVAddMedicineController.h"
-#import "AMVCareMeUtil.h"
-#import "AMVMedicine.h"
-#import "AMVMedicineDAO.h"
 
 @interface AMVAddMedicineController () {
     AMVMedicineDAO *_dao;
