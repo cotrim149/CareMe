@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "AMVConsult.h"
-#import "AMVEventsManagerDelegate.h"
 
 @interface AMVEventsManagerSingleton : NSObject
 
-@property(strong) id<AMVEventsManagerDelegate> delegate;
+typedef NS_ENUM(short, AMVManipulationType) {
+    CREATE_EVENT, UPDATE_EVENT, DELETE_EVENT
+};
 
 +(AMVEventsManagerSingleton*) getInstance;
 -(instancetype) init __attribute__((unavailable("init not available")));
--(void) addConsultEvent: (AMVConsult*) consult withAlarm: (BOOL) withAlarm;
--(void) addConsultReminder: (AMVConsult*) consult withAlarm: (BOOL) withAlarm;;
+
+-(NSString*) manipulateConsultEvent: (AMVConsult*)consult withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType;
 
 @end

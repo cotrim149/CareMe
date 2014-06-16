@@ -81,7 +81,6 @@
 		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
 		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
 		2F2527BB1937D3E900D62E4B /* Open-Mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Open-Mail.png"; sourceTree = "<group>"; };
-		2F376D221948C5BA00569682 /* AMVEventsManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMVEventsManagerDelegate.h; sourceTree = "<group>"; };
 		2F7DDE8D19478F0B00692B51 /* AMVEventsManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVEventsManagerSingleton.h; sourceTree = "<group>"; };
 		2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVEventsManagerSingleton.m; sourceTree = "<group>"; };
 		2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVCareMeUtil.h; sourceTree = "<group>"; };
@@ -266,7 +265,6 @@
 				2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */,
 				2F7DDE8D19478F0B00692B51 /* AMVEventsManagerSingleton.h */,
 				2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */,
-				2F376D221948C5BA00569682 /* AMVEventsManagerDelegate.h */,
 			);
 			name = Util;
 			sourceTree = "<group>";

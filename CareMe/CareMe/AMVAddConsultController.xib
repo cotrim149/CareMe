@@ -22,60 +22,83 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-tS-T4T" customClass="UIControl">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDJ-ez-ABV">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Local da consulta" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BR7-B6-C0b">
-                            <rect key="frame" x="22" y="167" width="276" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Médico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asa-iT-Ft2">
-                            <rect key="frame" x="22" y="115" width="276" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Iv-TpR">
-                            <rect key="frame" x="60" y="200" width="200" height="162"/>
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QdP-tS-T4T" customClass="UIControl">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="530"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Local da consulta" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BR7-B6-C0b">
+                                    <rect key="frame" x="22" y="153.5" width="276" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Médico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="asa-iT-Ft2">
+                                    <rect key="frame" x="22" y="106.5" width="276" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBR-Iv-TpR">
+                                    <rect key="frame" x="60" y="181" width="200" height="162"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="W1w-5A-ATq"/>
+                                    </connections>
+                                </pickerView>
+                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MMf-5Z-vAD">
+                                    <rect key="frame" x="0.0" y="328" width="320" height="162"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="423427475.52037001">
+                                        <!--2014-06-02 18:44:35 +0000-->
+                                    </date>
+                                </datePicker>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar ao calendário?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-cO-nOc">
+                                    <rect key="frame" x="0.0" y="27" width="320" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jb1-x9-2Ej">
+                                    <rect key="frame" x="251" y="30" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="addToCalendarChange:" destination="-1" eventType="valueChanged" id="09Y-bG-u8Y"/>
+                                    </connections>
+                                </switch>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar alarme?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCO-rF-y1B">
+                                    <rect key="frame" x="0.0" y="64" width="320" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-c3-J8K">
+                                    <rect key="frame" x="251" y="67" width="51" height="31"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </switch>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
-                                <outlet property="delegate" destination="-1" id="W1w-5A-ATq"/>
+                                <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="09y-FL-UoT"/>
                             </connections>
-                        </pickerView>
-                        <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="MMf-5Z-vAD">
-                            <rect key="frame" x="0.0" y="362" width="320" height="162"/>
-                            <date key="date" timeIntervalSinceReferenceDate="423427475.52037001">
-                                <!--<__NSDate Class=2014-06-02 18:44:35 +0000 timeInterval=423427475.52037 ISO8601=2014-06-02T15:44:35.520-0300>-->
-                            </date>
-                        </datePicker>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar ao calendário?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-cO-nOc">
-                            <rect key="frame" x="0.0" y="27" width="320" height="37"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jb1-x9-2Ej">
-                            <rect key="frame" x="251" y="30" width="51" height="31"/>
-                            <connections>
-                                <action selector="addToCalendarChange:" destination="-1" eventType="valueChanged" id="09Y-bG-u8Y"/>
-                            </connections>
-                        </switch>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar alarme?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCO-rF-y1B">
-                            <rect key="frame" x="0.0" y="64" width="320" height="37"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mwc-c3-J8K">
-                            <rect key="frame" x="251" y="67" width="51" height="31"/>
-                        </switch>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    <connections>
-                        <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="09y-FL-UoT"/>
-                    </connections>
-                </view>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="QdP-tS-T4T" secondAttribute="trailing" id="EzX-fR-efx"/>
+                        <constraint firstItem="QdP-tS-T4T" firstAttribute="top" secondItem="NDJ-ez-ABV" secondAttribute="top" id="Lol-Hl-YQi"/>
+                        <constraint firstItem="QdP-tS-T4T" firstAttribute="leading" secondItem="NDJ-ez-ABV" secondAttribute="leading" id="Q4l-fI-3Q5"/>
+                        <constraint firstAttribute="bottom" secondItem="QdP-tS-T4T" secondAttribute="bottom" id="WCf-Ml-ybO"/>
+                    </constraints>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="NDJ-ez-ABV" secondAttribute="bottom" id="HUG-oy-y8U"/>
+                <constraint firstItem="NDJ-ez-ABV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="bS9-FS-2km"/>
+                <constraint firstAttribute="trailing" secondItem="NDJ-ez-ABV" secondAttribute="trailing" id="hpa-DP-osP"/>
+                <constraint firstItem="NDJ-ez-ABV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kmy-Ub-V5j"/>
+            </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

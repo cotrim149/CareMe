@@ -7,9 +7,6 @@
 //
 
 #import "AMVAddMedicineController.h"
-#import "AMVCareMeUtil.h"
-#import "AMVMedicine.h"
-#import "AMVMedicineDAO.h"
 
 @interface AMVAddMedicineController () {
     AMVMedicineDAO *_dao;
@@ -41,6 +38,12 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [super viewDidLoad];
     
     [self addComponentsAndConfigureStyle];
+    
+    if(_medicineToBeEdited){
+        self.medicineNameTF.text = _medicineToBeEdited.name;
+        self.medicineDosageTF.text = _medicineToBeEdited.dosage;
+        self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
+    }
     
     self.startDatePicker = [[UIDatePicker alloc]init];
     
@@ -111,20 +114,37 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [alert show];
     }
     else{
-        // Popula a entity
-        AMVMedicine *medicine = [[AMVMedicine alloc] init];
-        [medicine setName:self.medicineNameTF.text];
-        [medicine setDosage:self.medicineDosageTF.text];
-        [medicine setHowUse:self.medicineHowUseTV.text];
-        [medicine setStartDate: [self getDateComponent:self.startDatePicker] ];
-        [medicine setEndDate:[self getDateComponent:self.endDatePicker]];
-        
-        [medicine setPeriodType:(AMVPeriodEnum)[self.periodPicker selectedRowInComponent:1]];
-        
-        [medicine setPeriodValue:(NSInteger)[self.periodPicker selectedRowInComponent:0] + 1];
-        
-        // Salva a entity
-        [_dao saveMedicinet:medicine];
+        // EDITADO
+        if(_medicineToBeEdited){
+            [_dao deleteMedicine:_medicineToBeEdited];
+            
+            AMVMedicine *medicine = [[AMVMedicine alloc] init];
+            
+            medicine.name = self.medicineNameTF.text;
+            medicine.dosage = self.medicineDosageTF.text;
+            medicine.howUse = self.medicineHowUseTV.text;
+            medicine.startDate = [self getDateComponent:self.startDatePicker];
+            medicine.endDate = [self getDateComponent:self.endDatePicker];
+            medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
+            medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            
+            [_dao saveMedicinet:medicine];
+         
+        // NOVO
+        }else {
+            // Popula a entity
+            AMVMedicine *medicine = [[AMVMedicine alloc] init];
+            medicine.name = self.medicineNameTF.text;
+            medicine.dosage = self.medicineDosageTF.text;
+            medicine.howUse = self.medicineHowUseTV.text;
+            medicine.startDate = [self getDateComponent:self.startDatePicker];
+            medicine.endDate = [self getDateComponent:self.endDatePicker];
+            medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
+            medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            // Salva a entity
+            [_dao saveMedicinet:medicine];
+            
+        }
         
         [self.navigationController popViewControllerAnimated:YES];
     }
