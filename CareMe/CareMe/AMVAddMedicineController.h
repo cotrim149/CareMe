@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *medicineNameTF;
 @property (weak, nonatomic) IBOutlet UITextField *medicineDosageTF;
 @property (weak, nonatomic) IBOutlet UITextView *medicineHowUseTV;
-@property (weak, nonatomic) IBOutlet UITextField *startDate;
+
 @property (weak, nonatomic) IBOutlet UITextField *endDate;
+@property (weak, nonatomic) IBOutlet UITextField *startDate;
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIControl *contentView;
 @property (nonatomic) UIDatePicker *startDatePicker;
