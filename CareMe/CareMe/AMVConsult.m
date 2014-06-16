@@ -19,7 +19,7 @@
         self.doctorSpeciality = [decoder decodeObjectForKey:@"doctorSpeciality"];
         self.idDoctorSpeciality = [decoder decodeIntegerForKey:@"idDoctorSpeciality"];
         self.date = [decoder decodeObjectForKey:@"date"];
-        
+        self.eventId = [decoder decodeObjectForKey:@"eventId"];
     }
     return self;
 }
@@ -32,6 +32,7 @@
     [encoder encodeObject:self.doctorSpeciality forKey:@"doctorSpeciality"];
     [encoder encodeInteger:self.idDoctorSpeciality forKey:@"idDoctorSpeciality"];
     [encoder encodeObject:self.date forKey:@"date"];
+    [encoder encodeObject:self.eventId forKey:@"eventId"];
 }
 
 -(NSString*)description{

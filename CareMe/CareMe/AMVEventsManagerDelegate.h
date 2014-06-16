@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @protocol AMVEventsManagerDelegate <NSObject>
--(void) notifyConsultEventResult: (BOOL) result;
--(void) notifyMedicineReminderResult: (BOOL) result;
+
+typedef NS_ENUM(short, AMVManipulationType) {
+    CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT
+};
+
+-(void) notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType;
 
 @end

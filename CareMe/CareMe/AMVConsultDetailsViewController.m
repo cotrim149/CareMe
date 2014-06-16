@@ -8,19 +8,26 @@
 
 #import "AMVConsultDetailsViewController.h"
 #import "AMVCareMeUtil.h"
-
+#import "AMVConsultDAO.h"
+#import "AMVAddConsultController.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVConsultDetailsViewController ()
 
 @end
 
-@implementation AMVConsultDetailsViewController
+@implementation AMVConsultDetailsViewController {
+    AMVConsultDAO *_dao;
+    AMVEventsManagerSingleton *_eventsManager;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _dao = [[AMVConsultDAO alloc] init];
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
+        _eventsManager.delegate = self;
     }
     return self;
 }
@@ -29,12 +36,10 @@
 {
     
     [super viewDidLoad];
-    
-    self.doctorNameLb.text = self.consult.doctorName;
-    self.consultDateLb.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld %02ld:%02ld", (long)self.consult.date.day, (long)self.consult.date.month, (long)self.consult.date.year, (long)self.consult.date.hour, (long)self.consult.date.minute];
-    self.consultPlaceLb.text = self.consult.place;
-    self.doctorSpecialityLb.text = self.consult.doctorSpeciality;
-    
+    [self addAndConfigureComponents];
+}
+
+-(void) addAndConfigureComponents {
     CGRect layerFrame = CGRectMake(0, 0, self.deleteConsultBt.frame.size.width, self.deleteConsultBt.frame.size.height);
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
@@ -49,13 +54,55 @@
     [self.deleteConsultBt.layer addSublayer:line];
     
     UIBarButtonItem *editBt = [[UIBarButtonItem alloc] initWithTitle:@"Editar"
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(editConsult)];
+                                                               style:UIBarButtonItemStylePlain
+                                                              target:self
+                                                              action:@selector(editConsult)];
     
     self.navigationItem.rightBarButtonItem=editBt;
+}
 
+-(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSString *msg = nil;
+        if(result == YES) {
+            switch (manipulationType) {
+                case UPDATE_EVENT:
+                    msg = @"Consulta foi atualizada aos aventos!";
+                    break;
+                case DELETE_EVENT:
+                    msg = @"Consulta foi removida dos eventos!";
+                    break;
+                    
+                default:
+                    break;
+            }
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:msg
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Não foi possível acessar os seus eventos. Verifique as permissões do app."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
     
+}
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.doctorNameLb.text = self.consult.doctorName;
+    self.consultDateLb.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld %02ld:%02ld", (long)self.consult.date.day, (long)self.consult.date.month, (long)self.consult.date.year, (long)self.consult.date.hour, (long)self.consult.date.minute];
+    self.consultPlaceLb.text = self.consult.place;
+    self.doctorSpecialityLb.text = self.consult.doctorSpeciality;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +112,18 @@
 }
 
 -(void)editConsult {
+    AMVAddConsultController *addConsultController = [[AMVAddConsultController alloc] init];
     
+    addConsultController.consultToBeEdited = [[AMVConsult alloc] init];
+    addConsultController.consultToBeEdited.date = self.consult.date;
+    addConsultController.consultToBeEdited.doctorName = self.consult.doctorName;
+    addConsultController.consultToBeEdited.doctorSpeciality = self.consult.doctorSpeciality;
+    addConsultController.consultToBeEdited.idDoctorSpeciality = self.consult.idDoctorSpeciality;
+    addConsultController.consultToBeEdited.place = self.consult.place;
+    
+    self.consult = addConsultController.consultToBeEdited;
+    
+    [self.navigationController pushViewController:addConsultController animated:YES];
 }
 
 - (IBAction)deleteConsult:(id)sender {
@@ -80,7 +138,9 @@
 {
     if (buttonIndex == actionSheet.destructiveButtonIndex)
     {
-        NSLog(@"DELETOU");
+        [_dao deleteConsult:self.consult];
+        [_eventsManager manipulateConsultEvent:self.consult withAlarm:NO manipulationType:DELETE_EVENT];
+        [self.navigationController popViewControllerAnimated:YES];
     } 
 }
 

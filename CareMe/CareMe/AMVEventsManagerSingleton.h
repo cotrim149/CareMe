@@ -16,7 +16,7 @@
 
 +(AMVEventsManagerSingleton*) getInstance;
 -(instancetype) init __attribute__((unavailable("init not available")));
--(void) addConsultEvent: (AMVConsult*) consult withAlarm: (BOOL) withAlarm;
--(void) addConsultReminder: (AMVConsult*) consult withAlarm: (BOOL) withAlarm;;
+
+-(NSString*) manipulateConsultEvent: (AMVConsult*)consult withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType;
 
 @end

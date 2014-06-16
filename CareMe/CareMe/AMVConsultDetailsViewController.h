@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AMVConsult.h"
+#import "AMVEventsManagerDelegate.h"
 
-@interface AMVConsultDetailsViewController : UIViewController <UIActionSheetDelegate>
+@interface AMVConsultDetailsViewController : UIViewController <UIActionSheetDelegate, AMVEventsManagerDelegate>
 @property (nonatomic, strong) AMVConsult *consult;
 
 @property (weak, nonatomic) IBOutlet UILabel *doctorNameLb;

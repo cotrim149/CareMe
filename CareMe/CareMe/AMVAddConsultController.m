@@ -54,12 +54,12 @@
 -(void) addComponentsAndConfigureStyle {
     
     self.tabBarController.tabBar.hidden = YES;
+    self.tabBarController.tabBar.translucent = YES;
     
     UIBarButtonItem *completeAddBt = [[UIBarButtonItem alloc] initWithTitle:@"Concluído"
                                                                       style:UIBarButtonItemStylePlain
                                                                      target:self
                                                                      action:@selector(addCompleted)];
-    
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
     self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
@@ -71,11 +71,14 @@
     if(_consultToBeEdited) {
         NSDate *editedConsultDate = [[NSCalendar currentCalendar] dateFromComponents: _consultToBeEdited.date];
         NSDate *nowDate = [NSDate date];
-        NSDate *oldestDate = [editedConsultDate earlierDate:nowDate]; 
+        NSDate *oldestDate = [editedConsultDate earlierDate:nowDate];
         self.datePk.minimumDate = oldestDate;
     } else {
         self.datePk.minimumDate = [NSDate date];
     }
+    
+    self.addToCalandarSw.onTintColor = [AMVCareMeUtil firstColor];
+    self.addAlarmSw.onTintColor = [AMVCareMeUtil firstColor];
     
     CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
     CGMutablePathRef path = CGPathCreateMutable();
@@ -127,12 +130,27 @@
     });
 }
 
--(void)notifyMedicineReminderResult:(BOOL)result {
+-(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
     dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSString *msg = nil;
         if(result == YES) {
+            switch (manipulationType) {
+                case CREATE_EVENT:
+                    msg = @"Consulta foi adicionada aos eventos!";
+                    break;
+                case UPDATE_EVENT:
+                    msg = @"Consulta foi atualizada aos aventos!";
+                    break;
+                case DELETE_EVENT:
+                    msg = @"Consulta foi removida dos eventos!";
+                    break;
+
+                default:
+                    break;
+            }
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Alerta!"
-                                  message:@"Consulta foi adicionada aos lembretes!"
+                                  message:msg
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -142,7 +160,7 @@
         } else {
             UIAlertView *alert = [[UIAlertView alloc]
                                   initWithTitle:@"Alerta!"
-                                  message:@"Não foi possível adicionar a consulta aos lembretes. Verifique as permissões do app."
+                                  message:@"Não foi possível acessar os seus eventos. Verifique as permissões do app."
                                   delegate:nil
                                   cancelButtonTitle:@"OK"
                                   otherButtonTitles:nil];
@@ -200,15 +218,16 @@
         if(_consultToBeEdited){
             [_dao deleteConsult:_consultToBeEdited];
 
-            AMVConsult *consult = [[AMVConsult alloc] init];
             
-            consult.place = self.placeTF.text;
-            consult.doctorName = self.doctorNameTF.text;
-            consult.idDoctorSpeciality = [self getPickerEspecialityID];
-            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
-            consult.date = [self getPickerDate];
+            _consultToBeEdited.place = self.placeTF.text;
+            _consultToBeEdited.doctorName = self.doctorNameTF.text;
+            _consultToBeEdited.idDoctorSpeciality = [self getPickerEspecialityID];
+            _consultToBeEdited.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+            _consultToBeEdited.date = [self getPickerDate];
             
-            [_dao saveConsult:consult];
+            [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
+
+            [_dao saveConsult:_consultToBeEdited];
             
         // NOVO
         } else {
@@ -221,11 +240,12 @@
             consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
             consult.date = [self getPickerDate];
             
+            if(self.addToCalandarSw.isOn) {
+                consult.eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+            }
+            
             // Salva a entity
             [_dao saveConsult:consult];
-            if(self.addToCalandarSw.isOn) {
-                [_eventsManager addConsultEvent:consult withAlarm:self.addAlarmSw.isOn];
-            }
         }
         
         [self.navigationController popViewControllerAnimated:YES];

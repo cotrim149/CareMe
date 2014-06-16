@@ -14,5 +14,6 @@
 @property (nonatomic) NSString *doctorSpeciality;
 @property (nonatomic) NSInteger idDoctorSpeciality;
 @property (nonatomic) NSDateComponents *date;
+@property (nonatomic) NSString *eventId;
 
 @end

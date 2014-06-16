@@ -13,10 +13,13 @@
 #import "AMVConsult.h"
 #import "AMVConsultDAO.h"
 #import "AMVConsultCell.h"
+#import "AMVEventsManagerDelegate.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVHomeConsultController () {
     AMVConsultDAO *_dao;
     NSArray *_consults;
+    AMVEventsManagerSingleton *_eventsManager;
 }
 
 @end
@@ -32,6 +35,8 @@
                                                                   image:[UIImage imageNamed:@"Calendar-Month.png"]
                                                           selectedImage:[UIImage imageNamed:@"Calendar-Month.png"]];
         self.tabBarItem=consultItem;
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
+        _eventsManager.delegate = self;
         
         _dao = [[AMVConsultDAO alloc] init];
     }
@@ -96,6 +101,37 @@
     [self updateTable];
 }
 
+-(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSString *msg = nil;
+        if(result == YES) {
+            switch (manipulationType) {
+                case DELETE_EVENT:
+                    msg = @"Consulta foi removida dos eventos!";
+                    break;
+                    
+                default:
+                    break;
+            }
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:msg
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Alerta!"
+                                  message:@"Não foi possível acessar os seus eventos. Verifique as permissões do app."
+                                  delegate:nil
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
+    
+}
 
 -(void) addComponentsAndConfigureStyle {
     self.title=@"Consultas";
@@ -129,8 +165,7 @@
     [self.navigationController pushViewController:addConsultController animated:YES];
 }
 
--(void) editConsult{
-    
+-(void) editConsult {
     if([self.tableViewConsults numberOfRowsInSection:0] > 0){
         if(self.tableViewConsults.editing){
             [self.tableViewConsults setEditing:NO animated:YES];
@@ -144,8 +179,6 @@
         }
         
     }
-
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -213,8 +246,11 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if(editingStyle == UITableViewCellEditingStyleDelete){
+        AMVConsult *consultToBeDeleted = [[_dao listConsults] objectAtIndex:indexPath.row];
+        NSLog(@"ID = %@", consultToBeDeleted.eventId);
         
-        [_dao deleteConsult: [[_dao listConsults] objectAtIndex:indexPath.row]];
+        [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
+        [_dao deleteConsult: consultToBeDeleted];
 
         NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
        
