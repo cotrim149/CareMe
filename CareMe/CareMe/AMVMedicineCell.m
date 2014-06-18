@@ -26,7 +26,7 @@
 
 -(void)fillWithMedicine:(AMVMedicine*)medicine {
     self.textLabel.text = medicine.name;
-    self.detailTextLabel.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",medicine.endDate.day,medicine.endDate.month,medicine.endDate.year];
+    self.detailTextLabel.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)medicine.endDate.day,(long)medicine.endDate.month,(long)medicine.endDate.year];
     self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
     self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
 

@@ -124,15 +124,15 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             
             AMVMedicine *medicine = [[AMVMedicine alloc] init];
             
-            medicine.name = self.medicineNameTF.text;
-            medicine.dosage = self.medicineDosageTF.text;
-            medicine.howUse = self.medicineHowUseTV.text;
-            medicine.startDate = [self getDateComponent:self.startDatePicker];
-            medicine.endDate = [self getDateComponent:self.endDatePicker];
-            medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
-            medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            _medicineToBeEdited.name = self.medicineNameTF.text;
+            _medicineToBeEdited.dosage = self.medicineDosageTF.text;
+            _medicineToBeEdited.howUse = self.medicineHowUseTV.text;
+            _medicineToBeEdited.startDate = [self getDateComponent:self.startDatePicker];
+            _medicineToBeEdited.endDate = [self getDateComponent:self.endDatePicker];
+            _medicineToBeEdited.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
+            _medicineToBeEdited.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
             
-            [_dao saveMedicinet:medicine];
+            [_dao saveMedicinet:_medicineToBeEdited];
          
         // NOVO
         }else {

@@ -66,15 +66,23 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.name.text = self.medicine.name;
-//    self.dosage.text = self.medicine.dosage;
+    self.dosage.text = self.medicine.dosage;
+    self.howUseTF.text = self.medicine.howUse;
+    self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)self.medicine.startDate.day,(long)self.medicine.startDate.month, (long)self.medicine.startDate.year, (long)self.medicine.startDate.hour, (long)self.medicine.startDate.minute];
+    self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)self.medicine.endDate.day,(long)self.medicine.endDate.month, (long)self.medicine.endDate.year];
     
-    //    self.medicineNameTF.text = _medicineToBeEdited.name;
-    //    self.medicineDosageTF.text = _medicineToBeEdited.dosage;
-    //    self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
-    //    self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)_medicineToBeEdited.endDate.day,(long)_medicineToBeEdited.endDate.month, (long)_medicineToBeEdited.endDate.year];
-    //    self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)_medicineToBeEdited.startDate.day,(long)_medicineToBeEdited.startDate.month, (long)_medicineToBeEdited.startDate.year, (long)_medicineToBeEdited.startDate.hour, (long)_medicineToBeEdited.startDate.minute];
-    //    [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
-    //    [self.periodPicker selectRow:_medicineToBeEdited.periodType inComponent:1 animated:YES];
+    NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
+
+    self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
+
+    
+    //    self.endDate.text = self.medicine.startDate.text;
+//    self.startDate.text = self.startDate.text;
+//    self.period.text = self.
+//    self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)_medicineToBeEdited.endDate.day,(long)_medicineToBeEdited.endDate.month, (long)_medicineToBeEdited.endDate.year];
+//    self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)_medicineToBeEdited.startDate.day,(long)_medicineToBeEdited.startDate.month, (long)_medicineToBeEdited.startDate.year, (long)_medicineToBeEdited.startDate.hour, (long)_medicineToBeEdited.startDate.minute];
+//    [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
+//    [self.periodPicker selectRow:_medicineToBeEdited.periodType inComponent:1 animated:YES];
     
 }
 
