@@ -7,10 +7,6 @@
 //
 
 #import "AMVConsultDetailsViewController.h"
-#import "AMVCareMeUtil.h"
-#import "AMVConsultDAO.h"
-#import "AMVAddConsultController.h"
-#import "AMVEventsManagerSingleton.h"
 
 @interface AMVConsultDetailsViewController ()
 

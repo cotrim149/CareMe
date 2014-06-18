@@ -44,6 +44,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     _medicines = [_dao listMedicines];
     [self.tableViewMedicines reloadData];
+    
     if(self.tableViewMedicines.editing){
         [self.tableViewMedicines setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;

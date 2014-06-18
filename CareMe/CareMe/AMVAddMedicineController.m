@@ -43,8 +43,10 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         self.medicineNameTF.text = _medicineToBeEdited.name;
         self.medicineDosageTF.text = _medicineToBeEdited.dosage;
         self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
-        self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",_medicineToBeEdited.endDate.day,_medicineToBeEdited.endDate.month, _medicineToBeEdited.endDate.year];
-        self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",_medicineToBeEdited.startDate.day,_medicineToBeEdited.startDate.month, _medicineToBeEdited.startDate.year, _medicineToBeEdited.startDate.hour, _medicineToBeEdited.startDate.minute];
+        self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)_medicineToBeEdited.endDate.day,(long)_medicineToBeEdited.endDate.month, (long)_medicineToBeEdited.endDate.year];
+        self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)_medicineToBeEdited.startDate.day,(long)_medicineToBeEdited.startDate.month, (long)_medicineToBeEdited.startDate.year, (long)_medicineToBeEdited.startDate.hour, (long)_medicineToBeEdited.startDate.minute];
+        [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
+        [self.periodPicker selectRow:_medicineToBeEdited.periodType inComponent:1 animated:YES];
     }
     
     self.startDatePicker = [[UIDatePicker alloc]init];
@@ -122,13 +124,13 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             
             AMVMedicine *medicine = [[AMVMedicine alloc] init];
             
-            medicine.name = self.medicineNameTF.text;
-            medicine.dosage = self.medicineDosageTF.text;
-            medicine.howUse = self.medicineHowUseTV.text;
-            medicine.startDate = [self getDateComponent:self.startDatePicker];
-            medicine.endDate = [self getDateComponent:self.endDatePicker];
-            medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
-            medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            _medicineToBeEdited.name = self.medicineNameTF.text;
+            _medicineToBeEdited.dosage = self.medicineDosageTF.text;
+            _medicineToBeEdited.howUse = self.medicineHowUseTV.text;
+            _medicineToBeEdited.startDate = [self getDateComponent:self.startDatePicker];
+            _medicineToBeEdited.endDate = [self getDateComponent:self.endDatePicker];
+            _medicineToBeEdited.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
+            _medicineToBeEdited.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
             
             
             [_dao saveMedicinet:medicine];

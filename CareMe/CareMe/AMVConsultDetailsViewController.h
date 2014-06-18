@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "AMVConsult.h"
+#import "AMVCareMeUtil.h"
+#import "AMVConsultDAO.h"
+#import "AMVAddConsultController.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVConsultDetailsViewController : UIViewController <UIActionSheetDelegate>
 @property (nonatomic, strong) AMVConsult *consult;
