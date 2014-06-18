@@ -33,6 +33,7 @@
 		2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D3193D18FB0037A496 /* Medicine.png */; };
 		2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */; };
 		2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */; };
+		2FCB30D81951E782003E1BD2 /* AMVMedicineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB30DA1951E782003E1BD2 /* AMVMedicineDetailsViewController.xib */; };
 		9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D321193FA9B2007F30F9 /* AMVConsult.m */; };
 		9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D324193FAB9A007F30F9 /* AMVMedicine.m */; };
 		9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */; };
@@ -45,7 +46,6 @@
 		D8FD225D194648D90032863C /* AMVMedicineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FD225B194648D90032863C /* AMVMedicineCell.m */; };
 		D8FD225E194648D90032863C /* AMVMedicineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FD225C194648D90032863C /* AMVMedicineCell.xib */; };
 		D8FD226219464BD10032863C /* AMVMedicineDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */; };
-		D8FD226319464BD10032863C /* AMVMedicineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +95,7 @@
 		2F9BE5D5193E4B950037A496 /* AMVAddMedicineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVAddMedicineController.h; sourceTree = "<group>"; };
 		2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddMedicineController.m; sourceTree = "<group>"; };
 		2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddMedicineController.xib; sourceTree = "<group>"; };
+		2FCB30D91951E782003E1BD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AMVMedicineDetailsViewController.xib; sourceTree = "<group>"; };
 		9F62D320193FA9B2007F30F9 /* AMVConsult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsult.h; sourceTree = "<group>"; };
 		9F62D321193FA9B2007F30F9 /* AMVConsult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsult.m; sourceTree = "<group>"; };
 		9F62D323193FAB9A007F30F9 /* AMVMedicine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicine.h; sourceTree = "<group>"; };
@@ -115,7 +116,6 @@
 		D8FD225C194648D90032863C /* AMVMedicineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVMedicineCell.xib; sourceTree = "<group>"; };
 		D8FD225F19464BD10032863C /* AMVMedicineDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicineDetailsViewController.h; sourceTree = "<group>"; };
 		D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVMedicineDetailsViewController.m; sourceTree = "<group>"; };
-		D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVMedicineDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,19 +282,28 @@
 			path = CareMe/Images;
 			sourceTree = "<group>";
 		};
-		D89D059F19425B1500E18536 /* Cell */ = {
+		2FCB30DB1951F981003E1BD2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D8FD225A194648D90032863C /* AMVMedicineCell.h */,
+				D8FD225B194648D90032863C /* AMVMedicineCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		2FCB30DC1951F998003E1BD2 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				D89D05A019425B6700E18536 /* AMVConsultCell.h */,
 				D89D05A119425B6700E18536 /* AMVConsultCell.m */,
 			);
-			name = Cell;
+			name = View;
 			sourceTree = "<group>";
 		};
 		D8CFD90B1947707D00EAC205 /* Medicine */ = {
 			isa = PBXGroup;
 			children = (
-				D8CFD9121947718000EAC205 /* Cell */,
+				2FCB30DB1951F981003E1BD2 /* View */,
 				D8CFD9111947716900EAC205 /* Controller */,
 				D8CFD90F1947714500EAC205 /* DAO */,
 				D8CFD9101947715500EAC205 /* Entity */,
@@ -306,7 +315,7 @@
 		D8CFD90C1947708500EAC205 /* Consult */ = {
 			isa = PBXGroup;
 			children = (
-				D89D059F19425B1500E18536 /* Cell */,
+				2FCB30DC1951F998003E1BD2 /* View */,
 				2F2527961937BDF800D62E4B /* Controller */,
 				2F2527981937BE0900D62E4B /* DAO */,
 				2F2527971937BDFE00D62E4B /* Entity */,
@@ -319,7 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */,
-				D8FD226119464BD10032863C /* AMVMedicineDetailsViewController.xib */,
+				2FCB30DA1951E782003E1BD2 /* AMVMedicineDetailsViewController.xib */,
 				D8FD225C194648D90032863C /* AMVMedicineCell.xib */,
 				2F9BE5D0193D0E4C0037A496 /* AMVHomeMedicineController.xib */,
 			);
@@ -355,15 +364,6 @@
 				D8FD226019464BD10032863C /* AMVMedicineDetailsViewController.m */,
 			);
 			name = Controller;
-			sourceTree = "<group>";
-		};
-		D8CFD9121947718000EAC205 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				D8FD225A194648D90032863C /* AMVMedicineCell.h */,
-				D8FD225B194648D90032863C /* AMVMedicineCell.m */,
-			);
-			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -457,7 +457,7 @@
 				2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
 				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
-				D8FD226319464BD10032863C /* AMVMedicineDetailsViewController.xib in Resources */,
+				2FCB30D81951E782003E1BD2 /* AMVMedicineDetailsViewController.xib in Resources */,
 				D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +529,14 @@
 				2F25278A1937BCFF00D62E4B /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2FCB30DA1951E782003E1BD2 /* AMVMedicineDetailsViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FCB30D91951E782003E1BD2 /* en */,
+			);
+			name = AMVMedicineDetailsViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -71,19 +71,19 @@ static AMVEventsManagerSingleton *_instance;
         }
     }
     
-    if([self checkLockFile] == NO) {
+    if([self checkEventLockFile] == NO) {
         if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
             // iOS 6 and later
             [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
                 if (granted) {
-                    [self createLockFile];
+                    [self createEventLockFile];
                 }
             }];
         } else {
-            [self createLockFile];
+            [self createEventLockFile];
         }
     }
-    if([self checkLockFile] == YES) {
+    if([self checkEventLockFile] == YES) {
         NSError *err;
         if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
             [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
@@ -168,20 +168,20 @@ static AMVEventsManagerSingleton *_instance;
         }
     }
     
-    if([self checkLockFile] == NO) {
+    if([self checkReminderLockFile] == NO) {
         if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
             // iOS 6 and later
-            [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            [_store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
                 if (granted) {
-                    [self createLockFile];
+                    [self createReminderLockFile];
                 }
             }];
         } else {
-            [self createLockFile];
+            [self createReminderLockFile];
         }
     }
 
-    if([self checkLockFile] == YES) {
+    if([self checkReminderLockFile] == YES) {
         NSError *err;
         if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
             [_store saveReminder:reminder commit:YES error:&err];
@@ -202,14 +202,26 @@ static AMVEventsManagerSingleton *_instance;
 }
 
 
--(BOOL) checkLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"lock"];
+-(BOOL) checkEventLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"eventLock"];
     
     return [[NSFileManager defaultManager] fileExistsAtPath:lockFile];
 }
 
--(void) createLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"lock"];
+-(void) createEventLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"eventLock"];
+    
+    [[NSData data] writeToFile:lockFile options:NSDataWritingAtomic error:nil];
+}
+
+-(BOOL) checkReminderLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"reminderLock"];
+    
+    return [[NSFileManager defaultManager] fileExistsAtPath:lockFile];
+}
+
+-(void) createReminderLockFile {
+    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"reminderLock"];
     
     [[NSData data] writeToFile:lockFile options:NSDataWritingAtomic error:nil];
 }
