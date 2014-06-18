@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AMVConsult.h"
+#import "AMVMedicine.h"
 
 @interface AMVEventsManagerSingleton : NSObject
 
@@ -19,5 +20,8 @@ typedef NS_ENUM(short, AMVManipulationType) {
 -(instancetype) init __attribute__((unavailable("init not available")));
 
 -(NSString*) manipulateConsultEvent: (AMVConsult*)consult withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType;
+
+-(NSString*) manipulateMedicineReminder: (AMVMedicine*)medicine withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType;
+
 
 @end

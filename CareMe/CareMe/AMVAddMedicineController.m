@@ -26,8 +26,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dao = [[AMVMedicineDAO alloc]init];
-        _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
-        _periodValues = [self getPeriodValues];
+        _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)", @"Ano(s)"];
+        _periodValues = [self getPeriodValues:HOUR];
         
     }
     return self;
@@ -129,6 +129,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             medicine.endDate = [self getDateComponent:self.endDatePicker];
             medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
             medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            
             
             [_dao saveMedicinet:medicine];
          
@@ -315,16 +316,24 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
     
-    
-    
+    if(component == 0) {
+        _periodValues = [self getPeriodValues:(AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1]];
+        [self.periodPicker reloadComponent:0];
+    }
 }
 
--(NSArray *)getPeriodValues{
-    
+-(NSArray *)getPeriodValues: (AMVPeriodEnum) periodType{
     NSMutableArray *values = [[NSMutableArray alloc]init];
     
-    for (int i = 1; i <= 100; i++) {
-        [values addObject:[NSString stringWithFormat:@"%d",i ]];
+    if(periodType == HOUR) {
+        for (int i = 1; i <= 24; i++) {
+            if(24 % i == 0)
+                [values addObject:[NSString stringWithFormat:@"%d",i ]];
+        }
+    } else {
+        for (int i = 1; i <= 30; i++)
+            [values addObject:[NSString stringWithFormat:@"%d",i ]];
+        
     }
     
     return [[NSArray alloc]initWithArray:values];
