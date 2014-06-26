@@ -20,6 +20,7 @@
     NSArray *_consults;
     AMVEventsManagerSingleton *_eventsManager;
     UIBarButtonItem *_editConsultBt;
+    UILabel *_emptyConsultsLb;
 }
 
 @end
@@ -101,12 +102,14 @@
         self.scroll.hidden = YES;
         self.visualizationSC.hidden = YES;
         _editConsultBt.enabled = NO;
+        [self.view addSubview:_emptyConsultsLb];
     } else {
         if(self.searchBar.hidden == YES) {
             self.searchBar.hidden = NO;
             self.scroll.hidden = NO;
             self.visualizationSC.hidden = NO;
             _editConsultBt.enabled = YES;
+            [_emptyConsultsLb removeFromSuperview];
         }
     }
     self.searchBar.text = @"";
@@ -150,6 +153,21 @@
     
     self.searchBar.tintColor = [AMVCareMeUtil secondColor];
     [self.searchBar setBackgroundImage:[AMVCareMeUtil imageWithColor:[AMVCareMeUtil firstColor]]];
+    
+    
+    int labelWidth = self.view.frame.size.width;
+    int labelHeight = 20;
+    _emptyConsultsLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
+    CGPoint centralizedLabel = self.view.center;
+    
+    centralizedLabel.y -= 80;
+    _emptyConsultsLb.center = centralizedLabel;
+    
+    _emptyConsultsLb.numberOfLines = 0;
+    _emptyConsultsLb.text = @"Nenhuma consulta cadastrada";
+    _emptyConsultsLb.font = [UIFont boldSystemFontOfSize:20];
+    _emptyConsultsLb.textColor = [AMVCareMeUtil secondColor];
+    _emptyConsultsLb.textAlignment = NSTextAlignmentCenter;
 }
 
 -(void) addConsult {
@@ -305,6 +323,7 @@
             self.scroll.hidden = YES;
             self.visualizationSC.hidden = YES;
             _editConsultBt.enabled = NO;
+            [self.view addSubview:_emptyConsultsLb];
         }
     }
     

@@ -14,6 +14,7 @@
     NSArray *_medicines;
     AMVEventsManagerSingleton *_eventsManager;
     UIBarButtonItem *_editMedicineBt;
+    UILabel *_emptyMedicinesLb;
 }
 
 @end
@@ -52,16 +53,17 @@
         self.scroll.hidden = YES;
         self.dayPeriodSC.hidden = YES;
         _editMedicineBt.enabled = NO;
+        [self.view addSubview:_emptyMedicinesLb];
     } else {
         if(self.searchBar.hidden == YES) {
             self.searchBar.hidden = NO;
             self.scroll.hidden = NO;
             self.dayPeriodSC.hidden = NO;
             _editMedicineBt.enabled = YES;
+            [_emptyMedicinesLb removeFromSuperview];
         }
     }
     self.searchBar.text = @"";
-    
     
     if(self.tableViewMedicines.editing){
         [self.tableViewMedicines setEditing:NO];
@@ -73,24 +75,13 @@
 -(void)updateTable{
     NSMutableArray *medicines = [[NSMutableArray alloc] init];
     
-    if(self.dayPeriodSC.selectedSegmentIndex == 0){
+    DAY_PERIOD dayPeriod = (DAY_PERIOD) self.dayPeriodSC.selectedSegmentIndex;
+    if(dayPeriod != ALL){
         for (AMVMedicine *medicine in _medicines) {
             
             NSDateComponents *date = [medicine startDate];
             
-            if([AMVCareMeUtil dayPeriodForDate:date] == MORNING){
-                [medicines addObject:medicine];
-            }
-        }
-        
-        _medicines = medicines;
-        [self.tableViewMedicines reloadData];
-    }
-
-    if(self.dayPeriodSC.selectedSegmentIndex == 1){
-        for (AMVMedicine *medicine in _medicines) {
-            
-            NSDateComponents *date = [medicine startDate];
+            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
             
             if(medicine.periodType == HOUR) {
                 int numberOfAlarms = (int) (24 / medicine.periodValue);
@@ -126,122 +117,12 @@
         
         _medicines = medicines;
         [self.tableViewMedicines reloadData];
-    }
-    if(self.dayPeriodSC.selectedSegmentIndex == 2){
-        for (AMVMedicine *medicine in _medicines) {
-            
-            
-        }
-        
-    }
-    if(self.dayPeriodSC.selectedSegmentIndex == 3){
-        [self.tableViewMedicines reloadData];
+    } else {
+        medicines = [[NSMutableArray alloc] initWithArray:_medicines];
     }
 
     _medicines = medicines;
     [self.tableViewMedicines reloadData];
-    
-//    switch (self.dayPeriodSC.selectedSegmentIndex) {
-//        case MORNING:
-//            
-//            break;
-//        case AFTERNOON:
-//            for (AMVMedicine *medicine in [_dao listMedicines]) {
-//                
-//                NSDateComponents *date = [medicine startDate];
-//                
-//                NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-//                
-//                if(medicine.periodType == HOUR) {
-//                    int numberOfAlarms = (int) (24 / medicine.periodValue);
-//                    
-//                    for(int i = 0; i < numberOfAlarms; i++) {
-//                        if([tempArray count] == 0){
-//                            NSTimeInterval medicineOffset = (i*1*60*60*medicine.periodValue);
-//                            
-//                            NSDate *medicineDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:medicineOffset];
-//                            NSCalendar *cal = [NSCalendar currentCalendar];
-//                            NSDateComponents *medicineDateComponents = [cal components:
-//                                                                        NSYearCalendarUnit |
-//                                                                        NSMonthCalendarUnit |
-//                                                                        NSDayCalendarUnit |
-//                                                                        NSHourCalendarUnit |
-//                                                                        NSMinuteCalendarUnit
-//                                                                              fromDate:medicineDate];
-//                            
-//                            if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == AFTERNOON){
-//                                [tempArray addObject:medicine];
-//                            }
-//                            
-//                        }
-//                    }
-//                    if([tempArray count] != 0){
-//                        [medicines addObject:[tempArray objectAtIndex:0]];
-//                    }
-//                    
-//                } else if([AMVCareMeUtil dayPeriodForDate:date] == AFTERNOON){
-//                    [medicines addObject:medicine];
-//                }
-//                
-//                
-//            }
-//            
-//            _medicines = medicines;
-//            [self.tableViewMedicines reloadData];
-//
-//            break;
-//        case NIGHT:
-//            for (AMVMedicine *medicine in [_dao listMedicines]) {
-//                
-//                NSDateComponents *date = [medicine startDate];
-//                
-//                NSMutableArray *tempArray = [[NSMutableArray alloc] init];
-//                
-//                if(medicine.periodType == HOUR) {
-//                    int numberOfAlarms = (int) (24 / medicine.periodValue);
-//                    
-//                    for(int i = 0; i < numberOfAlarms; i++) {
-//                        if([tempArray count] == 0){
-//                            NSTimeInterval medicineOffset = (i*1*60*60*medicine.periodValue);
-//                            
-//                            NSDate *medicineDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:medicineOffset];
-//                            NSCalendar *cal = [NSCalendar currentCalendar];
-//                            NSDateComponents *medicineDateComponents = [cal components:
-//                                                                        NSYearCalendarUnit |
-//                                                                        NSMonthCalendarUnit |
-//                                                                        NSDayCalendarUnit |
-//                                                                        NSHourCalendarUnit |
-//                                                                        NSMinuteCalendarUnit
-//                                                                              fromDate:medicineDate];
-//                            
-//                            if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == NIGHT){
-//                                [tempArray addObject:medicine];
-//                            }
-//                            
-//                        }
-//                    }
-//                    if([tempArray count] != 0){
-//                        [medicines addObject:[tempArray objectAtIndex:0]];
-//                    }
-//                    
-//                } else if([AMVCareMeUtil dayPeriodForDate:date] == NIGHT){
-//                    [medicines addObject:medicine];
-//                }
-//                
-//                
-//            }
-//            
-//            _medicines = medicines;
-//            [self.tableViewMedicines reloadData];
-//
-//            break;
-//        default:
-//            _medicines = [_dao listMedicines];
-//            [self.tableViewMedicines reloadData];
-//
-//            break;
-//    }
-
 }
 -(IBAction)selectPeriodSegment:(id)sender{
     [self searchBar:self.searchBar textDidChange:self.searchBar.text];
@@ -280,6 +161,20 @@
     
     self.searchBar.tintColor = [AMVCareMeUtil secondColor];
     [self.searchBar setBackgroundImage:[AMVCareMeUtil imageWithColor:[AMVCareMeUtil firstColor]]];
+    
+    int labelWidth = self.view.frame.size.width;
+    int labelHeight = 20;
+    _emptyMedicinesLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
+    CGPoint centralizedLabel = self.view.center;
+    
+    centralizedLabel.y -= 80;
+    _emptyMedicinesLb.center = centralizedLabel;
+    
+    _emptyMedicinesLb.numberOfLines = 0;
+    _emptyMedicinesLb.text = @"Nenhum remédio cadastrado";
+    _emptyMedicinesLb.font = [UIFont boldSystemFontOfSize:20];
+    _emptyMedicinesLb.textColor = [AMVCareMeUtil secondColor];
+    _emptyMedicinesLb.textAlignment = NSTextAlignmentCenter;
 }
 
 
@@ -425,7 +320,6 @@
         
         [self.tableViewMedicines beginUpdates];
         [self.tableViewMedicines deleteRowsAtIndexPaths:medicines withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableViewMedicines insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         
         [self.tableViewMedicines endUpdates];
         
@@ -435,6 +329,13 @@
             self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
         }
         
+        if([_dao listMedicines].count == 0) {
+            self.searchBar.hidden = YES;
+            self.scroll.hidden = YES;
+            self.dayPeriodSC.hidden = YES;
+            _editMedicineBt.enabled = NO;
+            [self.view addSubview:_emptyMedicinesLb];
+        }
     }
     
 }
