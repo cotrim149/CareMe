@@ -23,6 +23,7 @@ typedef NS_ENUM(short, DAY_PERIOD) {
 +(UIColor*) secondColor;
 +(UIColor*) thirdColor;
 +(DAY_PERIOD) dayPeriodNow;
++(DAY_PERIOD) dayPeriodForDate:(NSDateComponents*) components;
 +(NSString*) getDocumentsFilePathWithSuffix:(NSString*) suffix;
 +(void) deleteAllPlists;
 
