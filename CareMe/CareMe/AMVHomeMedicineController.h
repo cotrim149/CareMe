@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMedicines;
 
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

@@ -59,12 +59,9 @@ static AMVEventsManagerSingleton *_instance;
         calendarEvent.location = consult.place;
         calendarEvent.endDate = calendarEvent.startDate = [cal dateFromComponents: consult.date];
 
-        if(manipulationType == UPDATE_EVENT && withAlarm == NO)
-            calendarEvent.alarms = [[NSArray alloc] init];
-        if(withAlarm) {
-            if(manipulationType == UPDATE_EVENT)
-                calendarEvent.alarms = [[NSArray alloc] init];
 
+        calendarEvent.alarms = [[NSArray alloc] init];
+        if(withAlarm) {
             NSTimeInterval alarmOffset1 = -1*60*60; // 1h
             NSTimeInterval alarmOffset2 = -1*60*60*24; // 24h
             EKAlarm *alarm1 = [EKAlarm alarmWithRelativeOffset:alarmOffset1];

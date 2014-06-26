@@ -40,7 +40,6 @@
         _dao = [[AMVConsultDAO alloc] init];
         _titleLeftBarButtonEditing = @"Editar";
         _titleLeftBarButtonOK = @"OK";
-        _consults = [_dao listConsults];
     }
     return self;
 }
@@ -214,7 +213,6 @@
         AMVConsult *consult = [_consults objectAtIndex:indexPath.row];
         
         consultController.consultToBeEdited = consult;
-        NSLog(@"ID da edit = %@", consultController.consultToBeEdited.eventId);
         
         [self.navigationController pushViewController:consultController animated:YES];
     }
@@ -289,10 +287,10 @@
         [consultListWithoutDeleted removeObjectAtIndex:indexPath.row];
         _consults = consultListWithoutDeleted;
 
-        NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
+        NSArray *consults = [NSArray arrayWithObjects:indexPath, nil];
        
         [self.tableViewConsults beginUpdates];
-        [self.tableViewConsults deleteRowsAtIndexPaths:consulta withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableViewConsults deleteRowsAtIndexPaths:consults withRowAnimation:UITableViewRowAnimationFade];
         //[self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableViewConsults endUpdates];
         

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -8,17 +8,18 @@
             <connections>
                 <outlet property="dayPeriodSC" destination="JGL-7K-KSQ" id="MhM-kQ-ejD"/>
                 <outlet property="scroll" destination="tFX-Cq-BeF" id="YUU-dv-yfb"/>
+                <outlet property="searchBar" destination="qne-9a-n2I" id="UO5-8U-8br"/>
                 <outlet property="tableViewMedicines" destination="nIR-8C-EaN" id="hDE-ZI-cUc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="UIControl">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JGL-7K-KSQ">
-                    <rect key="frame" x="22" y="25" width="276" height="29"/>
+                    <rect key="frame" x="22" y="13" width="276" height="29"/>
                     <segments>
                         <segment title=""/>
                         <segment title=""/>
@@ -30,7 +31,7 @@
                     </connections>
                 </segmentedControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Cq-BeF">
-                    <rect key="frame" x="22" y="70" width="276" height="383"/>
+                    <rect key="frame" x="22" y="99" width="276" height="383"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-8C-EaN">
                             <rect key="frame" x="0.0" y="0.0" width="276" height="383"/>
@@ -42,10 +43,21 @@
                         </tableView>
                     </subviews>
                 </scrollView>
+                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Filtrar por nome" translatesAutoresizingMaskIntoConstraints="NO" id="qne-9a-n2I">
+                    <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="CDR-uv-FDQ"/>
+                    </connections>
+                </searchBar>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <action selector="dismissKeyboard:" destination="-1" eventType="touchDown" id="qTe-p1-Usc"/>
+            </connections>
         </view>
     </objects>
 </document>
