@@ -52,8 +52,63 @@
         [self.tableViewMedicines setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
     }
+    [self updateTable];
 }
 
+-(void)updateTable{
+    NSMutableArray *medicines = [[NSMutableArray alloc] init];
+    
+    if(self.dayPeriodSC.selectedSegmentIndex == 0){
+        for (AMVMedicine *medicine in [_dao listMedicines]) {
+            
+            NSDateComponents *date = [medicine startDate];
+            
+            if([AMVCareMeUtil dayPeriodForDate:date] == MORNING){
+                [medicines addObject:medicine];
+            }
+        }
+        
+        _medicines = medicines;
+        [self.tableViewMedicines reloadData];
+    }
+
+    if(self.dayPeriodSC.selectedSegmentIndex == 1){
+        for (AMVMedicine *medicine in [_dao listMedicines]) {
+            
+            NSDateComponents *date = [medicine startDate];
+            
+            if([AMVCareMeUtil dayPeriodForDate:date] == AFTERNOON){
+                [medicines addObject:medicine];
+            }
+        }
+        
+        _medicines = medicines;
+        [self.tableViewMedicines reloadData];
+    }
+    if(self.dayPeriodSC.selectedSegmentIndex == 2){
+        for (AMVMedicine *medicine in [_dao listMedicines]) {
+            
+            NSDateComponents *date = [medicine startDate];
+            
+            if([AMVCareMeUtil dayPeriodForDate:date] == NIGHT){
+                [medicines addObject:medicine];
+            }
+        }
+        
+        _medicines = medicines;
+        [self.tableViewMedicines reloadData];
+    }
+    if(self.dayPeriodSC.selectedSegmentIndex == 3){
+        _medicines = [_dao listMedicines];
+        [self.tableViewMedicines reloadData];
+    }
+
+
+}
+-(IBAction)selectPeriodSegment:(id)sender{
+    [self updateTable];
+
+}
 -(void) addComponentsAndConfigureStyle {
     self.title=@"Remédios";
     

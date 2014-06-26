@@ -26,6 +26,11 @@ static NSDateFormatter *_df;
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
+    
+    return [self dayPeriodForDate:components];
+}
+
++(DAY_PERIOD) dayPeriodForDate: (NSDateComponents*) components{
     int hour = (int)[components hour];
     
     DAY_PERIOD dayPeriod = 0;
@@ -37,6 +42,7 @@ static NSDateFormatter *_df;
         dayPeriod = NIGHT;
     
     return dayPeriod;
+    
 }
 
 // Sufixos serao "medicine" e "consult"
