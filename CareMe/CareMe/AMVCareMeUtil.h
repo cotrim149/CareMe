@@ -25,5 +25,6 @@ typedef NS_ENUM(short, DAY_PERIOD) {
 +(DAY_PERIOD) dayPeriodNow;
 +(NSString*) getDocumentsFilePathWithSuffix:(NSString*) suffix;
 +(void) deleteAllPlists;
++ (UIImage *)imageWithColor:(UIColor *)color;
 
 @end

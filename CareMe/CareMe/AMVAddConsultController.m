@@ -41,6 +41,7 @@
     [self addComponentsAndConfigureStyle];
     
     self.datePk = [[UIDatePicker alloc]init];
+    self.datePk.minimumDate = [NSDate date];
     [self.datePk setDate:[NSDate date]];
     
     
@@ -218,6 +219,7 @@
                 NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
                 
                 [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
+                _consultToBeEdited.eventId = eventId;
             }
 
             [_dao saveConsult:_consultToBeEdited];

@@ -7,18 +7,22 @@
 //
 
 #import "AMVMedicineDetailsViewController.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVMedicineDetailsViewController ()
 
 @end
 
-@implementation AMVMedicineDetailsViewController
+@implementation AMVMedicineDetailsViewController {
+    AMVEventsManagerSingleton *_eventsManager;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dao = [[AMVMedicineDAO alloc] init];
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
     }
     return self;
 }
@@ -43,17 +47,6 @@
     line.frame = layerFrame;
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.deleteBt.layer addSublayer:line];
-
-    self.name.text = [NSString stringWithFormat:@"Remédio: %@",self.medicine.name];
-    self.dosage.text = [NSString stringWithFormat:@"Dosagem: %@", self.medicine.dosage];
-    self.howUseTF.text = [NSString stringWithFormat:@"Como usar: %@", self.medicine.howUse];
-    self.startDate.text = [NSString stringWithFormat:@"Início: %02lu/%02lu/%02lu",self.medicine.startDate.day, self.medicine.startDate.month, self.medicine.startDate.year];
-    
-    self.endDate.text = [NSString stringWithFormat:@"Fim: %02lu/%02lu/%02lu",self.medicine.endDate.day, self.medicine.endDate.month, self.medicine.endDate.year];
-    
-    NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
-    
-    self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
     
     UIBarButtonItem *editBt = [[UIBarButtonItem alloc] initWithTitle:@"Editar"
                                                                style:UIBarButtonItemStylePlain
@@ -71,7 +64,7 @@
     self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)self.medicine.startDate.day,(long)self.medicine.startDate.month, (long)self.medicine.startDate.year, (long)self.medicine.startDate.hour, (long)self.medicine.startDate.minute];
     self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)self.medicine.endDate.day,(long)self.medicine.endDate.month, (long)self.medicine.endDate.year];
     
-    NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
+    NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)", @"Ano(s)"];
 
     self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
 
@@ -99,6 +92,8 @@
     addMedicineController.medicineToBeEdited.startDate = self.medicine.startDate;
     addMedicineController.medicineToBeEdited.periodValue = self.medicine.periodValue;
     addMedicineController.medicineToBeEdited.periodType = self.medicine.periodType;
+    addMedicineController.medicineToBeEdited.reminderId = self.medicine.reminderId;
+    
 
     self.medicine = addMedicineController.medicineToBeEdited;
 
@@ -115,11 +110,54 @@
 
 }
 
+-(void)notifyMedicineReminderResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    NSString *msg = nil;
+    if(result == YES) {
+        switch (manipulationType) {
+            case CREATE_EVENT:
+                msg = @"Medicamento foi adicionado aos lembretes!";
+                break;
+            case UPDATE_EVENT:
+                msg = @"Medicamento foi atualizado dos lembretes!";
+                break;
+            case DELETE_EVENT:
+                msg = @"Medicamento foi removido dos lembretes!";
+                break;
+                
+            default:
+                break;
+        }
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:msg
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:@"Não foi possível acessar os seus lembretes. Verifique as permissões do app."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == actionSheet.destructiveButtonIndex)
     {
+        if(self.medicine.reminderId != nil) {
+            NSString *reminderId = [_eventsManager manipulateMedicineReminder:self.medicine withAlarm:NO manipulationType:DELETE_EVENT];
+            [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:DELETE_EVENT];
+        }
+        
         [_dao deleteMedicine:self.medicine];
+        
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

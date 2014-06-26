@@ -19,6 +19,7 @@
     AMVConsultDAO *_dao;
     NSArray *_consults;
     AMVEventsManagerSingleton *_eventsManager;
+    UIBarButtonItem *_editConsultBt;
 }
 
 @end
@@ -94,6 +95,23 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    _consults = [_dao listConsults];
+    
+    if (_consults.count == 0) {
+        self.searchBar.hidden = YES;
+        self.scroll.hidden = YES;
+        self.visualizationSC.hidden = YES;
+        _editConsultBt.enabled = NO;
+    } else {
+        if(self.searchBar.hidden == YES) {
+            self.searchBar.hidden = NO;
+            self.scroll.hidden = NO;
+            self.visualizationSC.hidden = NO;
+            _editConsultBt.enabled = YES;
+        }
+    }
+    self.searchBar.text = @"";
+    
     [self updateTable];
     
     if(self.tableViewConsults.editing){
@@ -118,13 +136,13 @@
     
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
-    UIBarButtonItem *editConsultBt = [[UIBarButtonItem alloc]
+    _editConsultBt = [[UIBarButtonItem alloc]
                                       initWithTitle:_titleLeftBarButtonEditing
                                       style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(editConsult)];
     
-    self.navigationItem.leftBarButtonItem = editConsultBt;
+    self.navigationItem.leftBarButtonItem = _editConsultBt;
      
     self.visualizationSC.tintColor = [AMVCareMeUtil firstColor];
     [self.visualizationSC setTitle:@"Data" forSegmentAtIndex:0];
@@ -132,6 +150,7 @@
     [self.visualizationSC setTitle:@"Local" forSegmentAtIndex:2];
     
     self.searchBar.tintColor = [AMVCareMeUtil secondColor];
+    [self.searchBar setBackgroundImage:[AMVCareMeUtil imageWithColor:[AMVCareMeUtil firstColor]]];
 }
 
 -(void) addConsult {
@@ -266,13 +285,15 @@
         }
         
         [_dao deleteConsult: consultToBeDeleted];
+        NSMutableArray *consultListWithoutDeleted = [[NSMutableArray alloc] initWithArray:_consults];
+        [consultListWithoutDeleted removeObjectAtIndex:indexPath.row];
+        _consults = consultListWithoutDeleted;
 
         NSArray *consulta = [NSArray arrayWithObjects:indexPath, nil];
        
         [self.tableViewConsults beginUpdates];
-  
         [self.tableViewConsults deleteRowsAtIndexPaths:consulta withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        //[self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableViewConsults endUpdates];
         
         [self updateTable];
@@ -280,7 +301,13 @@
         if([self.tableViewConsults numberOfRowsInSection:0] == 0){
             self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
         }
-
+        
+        if ([_dao listConsults].count == 0) {
+            self.searchBar.hidden = YES;
+            self.scroll.hidden = YES;
+            self.visualizationSC.hidden = YES;
+            _editConsultBt.enabled = NO;
+        }
     }
     
 }
@@ -301,7 +328,10 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    [searchBar resignFirstResponder];
+    [self.searchBar resignFirstResponder];
+    self.searchBar.text = @"";
+    _consults = [_dao listConsults];
+    [self updateTable];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 

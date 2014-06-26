@@ -7,10 +7,12 @@
 //
 
 #import "AMVHomeMedicineController.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVHomeMedicineController (){
     AMVMedicineDAO *_dao;
     NSArray *_medicines;
+    AMVEventsManagerSingleton *_eventsManager;
 }
 
 @end
@@ -28,6 +30,7 @@
         
         _dao = [[AMVMedicineDAO alloc]init];
         
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
         _titleLeftBarButtonEditing = @"Editar";
         _titleLeftBarButtonOK = @"OK";
 
@@ -166,9 +169,53 @@
     return YES;
 }
 
+-(void)notifyMedicineReminderResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    NSString *msg = nil;
+    if(result == YES) {
+        switch (manipulationType) {
+            case CREATE_EVENT:
+                msg = @"Medicamento foi adicionado aos lembretes!";
+                break;
+            case UPDATE_EVENT:
+                msg = @"Medicamento foi atualizado dos lembretes!";
+                break;
+            case DELETE_EVENT:
+                msg = @"Medicamento foi removido dos lembretes!";
+                break;
+                
+            default:
+                break;
+        }
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:msg
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:@"Não foi possível acessar os seus lembretes. Verifique as permissões do app."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(editingStyle == UITableViewCellEditingStyleDelete){
+        AMVMedicine *medicineToBeDeleted = [_medicines objectAtIndex:indexPath.row];
+        
+        if(medicineToBeDeleted.reminderId != nil) {
+            NSString *reminderId = [_eventsManager manipulateMedicineReminder:medicineToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
+            [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:DELETE_EVENT];
+        }
         
         [_dao deleteMedicine: [[_dao listMedicines] objectAtIndex:indexPath.row]];
         

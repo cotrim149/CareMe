@@ -30,7 +30,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         _dao = [[AMVMedicineDAO alloc]init];
         _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)", @"Ano(s)"];
         _periodValues = [self getPeriodValues:HOUR];
-        
+        _eventsManager = [AMVEventsManagerSingleton getInstance];
     }
     return self;
 }
@@ -42,12 +42,24 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [self addComponentsAndConfigureStyle];
     
     if(_medicineToBeEdited){
+        _periodValues = [self getPeriodValues:_medicineToBeEdited.periodType];
+        [self.periodPicker reloadComponent:0];
+        
         self.medicineNameTF.text = _medicineToBeEdited.name;
         self.medicineDosageTF.text = _medicineToBeEdited.dosage;
         self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
         self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)_medicineToBeEdited.endDate.day,(long)_medicineToBeEdited.endDate.month, (long)_medicineToBeEdited.endDate.year];
         self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)_medicineToBeEdited.startDate.day,(long)_medicineToBeEdited.startDate.month, (long)_medicineToBeEdited.startDate.year, (long)_medicineToBeEdited.startDate.hour, (long)_medicineToBeEdited.startDate.minute];
-        [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
+        if(self.medicineToBeEdited.periodType == HOUR) {
+            int i;
+            for(i = 0; i < 7; i++)
+                if([_periodValues[i] intValue] == _medicineToBeEdited.periodValue)
+                    break;
+            
+            [self.periodPicker selectRow:i inComponent:0 animated:YES];
+        } else {
+            [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
+        }
         [self.periodPicker selectRow:_medicineToBeEdited.periodType inComponent:1 animated:YES];
     }
     
@@ -130,12 +142,14 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             _medicineToBeEdited.startDate = [self getDateComponent:self.startDatePicker];
             _medicineToBeEdited.endDate = [self getDateComponent:self.endDatePicker];
             _medicineToBeEdited.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
-            _medicineToBeEdited.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
-//            if(_medicineToBeEdited.reminderId != nil) {
-//                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
-//                
-//                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:UPDATE_EVENT];
-//            }
+            NSString *periodValueString = (NSString*)[_periodValues objectAtIndex:[self.periodPicker selectedRowInComponent:0]];
+            _medicineToBeEdited.periodValue = [periodValueString intValue];
+            
+            if(_medicineToBeEdited.reminderId != nil) {
+                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
+                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:UPDATE_EVENT];
+                _medicineToBeEdited.reminderId = reminderId;
+            }
             
             [_dao saveMedicinet:_medicineToBeEdited];
          
@@ -149,18 +163,16 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             medicine.startDate = [self getDateComponent:self.startDatePicker];
             medicine.endDate = [self getDateComponent:self.endDatePicker];
             medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
-            medicine.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+            NSString *periodValueString = (NSString*)[_periodValues objectAtIndex:[self.periodPicker selectedRowInComponent:0]];
+            medicine.periodValue = [periodValueString intValue];
+            
+            // IF SALVAR LEMBRETE == YES
+            NSString *reminderId = [_eventsManager manipulateMedicineReminder:medicine withAlarm:YES manipulationType:CREATE_EVENT];
+            [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
+            medicine.reminderId = reminderId;
+            
             // Salva a entity
             [_dao saveMedicinet:medicine];
-            
-//            if(YES) {
-//                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
-//                
-//                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
-//                
-//                medicine.reminderId = reminderId;
-//            }
-            
         }
         
         [self.navigationController popViewControllerAnimated:YES];
@@ -172,13 +184,13 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     if(result == YES) {
         switch (manipulationType) {
             case CREATE_EVENT:
-                msg = @"Medicamento foi adicionada aos lembretes!";
+                msg = @"Medicamento foi adicionado aos lembretes!";
                 break;
             case UPDATE_EVENT:
-                msg = @"Medicamento foi atualizada aos lembretes!";
+                msg = @"Medicamento foi atualizado dos lembretes!";
                 break;
             case DELETE_EVENT:
-                msg = @"Medicamento foi removida dos lembretes!";
+                msg = @"Medicamento foi removido dos lembretes!";
                 break;
                 
             default:
@@ -366,9 +378,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     }
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
-    if(component == 0) {
+    if(component == 1) {
         _periodValues = [self getPeriodValues:(AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1]];
         [self.periodPicker reloadComponent:0];
     }

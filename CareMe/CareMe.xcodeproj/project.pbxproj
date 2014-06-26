@@ -414,6 +414,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Alysson Matheus Victor";
 				TargetAttributes = {
+					2F2527631937BCFE00D62E4B = {
+						DevelopmentTeam = 8Y387U3F6Y;
+					};
 					2F25277E1937BCFF00D62E4B = {
 						TestTargetID = 2F2527631937BCFE00D62E4B;
 					};
@@ -617,10 +620,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
 				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -630,10 +636,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
 				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

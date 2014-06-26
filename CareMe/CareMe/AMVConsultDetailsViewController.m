@@ -117,6 +117,7 @@
     addConsultController.consultToBeEdited.doctorSpeciality = self.consult.doctorSpeciality;
     addConsultController.consultToBeEdited.idDoctorSpeciality = self.consult.idDoctorSpeciality;
     addConsultController.consultToBeEdited.place = self.consult.place;
+    addConsultController.consultToBeEdited.eventId = self.consult.eventId;
     
     self.consult = addConsultController.consultToBeEdited;
     

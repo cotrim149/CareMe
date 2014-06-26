@@ -46,7 +46,8 @@ static AMVEventsManagerSingleton *_instance;
     if(calendarEvent == nil) {
         return nil;
     }
-
+    
+    calendarEvent.alarms = [[NSArray alloc] init];
     if (manipulationType == CREATE_EVENT || manipulationType == UPDATE_EVENT) {
         NSCalendar *cal = [NSCalendar currentCalendar];
         
@@ -71,35 +72,40 @@ static AMVEventsManagerSingleton *_instance;
         }
     }
     
-    if([self checkEventLockFile] == NO) {
-        if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-            // iOS 6 and later
-            [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-                if (granted) {
-                    [self createEventLockFile];
-                }
-            }];
-        } else {
-            [self createEventLockFile];
-        }
-    }
-    if([self checkEventLockFile] == YES) {
-        NSError *err;
+    NSError __block *err;
+    NSLock __block *lock = [[NSLock alloc] init];
+
+    if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        // iOS 6 and later
+        [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            [lock lock];
+            if (granted) {
+                if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
+                    [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
+                else if(manipulationType == DELETE_EVENT)
+                    [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
+            }
+            [lock unlock];
+        }];
+    } else {
         if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
             [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
         else if(manipulationType == DELETE_EVENT)
             [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
-        
-        if (err != noErr) {
-            NSLog(@"Error manipulating data: %@", err);
-            return nil;
-        }
+    }
+    [NSThread sleepForTimeInterval:.3];
+    [lock lock];
+    [lock unlock];
+    
+    if (err != noErr) {
+        NSLog(@"Error manipulating data: %@", err);
+        return nil;
     }
     
    if(manipulationType == DELETE_EVENT)
        return @"";
    else
-        return  calendarEvent.eventIdentifier;
+       return  calendarEvent.eventIdentifier;
 }
 
 -(NSString*) manipulateMedicineReminder: (AMVMedicine*)medicine withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType {
@@ -121,148 +127,87 @@ static AMVEventsManagerSingleton *_instance;
         reminder.calendar = [_store defaultCalendarForNewReminders];
         reminder.dueDateComponents = medicine.endDate;
         reminder.startDateComponents = medicine.startDate;
+
         EKRecurrenceRule *recurrence = nil;
         NSDate *endDateRecurrence = [[NSCalendar currentCalendar] dateFromComponents:medicine.endDate];
         
         switch (medicine.periodType) {
             case HOUR:
                 recurrence = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:1 end:[EKRecurrenceEnd recurrenceEndWithEndDate:endDateRecurrence]];
+                break;
             case DAY:
                 recurrence = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyDaily interval:medicine.periodValue end:[EKRecurrenceEnd recurrenceEndWithEndDate:endDateRecurrence]];
-                    break;
+                break;
             case WEEK:
                     recurrence = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyWeekly interval:medicine.periodValue end:[EKRecurrenceEnd recurrenceEndWithEndDate:endDateRecurrence]];
-                    break;
+                break;
             case MONTH:
                     recurrence = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyMonthly interval:medicine.periodValue end:[EKRecurrenceEnd recurrenceEndWithEndDate:endDateRecurrence]];
-                    break;
+                break;
             case YEAR:
                     recurrence = [[EKRecurrenceRule alloc] initRecurrenceWithFrequency:EKRecurrenceFrequencyYearly interval:medicine.periodValue end:[EKRecurrenceEnd recurrenceEndWithEndDate:endDateRecurrence]];
-                    break;
-            default:
-                    break;
+                break;
             
         }
         [reminder addRecurrenceRule:recurrence];
         
-        if(manipulationType == UPDATE_EVENT && withAlarm == NO)
-            reminder.alarms = [[NSArray alloc] init];
-
+        reminder.alarms = [[NSArray alloc] init];
+        
         if(withAlarm) {
-            if(manipulationType == UPDATE_EVENT)
-                reminder.alarms = [[NSArray alloc] init];
             if(medicine.periodType == HOUR) {
-                int hoursLeft =  24 - (int) medicine.startDate.hour;
-                int numberOfAlarms = (int) (hoursLeft / medicine.periodValue);
+                int numberOfAlarms = (int) (24 / medicine.periodValue);
                 for(int i = 0; i < numberOfAlarms; i++) {
                     NSTimeInterval alarmOffset = (-1*60*10) + (i*1*60*60*medicine.periodValue);
-                    EKAlarm *alarm = [EKAlarm alarmWithRelativeOffset:alarmOffset];
+                    
+                    NSDate *alarmDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:alarmOffset];
+                    
+                    EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
                     [reminder addAlarm:alarm];
                 }
             } else {
                 NSTimeInterval alarmOffset = -1*60*10; // 10min
-                EKAlarm *alarm = [EKAlarm alarmWithRelativeOffset:alarmOffset];
+                NSDate *alarmDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:alarmOffset];
                 
+                EKAlarm *alarm = [EKAlarm alarmWithAbsoluteDate:alarmDate];
                 [reminder addAlarm:alarm];
             }
         }
     }
     
-    if([self checkReminderLockFile] == NO) {
-        if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-            // iOS 6 and later
-            [_store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-                if (granted) {
-                    [self createReminderLockFile];
-                }
-            }];
-        } else {
-            [self createReminderLockFile];
-        }
-    }
-
-    if([self checkReminderLockFile] == YES) {
-        NSError *err;
+    NSError __block *err;
+    NSLock __block *lock = [[NSLock alloc] init];
+    if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
+        // iOS 6 and later
+        [_store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+            [lock lock];
+            if(granted) {
+                if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
+                    [_store saveReminder:reminder commit:YES error:&err];
+                else if(manipulationType == DELETE_EVENT)
+                    [_store removeReminder:reminder commit:YES error:&err];
+            }
+            [lock unlock];
+        }];
+    } else {
         if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
             [_store saveReminder:reminder commit:YES error:&err];
         else if(manipulationType == DELETE_EVENT)
             [_store removeReminder:reminder commit:YES error:&err];
-        
-        if (err != noErr) {
-            NSLog(@"Error manipulating data: %@", err);
-            return nil;
-        }
+    }
+    
+    [NSThread sleepForTimeInterval:.3];
+    [lock lock];
+    [lock unlock];
+    
+    if (err != noErr) {
+        NSLog(@"Error manipulating data: %@", err);
+        return nil;
     }
     
     if(manipulationType == DELETE_EVENT)
         return @"";
     else
-        return ((EKCalendarItem*)reminder).calendarItemIdentifier;
-
+        return reminder.calendarItemIdentifier;
 }
-
-
--(BOOL) checkEventLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"eventLock"];
-    
-    return [[NSFileManager defaultManager] fileExistsAtPath:lockFile];
-}
-
--(void) createEventLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"eventLock"];
-    
-    [[NSData data] writeToFile:lockFile options:NSDataWritingAtomic error:nil];
-}
-
--(BOOL) checkReminderLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"reminderLock"];
-    
-    return [[NSFileManager defaultManager] fileExistsAtPath:lockFile];
-}
-
--(void) createReminderLockFile {
-    NSString *lockFile = [AMVCareMeUtil getDocumentsFilePathWithSuffix:@"reminderLock"];
-    
-    [[NSData data] writeToFile:lockFile options:NSDataWritingAtomic error:nil];
-}
-
-//-(void) addConsultReminder:(AMVConsult *)consult withAlarm: (BOOL) withAlarm{
-//    __block BOOL sucess = NO;
-//    
-//    EKReminder *reminder  = [EKReminder reminderWithEventStore:_store];
-//    
-//	reminder.title = [NSString stringWithFormat:@"Consulta %@ - Dr(a) %@", consult.doctorSpeciality, consult.doctorName];
-//    reminder.location = consult.place;
-//    reminder.dueDateComponents = consult.date;
-//    
-//    [reminder setCalendar:[_store defaultCalendarForNewReminders]];
-//    if(withAlarm) {
-//        NSTimeInterval alarmOffset = -1*60*10; // 10min
-//        EKAlarm *alarm = [EKAlarm alarmWithRelativeOffset:alarmOffset];
-//        [reminder addAlarm:alarm];
-//    }
-//    if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
-//        // iOS 6 and later
-//        [_store requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
-//            if (granted) {
-//                // code here for when the user allows your app to access the calendar
-//                NSError *err;
-//                [_store saveReminder:reminder commit:YES error:&error];
-//                if (err == noErr) {
-//                    sucess = YES;
-//                }
-//                
-//            }
-//            [self.delegate notifyMedicineReminderResult:sucess];
-//        }];
-//    } else {
-//        // code here for iOS < 6.0
-//        NSError *err;
-//        if (err == noErr)
-//            sucess = YES;
-//        
-//        [self.delegate notifyMedicineReminderResult:sucess];
-//    }
-//}
 
 @end
