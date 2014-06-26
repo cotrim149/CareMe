@@ -11,7 +11,7 @@
 @interface AMVCareMeUtil : NSObject
 
 typedef NS_ENUM(short, DAY_PERIOD) {
-    MORNING, AFTERNOON, NIGHT
+    MORNING, AFTERNOON, NIGHT, ALL
 };
 
 #define UIColorFromRGB(rgbValue, alphaValue) [UIColor \
