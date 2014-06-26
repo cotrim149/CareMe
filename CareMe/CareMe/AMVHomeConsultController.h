@@ -12,7 +12,7 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
     VT_DATE, VT_SPECIALITY, VT_PLACE
 };
 
-@interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
 {
     NSString *_titleLeftBarButtonEditing;
     NSString *_titleLeftBarButtonOK;
@@ -21,5 +21,6 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
 @property (weak, nonatomic) IBOutlet UISegmentedControl *visualizationSC;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewConsults;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end

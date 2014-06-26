@@ -39,6 +39,7 @@
         _dao = [[AMVConsultDAO alloc] init];
         _titleLeftBarButtonEditing = @"Editar";
         _titleLeftBarButtonOK = @"OK";
+        _consults = [_dao listConsults];
     }
     return self;
 }
@@ -85,7 +86,7 @@
     }
     
     if(comparator) {
-        NSArray *unsortedConsults = [_dao listConsults];
+        NSArray *unsortedConsults = _consults;
         _consults = [unsortedConsults sortedArrayUsingComparator:comparator];
         
         [self.tableViewConsults reloadData];
@@ -94,12 +95,11 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self updateTable];
+    
     if(self.tableViewConsults.editing){
         [self.tableViewConsults setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
     }
-
-    
 }
 
 - (IBAction)changeVisualizationType:(id)sender {
@@ -130,6 +130,8 @@
     [self.visualizationSC setTitle:@"Data" forSegmentAtIndex:0];
     [self.visualizationSC setTitle:@"Especialidade" forSegmentAtIndex:1];
     [self.visualizationSC setTitle:@"Local" forSegmentAtIndex:2];
+    
+    self.searchBar.tintColor = [AMVCareMeUtil secondColor];
 }
 
 -(void) addConsult {
@@ -256,7 +258,7 @@
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
   
     if(editingStyle == UITableViewCellEditingStyleDelete){
-        AMVConsult *consultToBeDeleted = [[_dao listConsults] objectAtIndex:indexPath.row];
+        AMVConsult *consultToBeDeleted = [_consults objectAtIndex:indexPath.row];
         
         if(consultToBeDeleted.eventId != nil) {
             NSString *eventId = [_eventsManager manipulateConsultEvent:consultToBeDeleted withAlarm:NO manipulationType:DELETE_EVENT];
@@ -282,4 +284,40 @@
     }
     
 }
+
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
+    if(text.length > 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.doctorName contains[cd] %@ OR SELF.doctorSpeciality contains[cd] %@ OR SELF.place contains[cd] %@",text, text, text];
+        
+        NSArray *unfiltredConsults = [_dao listConsults];
+        
+        _consults = [unfiltredConsults filteredArrayUsingPredicate:predicate];
+        
+    } else {
+        _consults = [_dao listConsults];
+    }
+    
+    [self updateTable];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
+}
+
+-(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+-(BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:NO animated:YES];
+    
+    return YES;
+}
+
+- (IBAction)dismissKeyboard:(id)sender {
+    [sender endEditing:YES];
+}
+
 @end

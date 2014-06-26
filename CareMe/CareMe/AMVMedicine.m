@@ -21,6 +21,7 @@
         self.endDate = [decoder decodeObjectForKey:@"endDate"];
         self.periodValue = [decoder decodeIntegerForKey:@"periodValue"];
         self.periodType = [decoder decodeIntegerForKey:@"periodType"];
+        self.reminderId = [decoder decodeObjectForKey:@"reminderId"];
     }
     return self;
 }
@@ -34,6 +35,7 @@
     [encoder encodeObject:self.endDate forKey:@"endDate"];
     [encoder encodeInteger:self.periodValue forKey:@"periodValue"];
     [encoder encodeInteger:self.periodType forKey:@"periodType"];
+    [encoder encodeObject:self.reminderId forKey:@"reminderId"];
 }
 
 -(NSString*)description{

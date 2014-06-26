@@ -12,7 +12,8 @@ typedef NS_ENUM(NSInteger, AMVPeriodEnum){
     HOUR,
     DAY,
     WEEK,
-    MES
+    MONTH,
+    YEAR
 };
 
 @interface AMVMedicine : NSObject <NSCoding>
@@ -24,5 +25,6 @@ typedef NS_ENUM(NSInteger, AMVPeriodEnum){
 @property (nonatomic) NSDateComponents *endDate;
 @property (nonatomic) NSInteger periodValue;
 @property (nonatomic) AMVPeriodEnum periodType;
+@property (nonatomic) NSString *reminderId;
 
 @end

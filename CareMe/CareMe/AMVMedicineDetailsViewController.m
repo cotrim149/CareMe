@@ -107,6 +107,7 @@
 
 -(IBAction)deleteMedicine:(id)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar o Medicamento?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Medicamento" otherButtonTitles:nil,nil];
+    
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     
     

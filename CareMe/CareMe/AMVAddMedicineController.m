@@ -7,12 +7,14 @@
 //
 
 #import "AMVAddMedicineController.h"
+#import "AMVEventsManagerSingleton.h"
 
 @interface AMVAddMedicineController () {
     AMVMedicineDAO *_dao;
     UITextField *_activeField;
     NSArray *_periodTypes;
     NSArray *_periodValues;
+    AMVEventsManagerSingleton *_eventsManager;
 }
 
 @end
@@ -26,8 +28,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _dao = [[AMVMedicineDAO alloc]init];
-        _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)"];
-        _periodValues = [self getPeriodValues];
+        _periodTypes = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)", @"Ano(s)"];
+        _periodValues = [self getPeriodValues:HOUR];
         
     }
     return self;
@@ -122,8 +124,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         if(_medicineToBeEdited){
             [_dao deleteMedicine:_medicineToBeEdited];
             
-            AMVMedicine *medicine = [[AMVMedicine alloc] init];
-            
             _medicineToBeEdited.name = self.medicineNameTF.text;
             _medicineToBeEdited.dosage = self.medicineDosageTF.text;
             _medicineToBeEdited.howUse = self.medicineHowUseTV.text;
@@ -131,6 +131,11 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             _medicineToBeEdited.endDate = [self getDateComponent:self.endDatePicker];
             _medicineToBeEdited.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
             _medicineToBeEdited.periodValue = (NSInteger) [self.periodPicker selectedRowInComponent:0] + 1;
+//            if(_medicineToBeEdited.reminderId != nil) {
+//                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
+//                
+//                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:UPDATE_EVENT];
+//            }
             
             [_dao saveMedicinet:_medicineToBeEdited];
          
@@ -148,11 +153,57 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             // Salva a entity
             [_dao saveMedicinet:medicine];
             
+//            if(YES) {
+//                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
+//                
+//                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
+//                
+//                medicine.reminderId = reminderId;
+//            }
+            
         }
         
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
+-(void)notifyMedicineReminderResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
+    NSString *msg = nil;
+    if(result == YES) {
+        switch (manipulationType) {
+            case CREATE_EVENT:
+                msg = @"Medicamento foi adicionada aos lembretes!";
+                break;
+            case UPDATE_EVENT:
+                msg = @"Medicamento foi atualizada aos lembretes!";
+                break;
+            case DELETE_EVENT:
+                msg = @"Medicamento foi removida dos lembretes!";
+                break;
+                
+            default:
+                break;
+        }
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:msg
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Alerta!"
+                              message:@"Não foi possível acessar os seus lembretes. Verifique as permissões do app."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
@@ -317,16 +368,24 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component{
     
-    
-    
+    if(component == 0) {
+        _periodValues = [self getPeriodValues:(AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1]];
+        [self.periodPicker reloadComponent:0];
+    }
 }
 
--(NSArray *)getPeriodValues{
-    
+-(NSArray *)getPeriodValues: (AMVPeriodEnum) periodType{
     NSMutableArray *values = [[NSMutableArray alloc]init];
     
-    for (int i = 1; i <= 100; i++) {
-        [values addObject:[NSString stringWithFormat:@"%d",i ]];
+    if(periodType == HOUR) {
+        for (int i = 1; i <= 24; i++) {
+            if(24 % i == 0)
+                [values addObject:[NSString stringWithFormat:@"%d",i ]];
+        }
+    } else {
+        for (int i = 1; i <= 30; i++)
+            [values addObject:[NSString stringWithFormat:@"%d",i ]];
+        
     }
     
     return [[NSArray alloc]initWithArray:values];
