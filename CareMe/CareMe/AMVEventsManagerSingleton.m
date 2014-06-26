@@ -16,6 +16,10 @@
     AMVConsultDAO *_dao;
 }
 
+enum {
+    REQUEST_ANSWERED_BY_USER, REQUEST_NOT_ANSWERED_BY_USER
+};
+
 static AMVEventsManagerSingleton *_instance;
 
 +(AMVEventsManagerSingleton*) getInstance {
@@ -37,7 +41,7 @@ static AMVEventsManagerSingleton *_instance;
 
 -(NSString*) manipulateConsultEvent: (AMVConsult*)consult withAlarm:(BOOL)withAlarm manipulationType:(AMVManipulationType)manipulationType {
     
-    EKEvent *calendarEvent = nil;
+    EKEvent __block *calendarEvent = nil;
     if(manipulationType == CREATE_EVENT)
         calendarEvent  = [EKEvent eventWithEventStore:_store];
     else if(manipulationType == DELETE_EVENT || manipulationType == UPDATE_EVENT)
@@ -54,7 +58,6 @@ static AMVEventsManagerSingleton *_instance;
         calendarEvent.title = [NSString stringWithFormat:@"Consulta %@ - Dr(a) %@", consult.doctorSpeciality, consult.doctorName];
         calendarEvent.location = consult.place;
         calendarEvent.endDate = calendarEvent.startDate = [cal dateFromComponents: consult.date];
-        calendarEvent.calendar = [_store defaultCalendarForNewEvents];
 
         if(manipulationType == UPDATE_EVENT && withAlarm == NO)
             calendarEvent.alarms = [[NSArray alloc] init];
@@ -73,29 +76,31 @@ static AMVEventsManagerSingleton *_instance;
     }
     
     NSError __block *err;
-    NSLock __block *lock = [[NSLock alloc] init];
-
+    NSConditionLock __block *lock = [[NSConditionLock alloc] initWithCondition:REQUEST_NOT_ANSWERED_BY_USER];
+    
     if ([_store respondsToSelector:@selector(requestAccessToEntityType:completion:)]) {
         // iOS 6 and later
         [_store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             [lock lock];
             if (granted) {
-                if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
+                if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT) {
+                    calendarEvent.calendar = [_store defaultCalendarForNewEvents];
                     [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
-                else if(manipulationType == DELETE_EVENT)
+                } else if(manipulationType == DELETE_EVENT) {
                     [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
+                }
             }
-            [lock unlock];
+            [lock unlockWithCondition:REQUEST_ANSWERED_BY_USER];
         }];
+        
+        [lock lockWhenCondition:REQUEST_ANSWERED_BY_USER];
+        [lock unlock];
     } else {
         if(manipulationType == UPDATE_EVENT || manipulationType == CREATE_EVENT)
             [_store saveEvent:calendarEvent span:EKSpanThisEvent error:&err];
         else if(manipulationType == DELETE_EVENT)
             [_store removeEvent:calendarEvent span:EKSpanThisEvent error:&err];
     }
-    [NSThread sleepForTimeInterval:.3];
-    [lock lock];
-    [lock unlock];
     
     if (err != noErr) {
         NSLog(@"Error manipulating data: %@", err);
