@@ -43,7 +43,7 @@
                     </connections>
                 </segmentedControl>
                 <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Filtrar por nome, espec. e local" translatesAutoresizingMaskIntoConstraints="NO" id="DTK-pp-YT7">
-                    <rect key="frame" x="0.0" y="54" width="325" height="44"/>
+                    <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <textInputTraits key="textInputTraits"/>
