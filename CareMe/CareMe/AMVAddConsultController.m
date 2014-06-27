@@ -6,6 +6,23 @@
 //  Copyright (c) 2014 Alysson Matheus Victor. All rights reserved.
 //
 
+// TODO
+    // Prints (cadastrar previamente 5 entidades de cada):
+        // Home de consultas com filtragem textual
+        // Home de medicamentos
+        // Tela de adição de consulta
+        // Tela de detalhes do medicamento
+        // Tela de alarme da consulta (alarme é 1h antes)
+        // Tela de alarme do medicamento (alarme é 10min antes)
+    // Concertar o scroll da view depois de acionar um picker/teclado
+    // SE DER: Colocar ícone 'i' (a esquerda do label) para acionar um popup com infomações sobre os swiches
+        // Adicionar aos lembretes? ----> Adiciona o remédio aos lembretes do iOS
+        // Adicionar alarme? ----> Adicionar um alarme 10 minutos antes de cada horário em que se deve administrar o remédio
+
+        // Adicionar ao calendário? ----> Adiciona a consulta aos calendário do iOS
+        // Adicionar alarmes? ----> Adicionar dois alarmes, um para 1 dia antes da consulta e outro para 1 hora antes
+    // Publicar o app
+
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
 #import "AMVConsultDAO.h"
@@ -17,6 +34,8 @@
     NSArray *_specialities;
     AMVEventsManagerSingleton *_eventsManager;
     UITextField *_activeField;
+    UIEdgeInsets _oldScrollContentInset;
+    UIEdgeInsets _oldScrollIndicatorInsets;
 }
 
 @end
@@ -124,6 +143,7 @@
     line.frame = layerFrame;
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addAlarmLb.layer addSublayer:line];
+    
 }
 
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
@@ -325,15 +345,12 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 20, 0.0);
     
     self.scrollView.contentInset = contentInsets;
-    
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
     // If active text field is hidden by keyboard, scroll it so it's visible
     CGRect aRect = self.view.frame;
     
     aRect.size.height -= kbSize.height + 50;
-    
-    //    CGPointMake(activeField.frame.size.height, activeField.frame.origin.y);
     
     if (!CGRectContainsPoint(aRect, _activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:_activeField.frame animated:YES];
@@ -344,7 +361,6 @@
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)notification
 {
-    
     NSDictionary* info = [notification userInfo];
     
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -352,9 +368,7 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
     
     self.scrollView.contentInset = contentInsets;
-    
     self.scrollView.scrollIndicatorInsets = contentInsets;
-    
 }
 
 

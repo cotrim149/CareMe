@@ -15,6 +15,8 @@
     NSArray *_periodTypes;
     NSArray *_periodValues;
     AMVEventsManagerSingleton *_eventsManager;
+    UIEdgeInsets _oldScrollContentInset;
+    UIEdgeInsets _oldScrollIndicatorInsets;
 }
 
 @end
@@ -47,7 +49,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         
         self.medicineNameTF.text = _medicineToBeEdited.name;
         self.medicineDosageTF.text = _medicineToBeEdited.dosage;
-        self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
+        if(![_medicineToBeEdited.howUse isEqualToString:@""])
+            self.medicineHowUseTV.text = _medicineToBeEdited.howUse;
         self.endDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)_medicineToBeEdited.endDate.day,(long)_medicineToBeEdited.endDate.month, (long)_medicineToBeEdited.endDate.year];
         self.startDate.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu %02lu:%02lu",(long)_medicineToBeEdited.startDate.day,(long)_medicineToBeEdited.startDate.month, (long)_medicineToBeEdited.startDate.year, (long)_medicineToBeEdited.startDate.hour, (long)_medicineToBeEdited.startDate.minute];
         if(self.medicineToBeEdited.periodType == HOUR) {
@@ -91,7 +94,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     self.medicineHowUseTV.delegate = self;
     self.medicineHowUseTV.text = MEDICINE_HOWUSE_PLACEHOLDER;
-    if (!_medicineToBeEdited)
+    if (!_medicineToBeEdited || [_medicineToBeEdited.howUse isEqualToString:@""])
         self.medicineHowUseTV.textColor = [UIColor lightGrayColor];
     self.medicineHowUseTV.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.medicineHowUseTV.layer.borderWidth =  0.3f;
@@ -335,6 +338,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
 // Called when the UIKeyboardDidShowNotification is sent.
 - (void)keyboardWasShown:(NSNotification*)notification
 {
@@ -346,7 +350,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height + 20, 0.0);
     
     self.scrollView.contentInset = contentInsets;
-    
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
     // If active text field is hidden by keyboard, scroll it so it's visible
@@ -365,7 +368,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)notification
 {
-    
     NSDictionary* info = [notification userInfo];
     
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
@@ -373,7 +375,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
     
     self.scrollView.contentInset = contentInsets;
-    
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
 }
@@ -451,6 +452,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     return [[NSArray alloc]initWithArray:values];
 }
+
 - (IBAction)addToRemindersChange:(id)sender {
     self.addAlarmSw.enabled = self.addToRemindersSw.isOn ? YES : NO;
 }

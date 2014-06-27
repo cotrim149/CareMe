@@ -57,7 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F2527641937BCFE00D62E4B /* CareMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F2527641937BCFE00D62E4B /* Care Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Care Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F2527671937BCFE00D62E4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2F2527691937BCFE00D62E4B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2F25276B1937BCFE00D62E4B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -152,7 +152,7 @@
 		2F2527651937BCFE00D62E4B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F2527641937BCFE00D62E4B /* CareMe.app */,
+				2F2527641937BCFE00D62E4B /* Care Me.app */,
 				2F25277F1937BCFF00D62E4B /* CareMeTests.xctest */,
 			);
 			name = Products;
@@ -377,7 +377,7 @@
 			);
 			name = CareMe;
 			productName = CareMe;
-			productReference = 2F2527641937BCFE00D62E4B /* CareMe.app */;
+			productReference = 2F2527641937BCFE00D62E4B /* Care Me.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2F25277E1937BCFF00D62E4B /* CareMeTests */ = {
@@ -617,7 +617,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
 				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Care Me";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -633,7 +633,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareMe/CareMe-Prefix.pch";
 				INFOPLIST_FILE = "CareMe/CareMe-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Care Me";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
