@@ -34,8 +34,6 @@
     NSArray *_specialities;
     AMVEventsManagerSingleton *_eventsManager;
     UITextField *_activeField;
-    UIEdgeInsets _oldScrollContentInset;
-    UIEdgeInsets _oldScrollIndicatorInsets;
 }
 
 @end
@@ -377,7 +375,7 @@
     // If active text field is hidden by keyboard, scroll it so it's visible
     CGRect aRect = self.view.frame;
     
-    aRect.size.height -= kbSize.height + 50;
+    aRect.size.height -= kbSize.height + _activeField.frame.size.height;
     
     if (!CGRectContainsPoint(aRect, _activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:_activeField.frame animated:YES];
@@ -388,14 +386,13 @@
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)notification
 {
-    NSDictionary* info = [notification userInfo];
     
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
+    
+    
 }
 
 

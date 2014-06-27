@@ -15,8 +15,6 @@
     NSArray *_periodTypes;
     NSArray *_periodValues;
     AMVEventsManagerSingleton *_eventsManager;
-    UIEdgeInsets _oldScrollContentInset;
-    UIEdgeInsets _oldScrollIndicatorInsets;
 }
 
 @end
@@ -110,9 +108,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
                                                                      target:self
                                                                      action:@selector(addCompleted)];
     
-    self.navigationItem.rightBarButtonItem=completeAddBt;
-    
-    self.scrollView.contentSize = self.contentView.frame.size;
+    self.navigationItem.rightBarButtonItem = completeAddBt;
     
     self.addToRemindersSw.onTintColor = [AMVCareMeUtil firstColor];
     self.addAlarmSw.onTintColor = [AMVCareMeUtil firstColor];
@@ -384,9 +380,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     // If active text field is hidden by keyboard, scroll it so it's visible
     CGRect aRect = self.view.frame;
     
-    aRect.size.height -= kbSize.height + 50;
-    
-//    CGPointMake(activeField.frame.size.height, activeField.frame.origin.y);
+    aRect.size.height -= kbSize.height + _activeField.frame.size.height;
     
     if (!CGRectContainsPoint(aRect, _activeField.frame.origin) ) {
         [self.scrollView scrollRectToVisible:_activeField.frame animated:YES];
@@ -397,11 +391,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 // Called when the UIKeyboardWillHideNotification is sent
 - (void)keyboardWillBeHidden:(NSNotification*)notification
 {
-    NSDictionary* info = [notification userInfo];
     
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, -(kbSize.height + 20), 0.0);
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     
     self.scrollView.contentInset = contentInsets;
     self.scrollView.scrollIndicatorInsets = contentInsets;
