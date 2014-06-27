@@ -65,7 +65,7 @@
     
     NSArray *periods = @[@"Hora(s)", @"Dias(s)", @"Semana(s)", @"Mês(es)", @"Ano(s)"];
 
-    self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
+    self.period.text = [NSString stringWithFormat:@"Tomar a cada %ld %@", (long)self.medicine.periodValue, [periods objectAtIndex:self.medicine.periodType]];
 }
 
 -(void)editMedicine {

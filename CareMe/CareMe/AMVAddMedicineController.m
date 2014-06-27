@@ -141,7 +141,36 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     line.frame = layerFrame;
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addAlarmLb.layer addSublayer:line];
+    
+    [self.infoLb setHidden:YES];
+    [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
+    [self.infoReminderBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
+    
+    self.infoLb.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
+    [self.infoLb addGestureRecognizer:tapGesture];
+
+    
 }
+
+-(IBAction)infoReminder:(id)sender{
+    
+    [self.infoLb setHidden:NO];
+    
+    self.infoLb.text = @"Adiciona o remédio aos lembretes do iOS";
+    
+}
+
+-(IBAction)infoAlarm:(id)sender{
+    
+    [self.infoLb setHidden:NO];
+    self.infoLb.text = @"Adicionar um alarme 10 minutos antes de cada horário em que se deve administrar o remédio";
+}
+
+-(void)dismissInfoLabel{
+    [self.infoLb setHidden:YES];
+}
+
 
 - (IBAction)hideKeyboard:(id)sender {
     [sender endEditing:YES];

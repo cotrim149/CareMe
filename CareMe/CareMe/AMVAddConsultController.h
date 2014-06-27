@@ -15,9 +15,13 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
 @property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;
+@property (weak, nonatomic) IBOutlet UIButton *infoAlarmBt;
 
 @property (weak, nonatomic) IBOutlet UISwitch *addToCalandarSw;
 @property (weak, nonatomic) IBOutlet UILabel *addToCalendarLb;
+@property (weak, nonatomic) IBOutlet UIButton *infoCalendarbt;
+
+@property (weak, nonatomic) IBOutlet UILabel *infoLb;
 
 @property (nonatomic, strong) AMVConsult *consultToBeEdited;
 @property (weak, nonatomic) IBOutlet UITextField *placeTF;

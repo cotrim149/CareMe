@@ -32,4 +32,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;
 @property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
 
+@property (weak, nonatomic) IBOutlet UILabel *infoLb;
+@property (weak, nonatomic) IBOutlet UIButton *infoReminderBt;
+@property (weak, nonatomic) IBOutlet UIButton *infoAlarmBt;
 @end

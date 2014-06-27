@@ -144,6 +144,33 @@
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addAlarmLb.layer addSublayer:line];
     
+    [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"]  forState:UIControlStateNormal];
+    
+    [self.infoCalendarbt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
+    [self.infoLb setHidden:YES];
+
+    self.infoLb.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
+    [self.infoLb addGestureRecognizer:tapGesture];
+}
+
+-(IBAction)infoCalendar:(id)sender{
+    
+    [self.infoLb setHidden:NO];
+    
+    self.infoLb.text = @"Adiciona a consulta aos calendário do iOS";
+    
+}
+
+
+-(IBAction)infoAlarm:(id)sender{
+    
+    [self.infoLb setHidden:NO];
+    self.infoLb.text = @"Adicionar dois alarmes, um para 1 dia antes da consulta e outro para 1 hora antes";
+}
+
+-(void)dismissInfoLabel{
+    [self.infoLb setHidden:YES];
 }
 
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
