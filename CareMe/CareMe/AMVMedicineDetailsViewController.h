@@ -18,11 +18,10 @@
 @property (strong, nonatomic) AMVMedicine *medicine;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *dosage;
-@property (weak, nonatomic) IBOutlet UITextView *howUseTF;
 @property (weak, nonatomic) IBOutlet UILabel *startDate;
 @property (weak, nonatomic) IBOutlet UILabel *endDate;
 @property (weak, nonatomic) IBOutlet UILabel *period;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBt;
+@property (weak, nonatomic) IBOutlet UILabel *howUse;
 
--(IBAction)deleteMedicine:(id)sender;
 @end

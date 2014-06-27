@@ -6,6 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVAddMedicineController">
             <connections>
+                <outlet property="addAlarmLb" destination="rRB-wM-IwL" id="xe3-ar-2Gr"/>
+                <outlet property="addAlarmSw" destination="Rkc-8r-rBC" id="M5o-c8-Aa1"/>
+                <outlet property="addToRemindersLb" destination="Qge-3R-84N" id="S2q-Nv-s7h"/>
+                <outlet property="addToRemindersSw" destination="7x6-SX-Uhm" id="acm-Dw-lEA"/>
                 <outlet property="contentView" destination="viE-Kp-aL1" id="qLn-D2-q09"/>
                 <outlet property="endDate" destination="y31-Ad-h4Z" id="uto-wS-zbQ"/>
                 <outlet property="medicineDosageTF" destination="4L9-Lx-azO" id="1oN-vg-N0k"/>
@@ -26,60 +30,81 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viE-Kp-aL1" customClass="UIControl">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
                             <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar alarmes?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRB-wM-IwL">
+                                    <rect key="frame" x="0.0" y="487" width="320" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do medicamento" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ztw-2C-67z">
-                                    <rect key="frame" x="18" y="28" width="278" height="30"/>
+                                    <rect key="frame" x="18" y="9" width="278" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-gt-Bq7">
-                                    <rect key="frame" x="18" y="124" width="278" height="112"/>
+                                    <rect key="frame" x="17" y="98" width="278" height="112"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
                                 </textView>
                                 <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data e Horário" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8a9-nN-yag">
-                                    <rect key="frame" x="18" y="275" width="143" height="30"/>
+                                    <rect key="frame" x="17" y="246" width="143" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y31-Ad-h4Z">
-                                    <rect key="frame" x="189" y="275" width="107" height="30"/>
+                                    <rect key="frame" x="188" y="246" width="107" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Início:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-U8-Zq8">
-                                    <rect key="frame" x="18" y="255" width="46" height="21"/>
+                                    <rect key="frame" x="17" y="226" width="46" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fim:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSo-uo-lNv">
-                                    <rect key="frame" x="189" y="255" width="34" height="21"/>
+                                    <rect key="frame" x="188" y="226" width="34" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dosagem" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4L9-Lx-azO">
-                                    <rect key="frame" x="18" y="75" width="278" height="30"/>
+                                    <rect key="frame" x="17" y="52" width="278" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <pickerView appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k91-FN-l34">
-                                    <rect key="frame" x="94" y="298" width="245" height="162"/>
+                                    <rect key="frame" x="77" y="277" width="245" height="162"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="5Jm-8Z-r4n"/>
                                         <outlet property="delegate" destination="-1" id="jEn-cQ-FSr"/>
                                     </connections>
                                 </pickerView>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tomar a cada" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-dD-g4a">
-                                    <rect key="frame" x="18" y="368" width="107" height="21"/>
+                                    <rect key="frame" x="17" y="352" width="107" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar aos lembretes?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qge-3R-84N">
+                                    <rect key="frame" x="0.0" y="445" width="320" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rkc-8r-rBC">
+                                    <rect key="frame" x="246" y="490" width="51" height="31"/>
+                                </switch>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7x6-SX-Uhm">
+                                    <rect key="frame" x="246" y="448" width="52" height="31"/>
+                                    <connections>
+                                        <action selector="addToRemindersChange:" destination="-1" eventType="valueChanged" id="40l-vf-L7R"/>
+                                    </connections>
+                                </switch>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>

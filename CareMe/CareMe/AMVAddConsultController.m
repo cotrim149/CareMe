@@ -60,6 +60,8 @@
         
         self.dateTF.text = dateString;
         
+        self.addToCalandarSw.on = (_consultToBeEdited.eventId) ? YES : NO;
+        self.addAlarmSw.enabled = self.addToCalandarSw.isOn ? YES : NO;
     }
     
     [self.datePk setDatePickerMode:UIDatePickerModeDateAndTime];
@@ -80,9 +82,9 @@
                                                                      action:@selector(addCompleted)];
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
-    self.specialtyPk.transform = CGAffineTransformMakeScale(1, 0.8);
+    self.specialtyPk.transform = CGAffineTransformMakeScale(1.1, 0.8);
     
-    [self.specialtyPk selectRow:((int)[_specialities count]/2) inComponent:0 animated:YES];
+    [self.specialtyPk selectRow:5 inComponent:0 animated:YES];
     
     self.datePk.transform = CGAffineTransformMakeScale(1, 0.8);
 
@@ -111,7 +113,7 @@
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addToCalendarLb.layer addSublayer:line];
     
-    layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
+    layerFrame = CGRectMake(0, 0, self.addAlarmLb.frame.size.width, self.addAlarmLb.frame.size.height);
     path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
     CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
@@ -194,8 +196,12 @@
     if([self.doctorNameTF.text isEqualToString:@""]){
         [errorMsg appendString:@"Nome do médico em branco.\n"];
     }
+    
+    if([self.dateTF.text isEqualToString:@""]){
+        [errorMsg appendString:@"Data da consulta em branco.\n"];
+    }
 
-    if(![errorMsg isEqualToString:@""]){
+    if(![errorMsg isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Campo em branco"
                               message:errorMsg
@@ -220,7 +226,13 @@
                 
                 [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
                 _consultToBeEdited.eventId = eventId;
+            } else if (self.addToCalandarSw.isOn) {
+                NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+                
+                [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
+                _consultToBeEdited.eventId = eventId;
             }
+            
 
             [_dao saveConsult:_consultToBeEdited];
             

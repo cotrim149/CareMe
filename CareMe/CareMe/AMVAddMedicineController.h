@@ -27,5 +27,9 @@
 @property (nonatomic) UIDatePicker *startDatePicker;
 @property (nonatomic) UIDatePicker *endDatePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *periodPicker;
+@property (weak, nonatomic) IBOutlet UISwitch *addToRemindersSw;
+@property (weak, nonatomic) IBOutlet UILabel *addToRemindersLb;
+@property (weak, nonatomic) IBOutlet UISwitch *addAlarmSw;
+@property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;
 
 @end

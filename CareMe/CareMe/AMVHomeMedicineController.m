@@ -72,6 +72,14 @@
     [self updateTable];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    if(IS_IPHONE_5 == NO) {
+        CGSize iphone4Size = CGSizeMake(self.tableViewMedicines.frame.size.width, self.tableViewMedicines.frame.size.height + (568-480));
+        self.scroll.contentSize = iphone4Size;
+    }
+}
+
+
 -(void)updateTable{
     NSMutableArray *medicines = [[NSMutableArray alloc] init];
     

@@ -61,6 +61,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             [self.periodPicker selectRow:_medicineToBeEdited.periodValue -1 inComponent:0 animated:YES];
         }
         [self.periodPicker selectRow:_medicineToBeEdited.periodType inComponent:1 animated:YES];
+        
+        self.addToRemindersSw.on = (_medicineToBeEdited.reminderId) ? YES : NO;
+        self.addAlarmSw.enabled = self.addToRemindersSw.isOn ? YES : NO;
     }
     
     self.startDatePicker = [[UIDatePicker alloc]init];
@@ -88,7 +91,8 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     self.medicineHowUseTV.delegate = self;
     self.medicineHowUseTV.text = MEDICINE_HOWUSE_PLACEHOLDER;
-    self.medicineHowUseTV.textColor = [UIColor lightGrayColor];
+    if (!_medicineToBeEdited)
+        self.medicineHowUseTV.textColor = [UIColor lightGrayColor];
     self.medicineHowUseTV.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.medicineHowUseTV.layer.borderWidth =  0.3f;
     self.medicineHowUseTV.layer.cornerRadius = 5.0f;
@@ -106,6 +110,34 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self.navigationItem.rightBarButtonItem=completeAddBt;
     
     self.scrollView.contentSize = self.contentView.frame.size;
+    
+    self.addToRemindersSw.onTintColor = [AMVCareMeUtil firstColor];
+    self.addAlarmSw.onTintColor = [AMVCareMeUtil firstColor];
+    
+    CGRect layerFrame = CGRectMake(0, 0, self.addToRemindersLb.frame.size.width, self.addToRemindersLb.frame.size.height);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, 0); // top line
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    CAShapeLayer * line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.3;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addToRemindersLb.layer addSublayer:line];
+    
+    layerFrame = CGRectMake(0, 0, self.addAlarmLb.frame.size.width, self.addAlarmLb.frame.size.height);
+    path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.3;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addAlarmLb.layer addSublayer:line];
 }
 
 - (IBAction)hideKeyboard:(id)sender {
@@ -119,8 +151,11 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
         [errorMsg appendString:@"Nome do medicamento em branco.\n"];
     if([self.medicineDosageTF.text isEqualToString:@""])
         [errorMsg appendString:@"Dosagem em branco.\n"];
-    //    if(_medicinePeriod == nil)
-    //        [errorMsg appendString:@"Período em branco.\n"];
+    if([self.startDate.text isEqualToString:@""])
+        [errorMsg appendString:@"Data/hora de início em branco.\n"];
+    if([self.endDate.text isEqualToString:@""])
+        [errorMsg appendString:@"Data final em branco.\n"];
+
     
     if(![errorMsg isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc]
@@ -138,7 +173,12 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             
             _medicineToBeEdited.name = self.medicineNameTF.text;
             _medicineToBeEdited.dosage = self.medicineDosageTF.text;
-            _medicineToBeEdited.howUse = self.medicineHowUseTV.text;
+
+            if(![self.medicineHowUseTV.text isEqualToString:MEDICINE_HOWUSE_PLACEHOLDER])
+                _medicineToBeEdited.howUse = self.medicineHowUseTV.text;
+            else
+                _medicineToBeEdited.howUse = @"";
+            
             _medicineToBeEdited.startDate = [self getDateComponent:self.startDatePicker];
             _medicineToBeEdited.endDate = [self getDateComponent:self.endDatePicker];
             _medicineToBeEdited.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
@@ -146,30 +186,39 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
             _medicineToBeEdited.periodValue = [periodValueString intValue];
             
             if(_medicineToBeEdited.reminderId != nil) {
-                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:YES manipulationType:UPDATE_EVENT];
+                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
                 [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:UPDATE_EVENT];
+                _medicineToBeEdited.reminderId = reminderId;
+            } else if (self.addToRemindersSw.isOn) {
+                NSString *reminderId = [_eventsManager manipulateMedicineReminder:_medicineToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
                 _medicineToBeEdited.reminderId = reminderId;
             }
             
             [_dao saveMedicinet:_medicineToBeEdited];
          
         // NOVO
-        }else {
+        } else {
             // Popula a entity
             AMVMedicine *medicine = [[AMVMedicine alloc] init];
             medicine.name = self.medicineNameTF.text;
             medicine.dosage = self.medicineDosageTF.text;
             medicine.howUse = self.medicineHowUseTV.text;
+            if(![self.medicineHowUseTV.text isEqualToString:MEDICINE_HOWUSE_PLACEHOLDER])
+                medicine.howUse = self.medicineHowUseTV.text;
+            else
+                medicine.howUse = @"";
             medicine.startDate = [self getDateComponent:self.startDatePicker];
             medicine.endDate = [self getDateComponent:self.endDatePicker];
             medicine.periodType = (AMVPeriodEnum) [self.periodPicker selectedRowInComponent:1];
             NSString *periodValueString = (NSString*)[_periodValues objectAtIndex:[self.periodPicker selectedRowInComponent:0]];
             medicine.periodValue = [periodValueString intValue];
             
-            // IF SALVAR LEMBRETE == YES
-            NSString *reminderId = [_eventsManager manipulateMedicineReminder:medicine withAlarm:YES manipulationType:CREATE_EVENT];
-            [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
-            medicine.reminderId = reminderId;
+            if(self.addToRemindersSw.isOn) {
+                NSString *reminderId = [_eventsManager manipulateMedicineReminder:medicine withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+                [self notifyMedicineReminderResult:(reminderId != nil) manipulationType:CREATE_EVENT];
+                medicine.reminderId = reminderId;
+            }
             
             // Salva a entity
             [_dao saveMedicinet:medicine];
@@ -401,6 +450,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     }
     
     return [[NSArray alloc]initWithArray:values];
+}
+- (IBAction)addToRemindersChange:(id)sender {
+    self.addAlarmSw.enabled = self.addToRemindersSw.isOn ? YES : NO;
 }
 
 @end

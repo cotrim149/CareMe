@@ -21,9 +21,6 @@
 		2F25278D1937BCFF00D62E4B /* CareMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F25278C1937BCFF00D62E4B /* CareMeTests.m */; };
 		2F2527B31937CC9000D62E4B /* AMVHomeConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */; };
 		2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B61937D23200D62E4B /* Calendar-Month.png */; };
-		2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527B71937D23200D62E4B /* Calendar-Week.png */; };
-		2F2527BC1937D3E900D62E4B /* Folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BA1937D3E900D62E4B /* Folder.png */; };
-		2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 2F2527BB1937D3E900D62E4B /* Open-Mail.png */; };
 		2F7DDE8F19478F0B00692B51 /* AMVEventsManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */; };
 		2F9BE5C8193CEB3A0037A496 /* AMVCareMeUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5C7193CEB3A0037A496 /* AMVCareMeUtil.m */; };
 		2F9BE5CC193CFCFD0037A496 /* AMVAddConsultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5CA193CFCFD0037A496 /* AMVAddConsultController.m */; };
@@ -34,6 +31,7 @@
 		2F9BE5D8193E4B950037A496 /* AMVAddMedicineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */; };
 		2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */; };
 		2FCB30D81951E782003E1BD2 /* AMVMedicineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2FCB30DA1951E782003E1BD2 /* AMVMedicineDetailsViewController.xib */; };
+		2FCE9596195CAF52008961A1 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE9595195CAF52008961A1 /* settings.png */; };
 		9F62D322193FA9B2007F30F9 /* AMVConsult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D321193FA9B2007F30F9 /* AMVConsult.m */; };
 		9F62D325193FAB9A007F30F9 /* AMVMedicine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D324193FAB9A007F30F9 /* AMVMedicine.m */; };
 		9F62D32B1940DF7D007F30F9 /* AMVConsultDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F62D32A1940DF7D007F30F9 /* AMVConsultDAO.m */; };
@@ -78,9 +76,6 @@
 		2F2527B01937CC9000D62E4B /* AMVHomeConsultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVHomeConsultController.h; sourceTree = "<group>"; };
 		2F2527B11937CC9000D62E4B /* AMVHomeConsultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVHomeConsultController.m; sourceTree = "<group>"; };
 		2F2527B61937D23200D62E4B /* Calendar-Month.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Month.png"; sourceTree = "<group>"; };
-		2F2527B71937D23200D62E4B /* Calendar-Week.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-Week.png"; sourceTree = "<group>"; };
-		2F2527BA1937D3E900D62E4B /* Folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Folder.png; sourceTree = "<group>"; };
-		2F2527BB1937D3E900D62E4B /* Open-Mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Open-Mail.png"; sourceTree = "<group>"; };
 		2F7DDE8D19478F0B00692B51 /* AMVEventsManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVEventsManagerSingleton.h; sourceTree = "<group>"; };
 		2F7DDE8E19478F0B00692B51 /* AMVEventsManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVEventsManagerSingleton.m; sourceTree = "<group>"; };
 		2F9BE5C6193CEB3A0037A496 /* AMVCareMeUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVCareMeUtil.h; sourceTree = "<group>"; };
@@ -96,6 +91,7 @@
 		2F9BE5D6193E4B950037A496 /* AMVAddMedicineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVAddMedicineController.m; sourceTree = "<group>"; };
 		2F9BE5D7193E4B950037A496 /* AMVAddMedicineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AMVAddMedicineController.xib; sourceTree = "<group>"; };
 		2FCB30D91951E782003E1BD2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AMVMedicineDetailsViewController.xib; sourceTree = "<group>"; };
+		2FCE9595195CAF52008961A1 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		9F62D320193FA9B2007F30F9 /* AMVConsult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVConsult.h; sourceTree = "<group>"; };
 		9F62D321193FA9B2007F30F9 /* AMVConsult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMVConsult.m; sourceTree = "<group>"; };
 		9F62D323193FAB9A007F30F9 /* AMVMedicine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMVMedicine.h; sourceTree = "<group>"; };
@@ -272,11 +268,9 @@
 		2F2527B51937D23200D62E4B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2FCE9595195CAF52008961A1 /* settings.png */,
 				2F9BE5D3193D18FB0037A496 /* Medicine.png */,
-				2F2527BA1937D3E900D62E4B /* Folder.png */,
-				2F2527BB1937D3E900D62E4B /* Open-Mail.png */,
 				2F2527B61937D23200D62E4B /* Calendar-Month.png */,
-				2F2527B71937D23200D62E4B /* Calendar-Week.png */,
 			);
 			name = Images;
 			path = CareMe/Images;
@@ -448,18 +442,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F2527721937BCFE00D62E4B /* InfoPlist.strings in Resources */,
-				2F2527BD1937D3E900D62E4B /* Open-Mail.png in Resources */,
 				D89D059A1942395400E18536 /* AMVHomeConsultController.xib in Resources */,
 				2F25277A1937BCFE00D62E4B /* Images.xcassets in Resources */,
 				2F9BE5D4193D18FB0037A496 /* Medicine.png in Resources */,
 				D89D05A419425B6700E18536 /* AMVConsultCell.xib in Resources */,
 				D8FD225E194648D90032863C /* AMVMedicineCell.xib in Resources */,
 				2F2527B81937D23200D62E4B /* Calendar-Month.png in Resources */,
-				2F2527B91937D23200D62E4B /* Calendar-Week.png in Resources */,
+				2FCE9596195CAF52008961A1 /* settings.png in Resources */,
 				2F9BE5CD193CFCFD0037A496 /* AMVAddConsultController.xib in Resources */,
 				2F9BE5D9193E4B950037A496 /* AMVAddMedicineController.xib in Resources */,
 				2F9BE5D2193D0E4C0037A496 /* AMVHomeMedicineController.xib in Resources */,
-				2F2527BC1937D3E900D62E4B /* Folder.png in Resources */,
 				2FCB30D81951E782003E1BD2 /* AMVMedicineDetailsViewController.xib in Resources */,
 				D89D05981942388000E18536 /* AMVConsultDetailsViewController.xib in Resources */,
 			);

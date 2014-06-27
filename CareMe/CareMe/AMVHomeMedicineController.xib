@@ -31,10 +31,10 @@
                     </connections>
                 </segmentedControl>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Cq-BeF">
-                    <rect key="frame" x="22" y="99" width="276" height="383"/>
+                    <rect key="frame" x="22" y="99" width="276" height="355"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-8C-EaN">
-                            <rect key="frame" x="0.0" y="0.0" width="276" height="383"/>
+                            <rect key="frame" x="0.0" y="0.0" width="276" height="365"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="8s7-uh-B3t"/>

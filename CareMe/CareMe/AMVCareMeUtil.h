@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+
 @interface AMVCareMeUtil : NSObject
 
 typedef NS_ENUM(short, DAY_PERIOD) {
@@ -22,6 +24,7 @@ typedef NS_ENUM(short, DAY_PERIOD) {
 +(UIColor*) firstColor;
 +(UIColor*) secondColor;
 +(UIColor*) thirdColor;
++ (CAGradientLayer*) gradientBgLayer;
 +(DAY_PERIOD) dayPeriodNow;
 +(DAY_PERIOD) dayPeriodForDate:(NSDateComponents*) components;
 +(NSString*) getDocumentsFilePathWithSuffix:(NSString*) suffix;

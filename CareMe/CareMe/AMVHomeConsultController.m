@@ -41,6 +41,7 @@
         _dao = [[AMVConsultDAO alloc] init];
         _titleLeftBarButtonEditing = @"Editar";
         _titleLeftBarButtonOK = @"OK";
+        
     }
     return self;
 }
@@ -120,13 +121,23 @@
         [self.tableViewConsults setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
     }
+    
+    
 }
 
 - (IBAction)changeVisualizationType:(id)sender {
     [self updateTable];
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    if(IS_IPHONE_5 == NO) {
+        CGSize iphone4Size = CGSizeMake(self.tableViewConsults.frame.size.width, self.tableViewConsults.frame.size.height + (568-480));
+        self.scroll.contentSize = iphone4Size;
+    }
+}
+
 -(void) addComponentsAndConfigureStyle {
+    
     self.title=@"Consultas";
     
     UIBarButtonItem *addConsultBt = [[UIBarButtonItem alloc]

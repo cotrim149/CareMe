@@ -18,11 +18,11 @@ static NSArray * _specialities;
     self = [super init];
     if (self) {
         if (_specialities == nil) {
-            _specialities = @[@"Acupuntura", @"Alergista", @"Anestesiologia", @"Cardiologia", @"Cirurgião",
-                              @"Clinica", @"Dermatologia", @"Endocrinologia", @"Gastroenterologia",
-                              @"Geriatria", @"Ginecologia", @"Infectologia", @"Nefrologia",@"Oftamologia",
+            _specialities = @[@"Acupuntura", @"Anestesiologia", @"Angiologia", @"Cardiologia", @"Cirurgia",
+                              @"Clínica", @"Coloproctologia", @"Dermatologia", @"Endocrinologia", @"Endoscopia", @"Exames", @"Gastroenterologia", @"Genética",
+                              @"Geriatria", @"Ginecologia", @"Hematologia", @"Homeopatia", @"Imunologia", @"Infectologia", @"Mastologia",@"Nefrologia", @"Nutrologia", @"Odontologia", @"Oftamologia",
                               @"Oncologia", @"Ortopedia", @"Otorrinolaringologia", @"Pediatria",
-                              @"Pneumologia", @"Reumatologia", @"Urologia"];
+                              @"Pneumologia", @"Psiquiatria", @"Reumatologia", @"Urologia", @"Outros"];
         }
     }
     return self;

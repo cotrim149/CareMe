@@ -8,9 +8,27 @@
 
 #import "AMVCareMeUtil.h"
 
+
 @implementation AMVCareMeUtil
 
 static NSDateFormatter *_df;
+
++ (CAGradientLayer*) gradientBgLayer {
+    UIColor *colorOne = UIColorFromRGB(0xE9FDFF, 0.5);
+    UIColor *colorTwo = UIColorFromRGB(0xF6F6F6, 0.5);
+    
+    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
+    NSNumber *stopOne = [NSNumber numberWithFloat:0.0];
+    NSNumber *stopTwo = [NSNumber numberWithFloat:1.0];
+    
+    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+    
+    CAGradientLayer *headerLayer = [CAGradientLayer layer];
+    headerLayer.colors = colors;
+    headerLayer.locations = locations;
+    
+    return headerLayer;
+}
 
 +(UIColor*) firstColor {
     return UIColorFromRGB(0xa0c5e7, 1);

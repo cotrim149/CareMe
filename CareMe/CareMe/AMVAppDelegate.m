@@ -43,6 +43,7 @@
     
     [_tabController addChildViewController:_consultNavController];
     [_tabController addChildViewController:_medicineNavController];
+    
     self.window.rootViewController = _tabController;
     
     _consultNavController.navigationBar.barTintColor = [AMVCareMeUtil firstColor];
@@ -57,7 +58,6 @@
     
     _tabController.tabBar.barTintColor = [AMVCareMeUtil firstColor];
     _tabController.tabBar.translucent = NO;
-    
     _tabController.tabBar.selectedImageTintColor = [AMVCareMeUtil secondColor];
 }
 
