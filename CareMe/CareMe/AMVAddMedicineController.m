@@ -155,6 +155,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     self.infoLb.text = @"Adiciona o remédio aos lembretes do iOS";
     
+    
 }
 
 -(IBAction)infoAlarm:(id)sender{
