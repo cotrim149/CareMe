@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A261i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVAddMedicineController">
@@ -26,10 +26,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nrx-Vf-jjx">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nrx-Vf-jjx">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="viE-Kp-aL1" customClass="UIControl">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viE-Kp-aL1" customClass="UIControl">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="680"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar alarmes?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rRB-wM-IwL">
@@ -84,12 +84,6 @@
                                         <outlet property="delegate" destination="-1" id="jEn-cQ-FSr"/>
                                     </connections>
                                 </pickerView>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tomar a cada" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-dD-g4a">
-                                    <rect key="frame" x="17" y="352" width="107" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="      Adicionar aos lembretes?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qge-3R-84N">
                                     <rect key="frame" x="0.0" y="445" width="320" height="37"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -105,27 +99,37 @@
                                         <action selector="addToRemindersChange:" destination="-1" eventType="valueChanged" id="40l-vf-L7R"/>
                                     </connections>
                                 </switch>
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tomar a cada" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-dD-g4a">
+                                    <rect key="frame" x="17" y="336" width="107" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="680" id="dzA-xD-fdY"/>
+                            </constraints>
                             <connections>
                                 <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="jq6-xQ-6iM"/>
                             </connections>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="viE-Kp-aL1" firstAttribute="leading" secondItem="Nrx-Vf-jjx" secondAttribute="leading" id="KoR-Gb-9UE"/>
-                        <constraint firstItem="viE-Kp-aL1" firstAttribute="top" secondItem="Nrx-Vf-jjx" secondAttribute="top" id="Wt7-Y2-KDg"/>
-                        <constraint firstAttribute="bottom" secondItem="viE-Kp-aL1" secondAttribute="bottom" constant="-200" id="hFH-xM-uIh"/>
-                        <constraint firstAttribute="trailing" secondItem="viE-Kp-aL1" secondAttribute="trailing" id="iNM-1z-B77"/>
+                        <constraint firstAttribute="trailing" secondItem="viE-Kp-aL1" secondAttribute="trailing" id="1IF-d4-fP1"/>
+                        <constraint firstItem="viE-Kp-aL1" firstAttribute="top" secondItem="Nrx-Vf-jjx" secondAttribute="top" id="BCT-QH-src"/>
+                        <constraint firstItem="viE-Kp-aL1" firstAttribute="leading" secondItem="Nrx-Vf-jjx" secondAttribute="leading" id="gjs-hm-oa5"/>
+                        <constraint firstAttribute="bottom" secondItem="viE-Kp-aL1" secondAttribute="bottom" constant="-112" id="mWT-c0-y6d"/>
+                        <constraint firstItem="viE-Kp-aL1" firstAttribute="centerX" secondItem="Nrx-Vf-jjx" secondAttribute="centerX" id="nFL-gm-crl"/>
                     </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Nrx-Vf-jjx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="3h1-q9-egf"/>
-                <constraint firstAttribute="trailing" secondItem="Nrx-Vf-jjx" secondAttribute="trailing" id="BXL-Yr-w2c"/>
-                <constraint firstItem="Nrx-Vf-jjx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZEj-w0-3Nq"/>
-                <constraint firstAttribute="bottom" secondItem="Nrx-Vf-jjx" secondAttribute="bottom" id="k6j-yh-aNV"/>
+                <constraint firstItem="Nrx-Vf-jjx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="7ra-Pe-J2J"/>
+                <constraint firstItem="Nrx-Vf-jjx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CDP-EK-TxQ"/>
+                <constraint firstAttribute="bottom" secondItem="Nrx-Vf-jjx" secondAttribute="bottom" id="QYK-h4-vjv"/>
+                <constraint firstAttribute="trailing" secondItem="Nrx-Vf-jjx" secondAttribute="trailing" id="srO-8z-aAZ"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
