@@ -148,6 +148,9 @@
     [self.infoLb setHidden:YES];
 
     self.infoLb.userInteractionEnabled = YES;
+    
+    self.infoLb.layer.cornerRadius = 20;
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
     [self.infoLb addGestureRecognizer:tapGesture];
 }

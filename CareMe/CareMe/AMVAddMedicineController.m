@@ -138,11 +138,15 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.addAlarmLb.layer addSublayer:line];
     
-    [self.infoLb setHidden:YES];
     [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
     [self.infoReminderBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
     
+    [self.infoLb setHidden:YES];
+    
     self.infoLb.userInteractionEnabled = YES;
+    
+    self.infoLb.layer.cornerRadius = 20;
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
     [self.infoLb addGestureRecognizer:tapGesture];
 
@@ -161,6 +165,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 -(IBAction)infoAlarm:(id)sender{
     
     [self.infoLb setHidden:NO];
+
     self.infoLb.text = @"Adicionar um alarme 10 minutos antes de cada horário em que se deve administrar o remédio";
 }
 

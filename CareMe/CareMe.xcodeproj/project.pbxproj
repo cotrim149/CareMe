@@ -412,7 +412,7 @@
 				ORGANIZATIONNAME = "Alysson Matheus Victor";
 				TargetAttributes = {
 					2F2527631937BCFE00D62E4B = {
-						DevelopmentTeam = 2UH9P2DCMZ;
+						DevelopmentTeam = 4K3WEDK2S7;
 					};
 					2F25277E1937BCFF00D62E4B = {
 						TestTargetID = 2F2527631937BCFE00D62E4B;
