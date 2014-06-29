@@ -11,7 +11,7 @@
 #import "AMVAddMedicineController.h"
 #import "AMVMedicineDAO.h"
 
-@interface AMVMedicineDetailsViewController : UIViewController
+@interface AMVMedicineDetailsViewController : UIViewController <UIActionSheetDelegate>
 {
     AMVMedicineDAO *_dao;
 }

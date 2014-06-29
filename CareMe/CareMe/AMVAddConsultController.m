@@ -6,22 +6,6 @@
 //  Copyright (c) 2014 Alysson Matheus Victor. All rights reserved.
 //
 
-// TODO
-    // Prints (cadastrar previamente 5 entidades de cada):
-        // Home de consultas com filtragem textual
-        // Home de medicamentos
-        // Tela de adição de consulta
-        // Tela de detalhes do medicamento
-        // Tela de alarme da consulta (alarme é 1h antes)
-        // Tela de alarme do medicamento (alarme é 10min antes)
-    // Concertar o scroll da view depois de acionar um picker/teclado
-    // SE DER: Colocar ícone 'i' (a esquerda do label) para acionar um popup com infomações sobre os swiches
-        // Adicionar aos lembretes? ----> Adiciona o remédio aos lembretes do iOS
-        // Adicionar alarme? ----> Adicionar um alarme 10 minutos antes de cada horário em que se deve administrar o remédio
-
-        // Adicionar ao calendário? ----> Adiciona a consulta aos calendário do iOS
-        // Adicionar alarmes? ----> Adicionar dois alarmes, um para 1 dia antes da consulta e outro para 1 hora antes
-    // Publicar o app
 
 #import "AMVAddConsultController.h"
 #import "AMVCareMeUtil.h"
@@ -145,33 +129,34 @@
     [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"]  forState:UIControlStateNormal];
     
     [self.infoCalendarbt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
-    [self.infoLb setHidden:YES];
-
+   
+    self.infoLb.backgroundColor = [AMVCareMeUtil firstColor];
+    self.infoLb.textColor = [AMVCareMeUtil secondColor];
+    self.infoLb.hidden = YES;
     self.infoLb.userInteractionEnabled = YES;
-    
     self.infoLb.layer.cornerRadius = 20;
+    self.infoLb.layer.borderColor = [AMVCareMeUtil secondColor].CGColor;
+    self.infoLb.layer.borderWidth = 0.8;
+
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
     [self.infoLb addGestureRecognizer:tapGesture];
 }
 
 -(IBAction)infoCalendar:(id)sender{
-    
-    [self.infoLb setHidden:NO];
-    
-    self.infoLb.text = @"Adiciona a consulta aos calendário do iOS";
-    
+    self.infoLb.hidden = NO;
+    self.infoLb.text = @"Adiciona a consulta ao calendário do iOS";
 }
 
 
 -(IBAction)infoAlarm:(id)sender{
-    
-    [self.infoLb setHidden:NO];
-    self.infoLb.text = @"Adicionar dois alarmes, um para 1 dia antes da consulta e outro para 1 hora antes";
+    self.infoLb.hidden = NO;
+    self.infoLb.text = @"Adiciona dois alarmes, um para 1 dia antes e outro para 1 hora antes da consulta";
 }
 
 -(void)dismissInfoLabel{
-    [self.infoLb setHidden:YES];
+    self.infoLb.hidden = NO;
+    self.infoLb.hidden = YES;
 }
 
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
@@ -213,6 +198,7 @@
 
 
 - (IBAction)hideKeyboard:(id)sender {
+    self.infoLb.hidden = YES;
     [sender endEditing:YES];
 }
 

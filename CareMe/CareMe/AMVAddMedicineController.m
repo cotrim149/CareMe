@@ -41,7 +41,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     [self addComponentsAndConfigureStyle];
     
-    if(_medicineToBeEdited){
+    [self.periodPicker selectRow:5 inComponent:0 animated:YES];
+    
+    if(_medicineToBeEdited) {
         _periodValues = [self getPeriodValues:_medicineToBeEdited.periodType];
         [self.periodPicker reloadComponent:0];
         
@@ -82,7 +84,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [self.endDatePicker addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventValueChanged];
     
     [self.endDate setInputView:self.endDatePicker];
-    
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -140,41 +141,35 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     
     [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
     [self.infoReminderBt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
-    
-    [self.infoLb setHidden:YES];
-    
+
+    self.infoLb.backgroundColor = [AMVCareMeUtil firstColor];
+    self.infoLb.textColor = [AMVCareMeUtil secondColor];
+    self.infoLb.hidden = YES;
     self.infoLb.userInteractionEnabled = YES;
-    
     self.infoLb.layer.cornerRadius = 20;
+    self.infoLb.layer.borderColor = [AMVCareMeUtil secondColor].CGColor;
+    self.infoLb.layer.borderWidth = 0.8;
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissInfoLabel)];
     [self.infoLb addGestureRecognizer:tapGesture];
-
-    
 }
 
 -(IBAction)infoReminder:(id)sender{
-    
-    [self.infoLb setHidden:NO];
-    
+    self.infoLb.hidden = NO;
     self.infoLb.text = @"Adiciona o remédio aos lembretes do iOS";
-    
-    
 }
 
 -(IBAction)infoAlarm:(id)sender{
-    
-    [self.infoLb setHidden:NO];
-
-    self.infoLb.text = @"Adicionar um alarme 10 minutos antes de cada horário em que se deve administrar o remédio";
+    self.infoLb.hidden = NO;
+    self.infoLb.text = @"Adicionar um alarme de 10 minutos antes de cada horário em que se deve administrar o remédio";
 }
 
 -(void)dismissInfoLabel{
-    [self.infoLb setHidden:YES];
+    self.infoLb.hidden = YES;
 }
 
-
 - (IBAction)hideKeyboard:(id)sender {
+    self.infoLb.hidden = YES;
     [sender endEditing:YES];
 }
 
@@ -199,8 +194,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil];
         [alert show];
-    }
-    else{
+    } else {
         // EDITADO
         if(_medicineToBeEdited){
             [_dao deleteMedicine:_medicineToBeEdited];
@@ -267,13 +261,13 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     if(result == YES) {
         switch (manipulationType) {
             case CREATE_EVENT:
-                msg = @"Medicamento foi adicionado aos lembretes!";
+                msg = @"Remédio foi adicionado aos lembretes!";
                 break;
             case UPDATE_EVENT:
-                msg = @"Medicamento foi atualizado dos lembretes!";
+                msg = @"Remédio foi atualizado dos lembretes!";
                 break;
             case DELETE_EVENT:
-                msg = @"Medicamento foi removido dos lembretes!";
+                msg = @"Remédio foi removido dos lembretes!";
                 break;
                 
             default:
@@ -482,5 +476,21 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 - (IBAction)addToRemindersChange:(id)sender {
     self.addAlarmSw.enabled = self.addToRemindersSw.isOn ? YES : NO;
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
+}
+
 
 @end

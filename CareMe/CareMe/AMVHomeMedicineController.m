@@ -175,7 +175,12 @@
     _emptyMedicinesLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
     CGPoint centralizedLabel = self.view.center;
     
-    centralizedLabel.y -= 80;
+    if(IS_IPHONE_5)
+        centralizedLabel.y -= 75;
+    else
+        centralizedLabel.y -= 100;
+    
+    _emptyMedicinesLb.alpha = 0.5;
     _emptyMedicinesLb.center = centralizedLabel;
     
     _emptyMedicinesLb.numberOfLines = 0;
@@ -275,13 +280,13 @@
     if(result == YES) {
         switch (manipulationType) {
             case CREATE_EVENT:
-                msg = @"Medicamento foi adicionado aos lembretes!";
+                msg = @"Remédio foi adicionado aos lembretes!";
                 break;
             case UPDATE_EVENT:
-                msg = @"Medicamento foi atualizado dos lembretes!";
+                msg = @"Remédio foi atualizado dos lembretes!";
                 break;
             case DELETE_EVENT:
-                msg = @"Medicamento foi removido dos lembretes!";
+                msg = @"Remédio foi removido dos lembretes!";
                 break;
                 
             default:
@@ -374,6 +379,20 @@
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
+    static short cancelButtonDiff = 15;
+    
+    UIButton *cancelButton;
+    UIView *topView = self.searchBar.subviews[0];
+    for (UIView *subView in topView.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+            cancelButton = (UIButton*)subView;
+            [cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+            subView.frame = CGRectMake(subView.frame.origin.x - cancelButtonDiff, subView.frame.origin.y, subView.frame.size.width + cancelButtonDiff, subView.frame.size.height);
+        } else if([subView isKindOfClass:NSClassFromString(@"UITextField")]) {
+            subView.frame = CGRectMake(subView.frame.origin.x, subView.frame.origin.y, subView.frame.size.width - cancelButtonDiff, subView.frame.size.height);
+        }
+    }
+    
     return YES;
 }
 

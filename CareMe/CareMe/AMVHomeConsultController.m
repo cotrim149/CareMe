@@ -48,9 +48,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];       
     [self addComponentsAndConfigureStyle];
+
 }
 
 -(void) updateTable {
@@ -165,13 +165,17 @@
     self.searchBar.tintColor = [AMVCareMeUtil secondColor];
     [self.searchBar setBackgroundImage:[AMVCareMeUtil imageWithColor:[AMVCareMeUtil firstColor]]];
     
-    
     int labelWidth = self.view.frame.size.width;
     int labelHeight = 20;
     _emptyConsultsLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
     CGPoint centralizedLabel = self.view.center;
     
-    centralizedLabel.y -= 80;
+    if(IS_IPHONE_5)
+        centralizedLabel.y -= 80;
+    else
+        centralizedLabel.y -= 100;
+    
+    _emptyConsultsLb.alpha = 0.5;
     _emptyConsultsLb.center = centralizedLabel;
     
     _emptyConsultsLb.numberOfLines = 0;
@@ -365,6 +369,20 @@
 
 -(BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
     [searchBar setShowsCancelButton:YES animated:YES];
+    static short cancelButtonDiff = 15;
+    
+    UIButton *cancelButton;
+    UIView *topView = self.searchBar.subviews[0];
+    for (UIView *subView in topView.subviews) {
+        if ([subView isKindOfClass:NSClassFromString(@"UINavigationButton")]) {
+            cancelButton = (UIButton*)subView;
+            [cancelButton setTitle:@"Cancelar" forState:UIControlStateNormal];
+            subView.frame = CGRectMake(subView.frame.origin.x - cancelButtonDiff, subView.frame.origin.y, subView.frame.size.width + cancelButtonDiff, subView.frame.size.height);
+        } else if([subView isKindOfClass:NSClassFromString(@"UITextField")]) {
+            subView.frame = CGRectMake(subView.frame.origin.x, subView.frame.origin.y, subView.frame.size.width - cancelButtonDiff, subView.frame.size.height);
+        }
+    }
+    
     return YES;
 }
 

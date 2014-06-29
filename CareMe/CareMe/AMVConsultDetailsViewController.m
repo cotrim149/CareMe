@@ -121,6 +121,7 @@
     
     self.consult = addConsultController.consultToBeEdited;
     
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:addConsultController animated:YES];
 }
 

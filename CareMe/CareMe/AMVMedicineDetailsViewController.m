@@ -71,7 +71,6 @@
 -(void)editMedicine {
     AMVAddMedicineController *addMedicineController = [[AMVAddMedicineController alloc] init];
 
-
     addMedicineController.medicineToBeEdited = [[AMVMedicine alloc] init];
     
     addMedicineController.medicineToBeEdited.name = self.medicine.name;
@@ -85,15 +84,14 @@
     
 
     self.medicine = addMedicineController.medicineToBeEdited;
-
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationController pushViewController:addMedicineController animated:YES];
 }
 
 -(IBAction)deleteMedicine:(id)sender{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar o Medicamento?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Medicamento" otherButtonTitles:nil,nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar o ?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Remédio" otherButtonTitles:nil,nil];
     
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-    
     
     [actionSheet showFromTabBar:self.tabBarController.tabBar];
 
@@ -104,15 +102,14 @@
     if(result == YES) {
         switch (manipulationType) {
             case CREATE_EVENT:
-                msg = @"Medicamento foi adicionado aos lembretes!";
+                msg = @"Remédio foi adicionado aos lembretes!";
                 break;
             case UPDATE_EVENT:
-                msg = @"Medicamento foi atualizado dos lembretes!";
+                msg = @"Remédio foi atualizado dos lembretes!";
                 break;
             case DELETE_EVENT:
-                msg = @"Medicamento foi removido dos lembretes!";
+                msg = @"Remédio foi removido dos lembretes!";
                 break;
-                
             default:
                 break;
         }
@@ -123,8 +120,6 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
         [alert show];
-        
-        
     } else {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Alerta!"
