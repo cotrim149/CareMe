@@ -126,7 +126,7 @@
 }
 
 - (IBAction)deleteConsult:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar a Consulta?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Consulta" otherButtonTitles:nil,nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Tem certeza que deseja apagar o registro da consulta?" delegate:self cancelButtonTitle:@"Cancelar" destructiveButtonTitle:@"Apagar Consulta" otherButtonTitles:nil,nil];
     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
     
     
