@@ -190,10 +190,9 @@
     int labelHeight = 20;
     _emptyConsultsLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
     CGPoint centralizedLabel = self.view.center;
-    if(IS_IPHONE_5)
-        centralizedLabel.y -= 80;
-    else
-        centralizedLabel.y -= 100;
+    
+    if(IS_IPHONE_5 == NO)
+        centralizedLabel.y -= 60;
     
     _emptyConsultsLb.alpha = 0.5;
     _emptyConsultsLb.center = centralizedLabel;

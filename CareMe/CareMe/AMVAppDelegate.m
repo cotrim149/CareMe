@@ -29,9 +29,9 @@
     [self.window makeKeyAndVisible];
     
     // DELETAR TODOS OS PLISTS
-    [AMVCareMeUtil deleteAllPlists];
+//    [AMVCareMeUtil deleteAllPlists];
     // COMECA UM BANCO FICTICIO
-    [AMVCareMeUtil seedDatabase];
+    // [AMVCareMeUtil seedDatabase];
     
     return YES;
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVAddMedicineController">
@@ -81,7 +80,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                 </textField>
-                                <pickerView appearanceType="aqua" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k91-FN-l34">
+                                <pickerView appearanceType="aqua" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k91-FN-l34">
                                     <rect key="frame" x="77" y="274" width="245" height="162"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="5Jm-8Z-r4n"/>
@@ -103,7 +102,7 @@
                                         <action selector="addToRemindersChange:" destination="-1" eventType="valueChanged" id="40l-vf-L7R"/>
                                     </connections>
                                 </switch>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tomar a cada" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-dD-g4a">
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tomar a cada" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWr-dD-g4a">
                                     <rect key="frame" x="17" y="348" width="107" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -137,7 +136,11 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="k91-FN-l34" firstAttribute="leading" secondItem="viE-Kp-aL1" secondAttribute="leading" constant="77" id="97c-cS-XVU"/>
+                                <constraint firstAttribute="trailing" secondItem="k91-FN-l34" secondAttribute="trailing" id="AGX-Co-j17"/>
+                                <constraint firstItem="nWr-dD-g4a" firstAttribute="centerY" secondItem="k91-FN-l34" secondAttribute="centerY" id="OYu-Ii-jiX"/>
                                 <constraint firstAttribute="height" constant="680" id="dzA-xD-fdY"/>
+                                <constraint firstAttribute="trailing" secondItem="k91-FN-l34" secondAttribute="trailing" constant="-2" id="faR-Hd-frd"/>
                             </constraints>
                             <connections>
                                 <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="jq6-xQ-6iM"/>
