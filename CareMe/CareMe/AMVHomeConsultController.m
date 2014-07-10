@@ -154,10 +154,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    if(IS_IPHONE_5 == NO) {
-        CGSize iphone4Size = CGSizeMake(self.tableViewConsults.frame.size.width, self.tableViewConsults.frame.size.height + (568-480));
-        self.scroll.contentSize = iphone4Size;
-    }
+
 }
 
 -(void) addComponentsAndConfigureStyle {
@@ -193,7 +190,6 @@
     int labelHeight = 20;
     _emptyConsultsLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
     CGPoint centralizedLabel = self.view.center;
-    
     if(IS_IPHONE_5)
         centralizedLabel.y -= 80;
     else
