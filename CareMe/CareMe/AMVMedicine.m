@@ -46,7 +46,7 @@
     [description appendFormat:@", self.startDate=%@", self.startDate];
     [description appendFormat:@", self.endDate=%@", self.endDate];
     [description appendFormat:@", self.periodValue=%li", (long)self.periodValue];
-    [description appendFormat:@", self.periodType=%d", self.periodType];
+    [description appendFormat:@", self.periodType=%ld", self.periodType];
     [description appendFormat:@", self.reminderId=%@", self.reminderId];
     [description appendString:@">"];
     return description;

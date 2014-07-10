@@ -108,7 +108,9 @@ static NSDateFormatter *_df;
         
         medicine.name = [NSString stringWithFormat:@"Remédio %d", i];
         medicine.dosage = @"Dosagem";
-        medicine.howUse = [NSString stringWithFormat:@"Como kajsd ajshdajsjda sjdhas jdha sjd ajhsd jahs djahs djah sdjhas jdha sjdha sjdha jshd ajshd ajshd jahsd jahsd jahsd jahs ajshd ajshd jahsd jahs djhas dajhsdjas dajhsd asdjahsbd ajshdbjahsd jashbdja sdajshbdja sdjahsbda sdjahsd usar o remédio '%d'", i];
+//        medicine.howUse = [NSString stringWithFormat:@"Como kajsd ajshdajsjda sjdhas jdha sjd ajhsd jahs djahs djah sdjhas jdha sjdha sjdha jshd ajshd ajshd jahsd jahsd jahsd jahs ajshd ajshd jahsd jahs djhas dajhsdjas dajhsd asdjahsbd ajshdbjahsd jashbdja sdajshbdja sdjahsbda sdjahsd usar o remédio '%d'", i];
+        medicine.howUse = [NSString stringWithFormat:@"Como kajsd ajshdajsjda sjdhas jdha sjd ajhsd jahs djahs djah sdjhas jdha ajshdbjahsd jashbdja sdajshbdja sdjahsbda  '%d'", i];
+
         medicine.startDate = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate dateWithTimeIntervalSinceNow:-1*60*60*24*30]];
         medicine.periodValue = 1;
         medicine.periodType = WEEK;
