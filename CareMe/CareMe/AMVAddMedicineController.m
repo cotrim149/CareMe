@@ -359,6 +359,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
+    self.tabBarController.tabBar.translucent = NO;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

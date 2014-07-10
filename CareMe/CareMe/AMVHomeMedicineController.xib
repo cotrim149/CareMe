@@ -31,10 +31,10 @@
                         <action selector="selectPeriodSegment:" destination="-1" eventType="valueChanged" id="LE3-cU-8PK"/>
                     </connections>
                 </segmentedControl>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Cq-BeF">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tFX-Cq-BeF">
                     <rect key="frame" x="22" y="99" width="276" height="319"/>
                     <subviews>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-8C-EaN">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nIR-8C-EaN">
                             <rect key="frame" x="0.0" y="0.0" width="276" height="319"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -44,19 +44,27 @@
                         </tableView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" secondItem="nIR-8C-EaN" secondAttribute="height" id="mob-TM-UqE"/>
+                        <constraint firstItem="nIR-8C-EaN" firstAttribute="centerY" secondItem="tFX-Cq-BeF" secondAttribute="centerY" id="DtN-Bi-JpM"/>
+                        <constraint firstItem="nIR-8C-EaN" firstAttribute="top" secondItem="tFX-Cq-BeF" secondAttribute="top" id="dk5-Mw-YSv"/>
+                        <constraint firstItem="nIR-8C-EaN" firstAttribute="centerX" secondItem="tFX-Cq-BeF" secondAttribute="centerX" id="gZu-VB-eAV"/>
+                        <constraint firstItem="nIR-8C-EaN" firstAttribute="leading" secondItem="tFX-Cq-BeF" secondAttribute="leading" id="kiq-qL-v2J"/>
+                        <constraint firstAttribute="trailing" secondItem="nIR-8C-EaN" secondAttribute="trailing" id="u9y-B2-T6N"/>
+                        <constraint firstAttribute="bottom" secondItem="nIR-8C-EaN" secondAttribute="bottom" id="vPm-o1-V1u"/>
                     </constraints>
                 </scrollView>
-                <searchBar contentMode="redraw" ambiguous="YES" misplaced="YES" placeholder="Filtrar por nome" translatesAutoresizingMaskIntoConstraints="NO" id="qne-9a-n2I">
+                <searchBar contentMode="redraw" placeholder="Filtrar por nome" translatesAutoresizingMaskIntoConstraints="NO" id="qne-9a-n2I">
                     <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="CDR-uv-FDQ"/>
                     </connections>
                 </searchBar>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-Bq-wHp">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJB-Bq-wHp">
                     <rect key="frame" x="0.0" y="417" width="320" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="ciX-3h-mgV"/>
+                    </constraints>
                     <state key="normal" title="Mostrar Concluídos">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -67,15 +75,19 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="JGL-7K-KSQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="15O-zo-X34"/>
-                <constraint firstAttribute="trailing" secondItem="tFX-Cq-BeF" secondAttribute="trailing" constant="22" id="CBB-Nf-tR4"/>
-                <constraint firstAttribute="bottom" secondItem="CJB-Bq-wHp" secondAttribute="bottom" constant="12" id="Lva-fX-u0i"/>
-                <constraint firstAttribute="trailing" secondItem="JGL-7K-KSQ" secondAttribute="trailing" constant="22" id="Mfh-I8-QjC"/>
-                <constraint firstItem="JGL-7K-KSQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="Qqf-aN-46Z"/>
-                <constraint firstItem="CJB-Bq-wHp" firstAttribute="top" secondItem="tFX-Cq-BeF" secondAttribute="bottom" id="bjs-Sa-LV8"/>
-                <constraint firstItem="tFX-Cq-BeF" firstAttribute="top" secondItem="qne-9a-n2I" secondAttribute="bottom" id="fjN-aa-Pg5"/>
-                <constraint firstItem="qne-9a-n2I" firstAttribute="top" secondItem="JGL-7K-KSQ" secondAttribute="bottom" constant="17" id="lII-cE-J0Z"/>
-                <constraint firstItem="tFX-Cq-BeF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="vC2-Aa-7Mf"/>
+                <constraint firstItem="CJB-Bq-wHp" firstAttribute="leading" secondItem="qne-9a-n2I" secondAttribute="leading" id="0RW-Xg-Rbj"/>
+                <constraint firstItem="JGL-7K-KSQ" firstAttribute="trailing" secondItem="tFX-Cq-BeF" secondAttribute="trailing" id="2eV-sN-1od"/>
+                <constraint firstItem="qne-9a-n2I" firstAttribute="top" secondItem="JGL-7K-KSQ" secondAttribute="bottom" constant="17" id="AX4-pa-YEu"/>
+                <constraint firstAttribute="bottom" secondItem="tFX-Cq-BeF" secondAttribute="bottom" constant="37" id="BRl-Jf-oee"/>
+                <constraint firstItem="qne-9a-n2I" firstAttribute="centerX" secondItem="JGL-7K-KSQ" secondAttribute="centerX" id="LPg-6s-LUM"/>
+                <constraint firstAttribute="trailing" secondItem="CJB-Bq-wHp" secondAttribute="trailing" id="MM3-e4-42e"/>
+                <constraint firstItem="qne-9a-n2I" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ev9-YU-WSs"/>
+                <constraint firstItem="tFX-Cq-BeF" firstAttribute="leading" secondItem="JGL-7K-KSQ" secondAttribute="leading" id="g6N-6U-26E"/>
+                <constraint firstItem="tFX-Cq-BeF" firstAttribute="top" secondItem="qne-9a-n2I" secondAttribute="bottom" id="gxG-Qk-DMT"/>
+                <constraint firstItem="CJB-Bq-wHp" firstAttribute="trailing" secondItem="qne-9a-n2I" secondAttribute="trailing" id="n1x-fb-JZx"/>
+                <constraint firstItem="JGL-7K-KSQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="naT-Jn-enm"/>
+                <constraint firstItem="JGL-7K-KSQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="t6b-cD-uPf"/>
+                <constraint firstAttribute="bottom" secondItem="CJB-Bq-wHp" secondAttribute="bottom" constant="7" id="xSe-Hv-15e"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" translucent="NO" prompted="NO"/>

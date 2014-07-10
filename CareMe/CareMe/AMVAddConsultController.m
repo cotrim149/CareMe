@@ -344,7 +344,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     self.tabBarController.tabBar.hidden = NO;
-    
+    self.tabBarController.tabBar.translucent = NO;
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
