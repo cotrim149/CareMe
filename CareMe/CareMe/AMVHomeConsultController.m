@@ -21,6 +21,7 @@
     UIBarButtonItem *_editConsultBt;
     UILabel *_emptyConsultsLb;
     BOOL _showCompletedConsults;
+    NSArray *_consults;
 }
 
 @end

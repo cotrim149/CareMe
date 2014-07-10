@@ -24,6 +24,4 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *showCompletedConsultsBt;
 
-@property NSArray *consults;
-
 @end

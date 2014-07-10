@@ -101,26 +101,19 @@
             
             if(medicine.periodType == HOUR) {
                 int numberOfAlarms = (int) (24 / medicine.periodValue);
+                unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
                 
                 for(int i = 0; i < numberOfAlarms; i++) {
-                    if(medicineInPeriod != nil){
-                        NSTimeInterval medicineOffset = (i*1*60*60*medicine.periodValue);
-                        
-                        NSDate *medicineDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:medicineOffset];
-                        NSCalendar *cal = [NSCalendar currentCalendar];
-                        NSDateComponents *medicineDateComponents = [cal components:
-                                                                    NSYearCalendarUnit |
-                                                                    NSMonthCalendarUnit |
-                                                                    NSDayCalendarUnit |
-                                                                    NSHourCalendarUnit |
-                                                                    NSMinuteCalendarUnit
-                                                                          fromDate:medicineDate];
-                        
-                        if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == dayPeriod)
-                            medicineInPeriod = medicine;
-                    } else {
+                    NSTimeInterval medicineOffset = (i*1*60*60*medicine.periodValue);
+                    
+                    NSDate *medicineDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:medicineOffset];
+                    NSDateComponents *medicineDateComponents = [[NSCalendar currentCalendar] components:unitFlags fromDate:medicineDate];
+                    
+                    if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == dayPeriod) {
+                        medicineInPeriod = medicine;
                         break;
                     }
+                    
                 }
                 
                 if(medicineInPeriod != nil)
