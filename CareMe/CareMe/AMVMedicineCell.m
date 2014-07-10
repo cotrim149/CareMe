@@ -15,6 +15,8 @@
 {
     NSString *cellIdentifier = @"AMVMedicineCell";
     [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    
+    [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -38,6 +40,7 @@
         self.textLabel.textColor = [UIColor lightGrayColor];
 
     self.untilLabel.textColor = [AMVCareMeUtil secondColor];
+    self.untilLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
     
 }
 

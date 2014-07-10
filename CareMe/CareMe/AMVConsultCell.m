@@ -15,6 +15,9 @@
 {
     NSString *cellIdentifier = @"AMVConsultCell";
     [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    
+    [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
