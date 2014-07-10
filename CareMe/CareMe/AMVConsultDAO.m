@@ -32,7 +32,7 @@ static NSArray * _specialities;
     
     NSMutableArray *consults = [[NSMutableArray alloc] initWithArray:[self listConsults]];
     
-    [consults addObject:consult];
+    [consults insertObject:consult atIndex:0];
 
     NSData *consultsData = [NSKeyedArchiver archivedDataWithRootObject:consults];
     

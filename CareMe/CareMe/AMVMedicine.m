@@ -38,8 +38,18 @@
     [encoder encodeObject:self.reminderId forKey:@"reminderId"];
 }
 
--(NSString*)description{
-    return [NSString stringWithFormat:@"Nome:%@ \n Dosagem:%@ \n Como usar: %@ \n",self.name,self.dosage,self.howUse];
+- (NSString *)description {
+    NSMutableString *description = [NSMutableString stringWithFormat:@"<%@: ", NSStringFromClass([self class])];
+    [description appendFormat:@"self.name=%@", self.name];
+    [description appendFormat:@", self.dosage=%@", self.dosage];
+    [description appendFormat:@", self.howUse=%@", self.howUse];
+    [description appendFormat:@", self.startDate=%@", self.startDate];
+    [description appendFormat:@", self.endDate=%@", self.endDate];
+    [description appendFormat:@", self.periodValue=%li", (long)self.periodValue];
+    [description appendFormat:@", self.periodType=%ld", self.periodType];
+    [description appendFormat:@", self.reminderId=%@", self.reminderId];
+    [description appendString:@">"];
+    return description;
 }
 
 @end

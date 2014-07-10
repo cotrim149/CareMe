@@ -30,9 +30,21 @@
     self.detailTextLabel.text = [NSString stringWithFormat:@"%02lu/%02lu/%02lu",(long)medicine.endDate.day,(long)medicine.endDate.month,(long)medicine.endDate.year];
     self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
     self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
+    
+    NSDate *now = [NSDate date];
+    NSDate *medicineEndDate = [[NSCalendar currentCalendar] dateFromComponents:medicine.endDate];
+
+    if([medicineEndDate compare:now] == NSOrderedAscending)
+        self.textLabel.textColor = [UIColor lightGrayColor];
 
     self.untilLabel.textColor = [AMVCareMeUtil secondColor];
     
+}
+
+-(void)prepareForReuse {
+    self.textLabel.textColor = [UIColor blackColor];
+    
+    [super prepareForReuse];
 }
 
 @end

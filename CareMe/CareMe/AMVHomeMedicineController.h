@@ -24,5 +24,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableViewMedicines;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIButton *showCompletedMedicinesBt;
 
 @end

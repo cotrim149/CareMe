@@ -14,7 +14,7 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
 
 @interface AMVHomeConsultController : UIViewController <UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
 {
-    NSString *_titleLeftBarButtonEditing;
+    NSString *EDIT_TITLE;
     NSString *_titleLeftBarButtonOK;
 }
 
@@ -22,5 +22,8 @@ typedef NS_ENUM(short, AMVConsultVisualizationType) {
 @property (weak, nonatomic) IBOutlet UIScrollView *scroll;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewConsults;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIButton *showCompletedConsultsBt;
+
+@property NSArray *consults;
 
 @end

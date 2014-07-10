@@ -27,4 +27,6 @@ typedef NS_ENUM(NSInteger, AMVPeriodEnum){
 @property (nonatomic) AMVPeriodEnum periodType;
 @property (nonatomic) NSString *reminderId;
 
+- (NSString *)description;
+
 @end

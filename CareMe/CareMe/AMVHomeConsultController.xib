@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="scroll" destination="Bvv-FD-GB6" id="opg-mp-i4X"/>
                 <outlet property="searchBar" destination="DTK-pp-YT7" id="LVP-Al-6Pl"/>
+                <outlet property="showCompletedConsultsBt" destination="mkK-gs-Id7" id="ROi-jC-3a0"/>
                 <outlet property="tableViewConsults" destination="tJC-Kk-mh2" id="19C-vW-kU1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="visualizationSC" destination="khx-sO-7bO" id="fZc-ep-h9g"/>
@@ -19,10 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-FD-GB6">
-                    <rect key="frame" x="22" y="99" width="276" height="355"/>
+                    <rect key="frame" x="22" y="99" width="276" height="319"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="tJC-Kk-mh2">
-                            <rect key="frame" x="0.0" y="0.0" width="276" height="355"/>
+                            <rect key="frame" x="0.0" y="0.0" width="276" height="319"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="n80-QF-Zb3"/>
@@ -51,6 +52,16 @@
                         <outlet property="delegate" destination="-1" id="9lC-2O-Zk6"/>
                     </connections>
                 </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkK-gs-Id7">
+                    <rect key="frame" x="0.0" y="417" width="320" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Mostrar Concluídos">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="showHideCompletedConsults:" destination="-1" eventType="touchUpInside" id="PDW-FV-QWc"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

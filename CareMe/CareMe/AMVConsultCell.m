@@ -29,10 +29,21 @@
     
     self.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", consult.doctorName,consult.doctorSpeciality];
     self.textLabel.font = [UIFont boldSystemFontOfSize:14.0];
+
+    NSDate *now = [NSDate date];
+    NSDate *consultDate = [[NSCalendar currentCalendar] dateFromComponents:consult.date];
     
+    if([consultDate earlierDate:now] == consultDate)
+        self.textLabel.textColor = [UIColor lightGrayColor];
+        
     self.detailTextLabel.text = [NSString stringWithFormat:@"%02ld/%02ld/%02ld", (long)consult.date.day, (long)consult.date.month, (long)consult.date.year];
     self.detailTextLabel.textColor = [AMVCareMeUtil secondColor];
     self.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:11.0];
+}
+
+-(void)prepareForReuse {
+    self.textLabel.textColor = [UIColor blackColor];
+    [super prepareForReuse];
 }
 
 @end

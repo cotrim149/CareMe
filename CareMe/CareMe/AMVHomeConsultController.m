@@ -17,10 +17,10 @@
 
 @interface AMVHomeConsultController () {
     AMVConsultDAO *_dao;
-    NSArray *_consults;
     AMVEventsManagerSingleton *_eventsManager;
     UIBarButtonItem *_editConsultBt;
     UILabel *_emptyConsultsLb;
+    BOOL _showCompletedConsults;
 }
 
 @end
@@ -39,8 +39,10 @@
         _eventsManager = [AMVEventsManagerSingleton getInstance];
         
         _dao = [[AMVConsultDAO alloc] init];
-        _titleLeftBarButtonEditing = @"Editar";
+        EDIT_TITLE = @"Editar";
         _titleLeftBarButtonOK = @"OK";
+        
+        _showCompletedConsults = NO;
         
     }
     return self;
@@ -98,10 +100,16 @@
 -(void)viewWillAppear:(BOOL)animated {
     _consults = [_dao listConsults];
     
-    if (_consults.count == 0) {
+    if(_showCompletedConsults == NO)
+        [self removeCompletedConsults];
+    
+    [self updateTable];
+    
+    if ([_dao listConsults].count == 0) {
         self.searchBar.hidden = YES;
         self.scroll.hidden = YES;
         self.visualizationSC.hidden = YES;
+        self.showCompletedConsultsBt.hidden = YES;
         _editConsultBt.enabled = NO;
         [self.view addSubview:_emptyConsultsLb];
     } else {
@@ -110,19 +118,34 @@
             self.scroll.hidden = NO;
             self.visualizationSC.hidden = NO;
             _editConsultBt.enabled = YES;
+            self.showCompletedConsultsBt.hidden = NO;
             [_emptyConsultsLb removeFromSuperview];
         }
     }
     self.searchBar.text = @"";
     
-    [self updateTable];
-    
     if(self.tableViewConsults.editing){
         [self.tableViewConsults setEditing:NO];
-        self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
+        self.navigationItem.leftBarButtonItem.title=EDIT_TITLE;
     }
     
+    [self updateTable];
+}
+
+-(void) removeCompletedConsults {
+    NSDate *now = [NSDate date];
+    NSMutableArray *consultsToBeDeleted = [[NSMutableArray alloc] init];
+    NSMutableArray *consults = [NSMutableArray arrayWithArray:_consults];
     
+    for(AMVConsult *consult in consults) {
+        NSDate *consultDate = [[NSCalendar currentCalendar] dateFromComponents:consult.date];
+        if([consultDate earlierDate:now] == consultDate)
+            [consultsToBeDeleted addObject:consult];
+    }
+    
+    [consults removeObjectsInArray:consultsToBeDeleted];
+    
+    _consults = consults;
 }
 
 - (IBAction)changeVisualizationType:(id)sender {
@@ -150,7 +173,7 @@
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
     _editConsultBt = [[UIBarButtonItem alloc]
-                                      initWithTitle:_titleLeftBarButtonEditing
+                                      initWithTitle:EDIT_TITLE
                                       style:UIBarButtonItemStylePlain
                                       target:self
                                       action:@selector(editConsult)];
@@ -195,15 +218,13 @@
     if([self.tableViewConsults numberOfRowsInSection:0] > 0){
         if(self.tableViewConsults.editing){
             [self.tableViewConsults setEditing:NO animated:YES];
-            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
-            
-        }else{
+            self.navigationItem.leftBarButtonItem.title = EDIT_TITLE;
+            self.tableViewConsults.allowsSelectionDuringEditing = NO;
+        } else{
             [self.tableViewConsults setEditing:YES animated:YES];
             self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonOK;
             self.tableViewConsults.allowsSelectionDuringEditing = YES;
-            
         }
-        
     }
 }
 
@@ -324,46 +345,55 @@
        
         [self.tableViewConsults beginUpdates];
         [self.tableViewConsults deleteRowsAtIndexPaths:consults withRowAnimation:UITableViewRowAnimationFade];
-        //[self.tableViewConsults insertRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableViewConsults endUpdates];
         
-        [self updateTable];
-        
-        if([self.tableViewConsults numberOfRowsInSection:0] == 0){
-            self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
+        if([self.tableViewConsults numberOfRowsInSection:0] == 0) {
+            self.navigationItem.leftBarButtonItem.title = EDIT_TITLE;
+            [self.tableViewConsults setEditing:NO animated:YES];
         }
         
         if ([_dao listConsults].count == 0) {
             self.searchBar.hidden = YES;
             self.scroll.hidden = YES;
             self.visualizationSC.hidden = YES;
+            self.showCompletedConsultsBt.hidden = YES;
             _editConsultBt.enabled = NO;
+            
             [self.view addSubview:_emptyConsultsLb];
         }
     }
     
+    [self updateTable];
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
+    [self filterConsultsArrayWithText:text];
+    
+    [self updateTable];
+}
+
+-(void) filterConsultsArrayWithText:(NSString*) text {
     if(text.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.doctorName contains[cd] %@ OR SELF.doctorSpeciality contains[cd] %@ OR SELF.place contains[cd] %@",text, text, text];
         
         NSArray *unfiltredConsults = [_dao listConsults];
-        
         _consults = [unfiltredConsults filteredArrayUsingPredicate:predicate];
         
     } else {
         _consults = [_dao listConsults];
     }
     
-    [self updateTable];
+    if(_showCompletedConsults == NO)
+        [self removeCompletedConsults];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.searchBar resignFirstResponder];
     self.searchBar.text = @"";
-    _consults = [_dao listConsults];
+    
+    [self filterConsultsArrayWithText:self.searchBar.text];
     [self updateTable];
+    
     [searchBar setShowsCancelButton:NO animated:YES];
 }
 
@@ -394,6 +424,20 @@
 
 - (IBAction)dismissKeyboard:(id)sender {
     [sender endEditing:YES];
+}
+
+- (IBAction)showHideCompletedConsults:(id)sender {
+    if(_showCompletedConsults == NO) {
+        _showCompletedConsults = YES;
+        [_showCompletedConsultsBt setTitle:@"Ocultar Concluídos" forState:UIControlStateNormal];
+    } else {
+        _showCompletedConsults = NO;
+        [_showCompletedConsultsBt setTitle:@"Mostrar Concluídos" forState:UIControlStateNormal];
+    }
+    
+    [self filterConsultsArrayWithText:self.searchBar.text];
+    [self updateTable];
+
 }
 
 @end

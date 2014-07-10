@@ -15,6 +15,7 @@
     AMVEventsManagerSingleton *_eventsManager;
     UIBarButtonItem *_editMedicineBt;
     UILabel *_emptyMedicinesLb;
+    BOOL _showCompletedMedicines;
 }
 
 @end
@@ -34,6 +35,7 @@
         _eventsManager = [AMVEventsManagerSingleton getInstance];
         _titleLeftBarButtonEditing = @"Editar";
         _titleLeftBarButtonOK = @"OK";
+        _showCompletedMedicines = NO;
 
     }
     return self;
@@ -48,10 +50,14 @@
 -(void)viewWillAppear:(BOOL)animated {
     _medicines = [_dao listMedicines];
     
+    if(_showCompletedMedicines == NO)
+        [self removeCompletedMedicines];
+    
     if (_medicines.count == 0) {
         self.searchBar.hidden = YES;
         self.scroll.hidden = YES;
         self.dayPeriodSC.hidden = YES;
+        self.showCompletedMedicinesBt.hidden = YES;
         _editMedicineBt.enabled = NO;
         [self.view addSubview:_emptyMedicinesLb];
     } else {
@@ -59,6 +65,7 @@
             self.searchBar.hidden = NO;
             self.scroll.hidden = NO;
             self.dayPeriodSC.hidden = NO;
+            self.showCompletedMedicinesBt.hidden = NO;
             _editMedicineBt.enabled = YES;
             [_emptyMedicinesLb removeFromSuperview];
         }
@@ -69,6 +76,7 @@
         [self.tableViewMedicines setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=_titleLeftBarButtonEditing;
     }
+    
     [self updateTable];
 }
 
@@ -80,7 +88,7 @@
 }
 
 
--(void)updateTable{
+-(void)updateTable {
     NSMutableArray *medicines = [[NSMutableArray alloc] init];
     
     DAY_PERIOD dayPeriod = (DAY_PERIOD) self.dayPeriodSC.selectedSegmentIndex;
@@ -89,13 +97,13 @@
             
             NSDateComponents *date = [medicine startDate];
             
-            NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+            AMVMedicine *medicineInPeriod = nil;
             
             if(medicine.periodType == HOUR) {
                 int numberOfAlarms = (int) (24 / medicine.periodValue);
                 
                 for(int i = 0; i < numberOfAlarms; i++) {
-                    if([tempArray count] == 0){
+                    if(medicineInPeriod != nil){
                         NSTimeInterval medicineOffset = (i*1*60*60*medicine.periodValue);
                         
                         NSDate *medicineDate = [[[NSCalendar currentCalendar] dateFromComponents:medicine.startDate] dateByAddingTimeInterval:medicineOffset];
@@ -108,23 +116,20 @@
                                                                     NSMinuteCalendarUnit
                                                                           fromDate:medicineDate];
                         
-                        if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == dayPeriod){
-                            [tempArray addObject:medicine];
-                        }
-                        
+                        if([AMVCareMeUtil dayPeriodForDate:medicineDateComponents] == dayPeriod)
+                            medicineInPeriod = medicine;
+                    } else {
+                        break;
                     }
                 }
-                if([tempArray count] != 0){
-                    [medicines addObject:[tempArray objectAtIndex:0]];
-                }
+                
+                if(medicineInPeriod != nil)
+                    [medicines addObject:medicineInPeriod];
                 
             } else if([AMVCareMeUtil dayPeriodForDate:date] == dayPeriod){
                 [medicines addObject:medicine];
             }
         }
-        
-        _medicines = medicines;
-        [self.tableViewMedicines reloadData];
     } else {
         medicines = [[NSMutableArray alloc] initWithArray:_medicines];
     }
@@ -132,9 +137,10 @@
     _medicines = medicines;
     [self.tableViewMedicines reloadData];
 }
--(IBAction)selectPeriodSegment:(id)sender{
-    [self searchBar:self.searchBar textDidChange:self.searchBar.text];
 
+-(IBAction)selectPeriodSegment:(id)sender{
+    [self filterMedicinesArrayWithText:self.searchBar.text];
+    
     [self updateTable];
 
 }
@@ -176,7 +182,7 @@
     CGPoint centralizedLabel = self.view.center;
     
     if(IS_IPHONE_5)
-        centralizedLabel.y -= 75;
+        centralizedLabel.y -= 80;
     else
         centralizedLabel.y -= 100;
     
@@ -218,6 +224,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) removeCompletedMedicines {
+    NSDate *now = [NSDate date];
+    NSMutableArray *medicinesToBeDeleted = [[NSMutableArray alloc] init];
+    NSMutableArray *medicines = [NSMutableArray arrayWithArray:_medicines];
+    
+    for(AMVMedicine *medicine in medicines) {
+        NSDate *medicineDate = [[NSCalendar currentCalendar] dateFromComponents:medicine.endDate];
+        if([medicineDate earlierDate:now] == medicineDate)
+            [medicinesToBeDeleted addObject:medicine];
+    }
+    
+    [medicines removeObjectsInArray:medicinesToBeDeleted];
+    
+    _medicines = medicines;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -328,24 +350,24 @@
         [medicineListWithoutDeleted removeObjectAtIndex:indexPath.row];
         _medicines = medicineListWithoutDeleted;
         
-        
         NSArray *medicines = [NSArray arrayWithObjects:indexPath, nil];
         
         [self.tableViewMedicines beginUpdates];
         [self.tableViewMedicines deleteRowsAtIndexPaths:medicines withRowAnimation:UITableViewRowAnimationFade];
-        
         [self.tableViewMedicines endUpdates];
         
         [self updateTable];
         
         if([self.tableViewMedicines numberOfRowsInSection:0] == 0){
             self.navigationItem.leftBarButtonItem.title = _titleLeftBarButtonEditing;
+            [self.tableViewMedicines setEditing:NO animated:YES];
         }
         
         if([_dao listMedicines].count == 0) {
             self.searchBar.hidden = YES;
             self.scroll.hidden = YES;
             self.dayPeriodSC.hidden = YES;
+            self.showCompletedMedicinesBt.hidden = YES;
             _editMedicineBt.enabled = NO;
             [self.view addSubview:_emptyMedicinesLb];
         }
@@ -354,6 +376,12 @@
 }
 
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
+    [self filterMedicinesArrayWithText:text];
+    
+    [self updateTable];
+}
+
+-(void) filterMedicinesArrayWithText:(NSString*) text {
     if(text.length > 0) {
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@",text];
         
@@ -365,13 +393,15 @@
         _medicines = [_dao listMedicines];
     }
     
-    [self updateTable];
+    if(_showCompletedMedicines == NO)
+        [self removeCompletedMedicines];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.searchBar resignFirstResponder];
     self.searchBar.text = @"";
-    _medicines = [_dao listMedicines];
+    
+    [self filterMedicinesArrayWithText:self.searchBar.text];
     [self updateTable];
     
     [searchBar setShowsCancelButton:NO animated:YES];
@@ -405,6 +435,17 @@
     [sender endEditing: YES];
 }
 
-
+- (IBAction)showHideCompletedMedicines:(id)sender {
+    if(_showCompletedMedicines == NO) {
+        _showCompletedMedicines = YES;
+        [_showCompletedMedicinesBt setTitle:@"Ocultar Concluídos" forState:UIControlStateNormal];
+    } else {
+        _showCompletedMedicines = NO;
+        [_showCompletedMedicinesBt setTitle:@"Mostrar Concluídos" forState:UIControlStateNormal];
+    }
+    
+    [self filterMedicinesArrayWithText:self.searchBar.text];
+    [self updateTable];
+}
 
 @end

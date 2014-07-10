@@ -138,8 +138,10 @@
     if (buttonIndex == actionSheet.destructiveButtonIndex)
     {
         [_dao deleteConsult:self.consult];
-        NSString *eventId = [_eventsManager manipulateConsultEvent:self.consult withAlarm:NO manipulationType:DELETE_EVENT];
-        [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
+        if(self.consult.eventId != nil) {
+            NSString *eventId = [_eventsManager manipulateConsultEvent:self.consult withAlarm:NO manipulationType:DELETE_EVENT];
+            [self notifyConsultEventResult:(eventId != nil) manipulationType:DELETE_EVENT];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     } 
 }

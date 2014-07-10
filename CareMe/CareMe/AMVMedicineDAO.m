@@ -14,7 +14,7 @@
 
     NSMutableArray *medicines = [[NSMutableArray alloc] initWithArray:[self listMedicines]];
     
-    [medicines addObject:medicine];
+    [medicines insertObject:medicine atIndex:0];
     
     NSData *consultsData = [NSKeyedArchiver archivedDataWithRootObject:medicines];
     
