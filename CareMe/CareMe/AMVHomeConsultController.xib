@@ -20,10 +20,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bvv-FD-GB6">
-                    <rect key="frame" x="22" y="99" width="276" height="319"/>
+                    <rect key="frame" x="0.0" y="99" width="320" height="319"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="tJC-Kk-mh2">
-                            <rect key="frame" x="0.0" y="0.0" width="276" height="319"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="n80-QF-Zb3"/>
@@ -77,12 +77,12 @@
                 <constraint firstItem="DTK-pp-YT7" firstAttribute="centerX" secondItem="khx-sO-7bO" secondAttribute="centerX" id="0uT-4A-H7F"/>
                 <constraint firstItem="mkK-gs-Id7" firstAttribute="trailing" secondItem="DTK-pp-YT7" secondAttribute="trailing" id="30N-VY-bcX"/>
                 <constraint firstItem="Bvv-FD-GB6" firstAttribute="top" secondItem="DTK-pp-YT7" secondAttribute="bottom" id="6Gf-Eu-EBk"/>
-                <constraint firstItem="khx-sO-7bO" firstAttribute="trailing" secondItem="Bvv-FD-GB6" secondAttribute="trailing" id="8a2-rX-r9d"/>
+                <constraint firstItem="khx-sO-7bO" firstAttribute="trailing" secondItem="Bvv-FD-GB6" secondAttribute="trailing" constant="-22" id="8a2-rX-r9d"/>
                 <constraint firstAttribute="trailing" secondItem="mkK-gs-Id7" secondAttribute="trailing" id="L1q-oA-GEY"/>
                 <constraint firstAttribute="bottom" secondItem="Bvv-FD-GB6" secondAttribute="bottom" constant="42" id="Pjn-Rq-7jZ"/>
                 <constraint firstItem="DTK-pp-YT7" firstAttribute="top" secondItem="khx-sO-7bO" secondAttribute="bottom" constant="17" id="ZK2-yI-1RE"/>
                 <constraint firstAttribute="bottom" secondItem="mkK-gs-Id7" secondAttribute="bottom" constant="7" id="dmg-ve-7YS"/>
-                <constraint firstItem="Bvv-FD-GB6" firstAttribute="leading" secondItem="khx-sO-7bO" secondAttribute="leading" id="eao-ur-0Et"/>
+                <constraint firstItem="Bvv-FD-GB6" firstAttribute="leading" secondItem="khx-sO-7bO" secondAttribute="leading" constant="-22" id="eao-ur-0Et"/>
                 <constraint firstItem="mkK-gs-Id7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qhY-e8-ahT"/>
                 <constraint firstItem="khx-sO-7bO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="uBy-ve-0F0"/>
                 <constraint firstItem="DTK-pp-YT7" firstAttribute="leading" secondItem="mkK-gs-Id7" secondAttribute="leading" id="wn1-Dv-j34"/>

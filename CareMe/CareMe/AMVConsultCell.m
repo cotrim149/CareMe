@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     NSString *cellIdentifier = @"AMVConsultCell";
-    [self initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    [self initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     
     [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
