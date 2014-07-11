@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6154.17" systemVersion="14A283o" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.11"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMVAddMedicineController">
@@ -44,24 +44,36 @@
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome do medicamento" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ztw-2C-67z">
                                     <rect key="frame" x="18" y="9" width="278" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" returnKeyType="next"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="EMU-Rv-xUf"/>
+                                    </connections>
                                 </textField>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehk-gt-Bq7">
                                     <rect key="frame" x="17" y="98" width="278" height="112"/>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="next"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="RYZ-1B-akP"/>
+                                    </connections>
                                 </textView>
                                 <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data e Horário" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8a9-nN-yag">
                                     <rect key="frame" x="17" y="246" width="143" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="4p2-M9-gAL"/>
+                                    </connections>
                                 </textField>
                                 <textField appearanceType="aqua" opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="y31-Ad-h4Z">
                                     <rect key="frame" x="188" y="246" width="107" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="1Rz-qI-Hce"/>
+                                    </connections>
                                 </textField>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Início:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5z-U8-Zq8">
                                     <rect key="frame" x="17" y="226" width="46" height="21"/>
@@ -78,7 +90,10 @@
                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dosagem" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4L9-Lx-azO">
                                     <rect key="frame" x="17" y="52" width="278" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="HVp-69-ql4"/>
+                                    </connections>
                                 </textField>
                                 <pickerView appearanceType="aqua" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k91-FN-l34">
                                     <rect key="frame" x="77" y="274" width="245" height="162"/>
@@ -140,7 +155,7 @@
                                 <constraint firstAttribute="trailing" secondItem="k91-FN-l34" secondAttribute="trailing" id="AGX-Co-j17"/>
                                 <constraint firstItem="nWr-dD-g4a" firstAttribute="centerY" secondItem="k91-FN-l34" secondAttribute="centerY" id="OYu-Ii-jiX"/>
                                 <constraint firstAttribute="height" constant="680" id="dzA-xD-fdY"/>
-                                <constraint firstAttribute="trailing" secondItem="k91-FN-l34" secondAttribute="trailing" constant="-2" id="faR-Hd-frd"/>
+                                <constraint firstItem="nWr-dD-g4a" firstAttribute="leading" secondItem="viE-Kp-aL1" secondAttribute="leading" constant="17" id="jV9-RE-Eb2"/>
                             </constraints>
                             <connections>
                                 <action selector="hideKeyboard:" destination="-1" eventType="touchDown" id="jq6-xQ-6iM"/>

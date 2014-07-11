@@ -74,6 +74,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [self.startDatePicker setDate:[NSDate date]];
     [self.startDatePicker setDatePickerMode:UIDatePickerModeDateAndTime];
     [self.startDatePicker addTarget:self action:@selector(updateStartDate:) forControlEvents:UIControlEventValueChanged];
+    [self.startDate addTarget:self action:@selector(updateStartDate:) forControlEvents:UIControlEventEditingDidBegin];
     
     [self.startDate setInputView:self.startDatePicker];
     
@@ -82,6 +83,9 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     [self.endDatePicker setDate:[NSDate date]];
     [self.endDatePicker setDatePickerMode:UIDatePickerModeDate];
     [self.endDatePicker addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventValueChanged];
+    [self.endDate addTarget:self action:@selector(updateEndDate:) forControlEvents:UIControlEventEditingDidBegin];
+    
+    [self.endDatePicker setMinimumDate:self.startDatePicker.date];
     
     [self.endDate setInputView:self.endDatePicker];
 }
@@ -335,6 +339,7 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     self.startDate.text = dateString;
     
     [self.endDatePicker setMinimumDate:self.startDatePicker.date];
+    [self updateEndDate:nil];
     
 }
 
@@ -347,7 +352,6 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     NSString *dateString = [format stringFromDate:self.endDatePicker.date];
     
     self.endDate.text = dateString;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -410,6 +414,12 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
                                                          NSHourCalendarUnit  |
                                                          NSMinuteCalendarUnit|
                                                          NSSecondCalendarUnit) fromDate:datePicker.date];
+    if(datePicker == self.endDatePicker) {
+        components.hour = 23;
+        components.minute = 59;
+        components.second = 59;
+    }
+        
     return components;
 }
 
@@ -493,5 +503,11 @@ static NSString * const MEDICINE_HOWUSE_PLACEHOLDER = @"Como administrar..."; //
     return NO; // We do not want UITextField to insert line-breaks.
 }
 
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if(textField == self.startDate || textField == self.endDate)
+        return NO;
+    else
+        return YES;
+}
 
 @end

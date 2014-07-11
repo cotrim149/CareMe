@@ -11,7 +11,7 @@
 #import "AMVMedicine.h"
 #import "AMVMedicineDAO.h"
 
-@interface AMVAddMedicineController : UIViewController <UITextViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AMVAddMedicineController : UIViewController <UITextViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic) AMVMedicine *medicineToBeEdited;
 

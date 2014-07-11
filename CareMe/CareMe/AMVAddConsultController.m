@@ -67,6 +67,7 @@
     
     [self.datePk setDatePickerMode:UIDatePickerModeDateAndTime];
     [self.datePk addTarget:self action:@selector(updateConsultDate:) forControlEvents:UIControlEventValueChanged];
+    [self.dateTF addTarget:self action:@selector(updateConsultDate:) forControlEvents:UIControlEventEditingDidBegin];
     
     [self.dateTF setInputView:self.datePk];
     
@@ -237,7 +238,7 @@
 
     if(![errorMsg isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Campo em branco"
+                              initWithTitle:@"Erro!"
                               message:errorMsg
                               delegate:self
                               cancelButtonTitle:@"OK"
@@ -383,6 +384,28 @@
     self.scrollView.scrollIndicatorInsets = contentInsets;
     
     
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField;
+{
+    NSInteger nextTag = textField.tag + 1;
+    // Try to find next responder
+    UIResponder* nextResponder = [textField.superview viewWithTag:nextTag];
+    if (nextResponder) {
+        // Found next responder, so set it.
+        [nextResponder becomeFirstResponder];
+    } else {
+        // Not found, so remove keyboard.
+        [textField resignFirstResponder];
+    }
+    return NO; // We do not want UITextField to insert line-breaks.
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if(textField == self.dateTF)
+        return NO;
+    else
+        return YES;
 }
 
 

@@ -10,7 +10,7 @@
 #import "AMVHomeConsultController.h"
 #import "AMVConsult.h"
 
-@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate>
+@interface AMVAddConsultController : UIViewController <UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *addAlarmLb;

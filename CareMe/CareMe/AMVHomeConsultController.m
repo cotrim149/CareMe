@@ -362,6 +362,11 @@
     [self updateTable];
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Apagar";
+}
+
+
 -(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text {
     [self filterConsultsArrayWithText:text];
     

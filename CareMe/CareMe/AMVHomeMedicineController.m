@@ -53,7 +53,7 @@
     if(_showCompletedMedicines == NO)
         [self removeCompletedMedicines];
     
-    if (_medicines.count == 0) {
+    if ([_dao listMedicines].count == 0) {
         self.searchBar.hidden = YES;
         self.scroll.hidden = YES;
         self.dayPeriodSC.hidden = YES;
@@ -317,6 +317,9 @@
     }
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Apagar";
+}
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     
