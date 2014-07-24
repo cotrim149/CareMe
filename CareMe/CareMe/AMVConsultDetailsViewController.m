@@ -34,7 +34,7 @@
     [self addAndConfigureComponents];
 }
 
--(void) addAndConfigureComponents {
+-(void)drawLinesAroundDeleteConsultButton{
     CGRect layerFrame = CGRectMake(0, 0, self.deleteConsultBt.frame.size.width, self.deleteConsultBt.frame.size.height);
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, 0, 0);
@@ -48,12 +48,21 @@
     line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
     [self.deleteConsultBt.layer addSublayer:line];
     
+}
+
+-(void)addEditButtonNavigator{
     UIBarButtonItem *editBt = [[UIBarButtonItem alloc] initWithTitle:@"Editar"
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
                                                               action:@selector(editConsult)];
     
     self.navigationItem.rightBarButtonItem=editBt;
+    
+}
+
+-(void) addAndConfigureComponents {
+    [self drawLinesAroundDeleteConsultButton];
+    [self addEditButtonNavigator];
 }
 
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {
