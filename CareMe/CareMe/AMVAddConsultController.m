@@ -35,6 +35,26 @@
     return self;
 }
 
+-(void)completeLabelsWithEditedConsult{
+    self.doctorNameTF.text = _consultToBeEdited.doctorName;
+    self.placeTF.text = _consultToBeEdited.place;
+    [self.specialtyPk selectRow:_consultToBeEdited.idDoctorSpeciality inComponent:0 animated:YES];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    [self.datePk setDate:[calendar dateFromComponents:_consultToBeEdited.date]];
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd/MM/yyyy hh:mm"];
+    
+    NSString *dateString = [format stringFromDate:[calendar dateFromComponents:_consultToBeEdited.date]];
+    
+    self.dateTF.text = dateString;
+    
+    self.addToCalandarSw.on = (_consultToBeEdited.eventId) ? YES : NO;
+    self.addAlarmSw.enabled = self.addToCalandarSw.isOn ? YES : NO;
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,22 +67,7 @@
     
     
     if(_consultToBeEdited){
-        self.doctorNameTF.text = _consultToBeEdited.doctorName;
-        self.placeTF.text = _consultToBeEdited.place;
-        [self.specialtyPk selectRow:_consultToBeEdited.idDoctorSpeciality inComponent:0 animated:YES];
-        
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        [self.datePk setDate:[calendar dateFromComponents:_consultToBeEdited.date]];
-        
-        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        [format setDateFormat:@"dd/MM/yyyy hh:mm"];
-        
-        NSString *dateString = [format stringFromDate:[calendar dateFromComponents:_consultToBeEdited.date]];
-        
-        self.dateTF.text = dateString;
-        
-        self.addToCalandarSw.on = (_consultToBeEdited.eventId) ? YES : NO;
-        self.addAlarmSw.enabled = self.addToCalandarSw.isOn ? YES : NO;
+        [self completeLabelsWithEditedConsult];
     }
     
     [self.datePk setDatePickerMode:UIDatePickerModeDateAndTime];
@@ -70,6 +75,34 @@
     [self.dateTF addTarget:self action:@selector(updateConsultDate:) forControlEvents:UIControlEventEditingDidBegin];
     
     [self.dateTF setInputView:self.datePk];
+    
+}
+
+-(void)drawLinesAroundSwitches{
+    CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, 0); // top line
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    CAShapeLayer * line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.3;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addToCalendarLb.layer addSublayer:line];
+    
+    layerFrame = CGRectMake(0, 0, self.addAlarmLb.frame.size.width, self.addAlarmLb.frame.size.height);
+    path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, 0);
+    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
+    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
+    line = [CAShapeLayer layer];
+    line.path = path;
+    line.lineWidth = 0.3;
+    line.frame = layerFrame;
+    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
+    [self.addAlarmLb.layer addSublayer:line];
     
 }
 
@@ -102,31 +135,8 @@
     self.addToCalandarSw.onTintColor = [AMVCareMeUtil firstColor];
     self.addAlarmSw.onTintColor = [AMVCareMeUtil firstColor];
     
-    CGRect layerFrame = CGRectMake(0, 0, self.addToCalendarLb.frame.size.width, self.addToCalendarLb.frame.size.height);
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, 0); // top line
-    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
-    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
-    CAShapeLayer * line = [CAShapeLayer layer];
-    line.path = path;
-    line.lineWidth = 0.3;
-    line.frame = layerFrame;
-    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
-    [self.addToCalendarLb.layer addSublayer:line];
-    
-    layerFrame = CGRectMake(0, 0, self.addAlarmLb.frame.size.width, self.addAlarmLb.frame.size.height);
-    path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, 0, 0);
-    CGPathMoveToPoint(path, NULL, 0, layerFrame.size.height);
-    CGPathAddLineToPoint(path, NULL, layerFrame.size.width, layerFrame.size.height); // bottom line
-    line = [CAShapeLayer layer];
-    line.path = path;
-    line.lineWidth = 0.3;
-    line.frame = layerFrame;
-    line.strokeColor = [AMVCareMeUtil secondColor].CGColor;
-    [self.addAlarmLb.layer addSublayer:line];
-    
+    [self drawLinesAroundSwitches];
+        
     [self.infoAlarmBt setImage:[UIImage imageNamed:@"info_icon.png"]  forState:UIControlStateNormal];
     
     [self.infoCalendarbt setImage:[UIImage imageNamed:@"info_icon.png"] forState:UIControlStateNormal];
@@ -220,14 +230,14 @@
     return [self.specialtyPk selectedRowInComponent:0];
 }
 
--(void) addCompleted {
+-(BOOL)showMsgErros{
     NSMutableString *errorMsg = [[NSMutableString alloc] init];
     
     
     if([self.placeTF.text isEqualToString:@""]){
         [errorMsg appendString:@"Local da consulta em branco.\n"];
     }
-
+    
     if([self.doctorNameTF.text isEqualToString:@""]){
         [errorMsg appendString:@"Nome do médico em branco.\n"];
     }
@@ -235,7 +245,7 @@
     if([self.dateTF.text isEqualToString:@""]){
         [errorMsg appendString:@"Data da consulta em branco.\n"];
     }
-
+    
     if(![errorMsg isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle:@"Erro!"
@@ -244,54 +254,66 @@
                               cancelButtonTitle:@"OK"
                               otherButtonTitles: nil];
         [alert show];
-        
-    } else {
-        // EDITANDO
-        if(_consultToBeEdited){
-            [_dao deleteConsult:_consultToBeEdited];
-            
-            _consultToBeEdited.place = self.placeTF.text;
-            _consultToBeEdited.doctorName = self.doctorNameTF.text;
-            _consultToBeEdited.idDoctorSpeciality = [self getPickerEspecialityID];
-            _consultToBeEdited.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
-            _consultToBeEdited.date = [self getPickerDate];
-            
-            if(_consultToBeEdited.eventId != nil) {
-                NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
-                
-                [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
-                _consultToBeEdited.eventId = eventId;
-            } else if (self.addToCalandarSw.isOn) {
-                NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
-                
-                [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
-                _consultToBeEdited.eventId = eventId;
-            }
-            
+        return YES;
+    }
+    
+    return NO;
+}
 
-            [_dao saveConsult:_consultToBeEdited];
-            
-        // NOVO
+-(void)editConsult{
+    [_dao deleteConsult:_consultToBeEdited];
+    
+    _consultToBeEdited.place = self.placeTF.text;
+    _consultToBeEdited.doctorName = self.doctorNameTF.text;
+    _consultToBeEdited.idDoctorSpeciality = [self getPickerEspecialityID];
+    _consultToBeEdited.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+    _consultToBeEdited.date = [self getPickerDate];
+    
+    if(_consultToBeEdited.eventId != nil) {
+        NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:UPDATE_EVENT];
+        
+        [self notifyConsultEventResult:(eventId != nil) manipulationType:UPDATE_EVENT];
+        _consultToBeEdited.eventId = eventId;
+    } else if (self.addToCalandarSw.isOn) {
+        NSString *eventId = [_eventsManager manipulateConsultEvent:_consultToBeEdited withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+        
+        [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
+        _consultToBeEdited.eventId = eventId;
+    }
+    
+    
+    [_dao saveConsult:_consultToBeEdited];
+}
+
+-(void)addConsult{
+    // Popula a entity
+    AMVConsult *consult = [[AMVConsult alloc] init];
+    
+    consult.place = self.placeTF.text;
+    consult.doctorName = self.doctorNameTF.text;
+    consult.idDoctorSpeciality = [self getPickerEspecialityID];
+    consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
+    consult.date = [self getPickerDate];
+    
+    if(self.addToCalandarSw.isOn) {
+        NSString *eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
+        
+        [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
+        
+        consult.eventId = eventId;
+    }
+    
+    // Salva a entity
+    [_dao saveConsult:consult];
+    
+}
+
+-(void) addCompleted {
+    if(![self showMsgErros]) {
+        if(_consultToBeEdited){
+            [self editConsult];
         } else {
-            // Popula a entity
-            AMVConsult *consult = [[AMVConsult alloc] init];
-            
-            consult.place = self.placeTF.text;
-            consult.doctorName = self.doctorNameTF.text;
-            consult.idDoctorSpeciality = [self getPickerEspecialityID];
-            consult.doctorSpeciality = [_specialities objectAtIndex:[self getPickerEspecialityID]];
-            consult.date = [self getPickerDate];
-            
-            if(self.addToCalandarSw.isOn) {
-                NSString *eventId = [_eventsManager manipulateConsultEvent:consult withAlarm:self.addAlarmSw.isOn manipulationType:CREATE_EVENT];
-                
-                [self notifyConsultEventResult:(eventId != nil) manipulationType:CREATE_EVENT];
-                
-                consult.eventId = eventId;
-            }
-            
-            // Salva a entity
-            [_dao saveConsult:consult];
+            [self addConsult];
         }
         
         [self.navigationController popViewControllerAnimated:YES];
