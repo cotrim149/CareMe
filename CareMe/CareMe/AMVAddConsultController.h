@@ -28,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *doctorNameTF;
 @property (weak, nonatomic) IBOutlet UIPickerView *specialtyPk;
 @property (weak, nonatomic) IBOutlet UITextField *dateTF;
+@property (nonatomic) IBOutlet UIDatePicker *datePk;
 
 @end

@@ -50,7 +50,7 @@
     
 }
 
--(void)addEditButtonNavigator{
+-(void)configureButtonsNaviController{
     UIBarButtonItem *editBt = [[UIBarButtonItem alloc] initWithTitle:@"Editar"
                                                                style:UIBarButtonItemStylePlain
                                                               target:self
@@ -62,7 +62,7 @@
 
 -(void) addAndConfigureComponents {
     [self drawLinesAroundDeleteConsultButton];
-    [self addEditButtonNavigator];
+    [self configureButtonsNaviController];
 }
 
 -(void)notifyConsultEventResult:(BOOL)result manipulationType:(AMVManipulationType)manipulationType {

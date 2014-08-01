@@ -98,14 +98,7 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    _consults = [_dao listConsults];
-    
-    if(_showCompletedConsults == NO)
-        [self removeCompletedConsults];
-    
-    [self updateTable];
-    
+-(void)showElementsInScreen{
     if ([_dao listConsults].count == 0) {
         self.searchBar.hidden = YES;
         self.scroll.hidden = YES;
@@ -123,12 +116,28 @@
             [_emptyConsultsLb removeFromSuperview];
         }
     }
-    self.searchBar.text = @"";
     
+}
+-(void)disableEditingMode{
     if(self.tableViewConsults.editing){
         [self.tableViewConsults setEditing:NO];
         self.navigationItem.leftBarButtonItem.title=EDIT_TITLE;
     }
+
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    _consults = [_dao listConsults];
+    
+    if(_showCompletedConsults == NO)
+        [self removeCompletedConsults];
+    
+    [self updateTable];
+    [self showElementsInScreen];
+    
+    self.searchBar.text = @"";
+    
+    [self disableEditingMode];
     
     [self updateTable];
 }
@@ -157,10 +166,7 @@
 
 }
 
--(void) addComponentsAndConfigureStyle {
-    
-    self.title=@"Consultas";
-    
+-(void)configureButtonsNaviController{
     UIBarButtonItem *addConsultBt = [[UIBarButtonItem alloc]
                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                      target:self
@@ -170,18 +176,32 @@
     
     self.navigationItem.rightBarButtonItem=addConsultBt;
     
+    
     _editConsultBt = [[UIBarButtonItem alloc]
-                                      initWithTitle:EDIT_TITLE
-                                      style:UIBarButtonItemStylePlain
-                                      target:self
-                                      action:@selector(editConsult)];
+                      initWithTitle:EDIT_TITLE
+                      style:UIBarButtonItemStylePlain
+                      target:self
+                      action:@selector(editConsult)];
     
     self.navigationItem.leftBarButtonItem = _editConsultBt;
-     
+    
+}
+
+-(void)configureSegmentedController{
     self.visualizationSC.tintColor = [AMVCareMeUtil firstColor];
     [self.visualizationSC setTitle:@"Data" forSegmentAtIndex:0];
     [self.visualizationSC setTitle:@"Especialidade" forSegmentAtIndex:1];
     [self.visualizationSC setTitle:@"Local" forSegmentAtIndex:2];
+    
+}
+
+-(void) addComponentsAndConfigureStyle {
+    
+    self.title=@"Consultas";
+    
+    [self configureButtonsNaviController];
+    
+    [self configureSegmentedController];
     
     self.searchBar.tintColor = [AMVCareMeUtil secondColor];
     [self.searchBar setBackgroundImage:[AMVCareMeUtil imageWithColor:[AMVCareMeUtil firstColor]]];
@@ -189,8 +209,8 @@
     int labelWidth = self.view.frame.size.width;
     int labelHeight = 20;
     _emptyConsultsLb = [[UILabel alloc] initWithFrame:CGRectMake(0,0 , labelWidth, labelHeight)];
-    CGPoint centralizedLabel = self.view.center;
     
+    CGPoint centralizedLabel = self.view.center;
     if(IS_IPHONE_5 == NO)
         centralizedLabel.y -= 60;
     
